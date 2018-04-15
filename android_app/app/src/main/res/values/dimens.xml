@@ -7,4 +7,5 @@
     <dimen name="size_text_profile_small">12sp</dimen>
     <dimen name="profile_weight">25</dimen>
     <dimen name="profile_separator">1dp</dimen>
+    <dimen name="margin_for_menu">60dp</dimen>
 </resources>
