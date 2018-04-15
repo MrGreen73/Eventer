@@ -1,4 +1,4 @@
-package com.ivan.eventer.view;
+package com.ivan.eventer.adapters;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -9,16 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ivan.eventer.R;
-import com.ivan.eventer.controller.StartActivity;
-import com.ivan.eventer.view.HomeFragment;
+import com.ivan.eventer.model.Person;
 
 import java.util.List;
 
 
-public class rAdapter extends RecyclerView.Adapter<rAdapter.PersonViewHolder>{
+public class adapterPerson extends RecyclerView.Adapter<adapterPerson.PersonViewHolder>{
 
-    List<HomeFragment.Person> persons;
-    rAdapter(List<HomeFragment.Person> persons){
+    List<Person> persons;
+    public adapterPerson(List<Person> persons){
         this.persons = persons;
     }
 

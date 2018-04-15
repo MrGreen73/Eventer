@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.adapters.adapterPerson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ivan.eventer.model.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +38,7 @@ public class HomeFragment extends Fragment {
 
         initializeData();
 
-        rAdapter adapter = new rAdapter(persons);
+        adapterPerson adapter = new adapterPerson(persons);
         rv.setAdapter(adapter);
 
         return v;
@@ -43,16 +46,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    class Person {
-        String name;
-        String age;
-        int photoId;
-        Person(String name, String age, int photoId) {
-            this.name = name;
-            this.age = age;
-            this.photoId = photoId;
-        }
-    }
+
 
     private List<Person> persons;
 

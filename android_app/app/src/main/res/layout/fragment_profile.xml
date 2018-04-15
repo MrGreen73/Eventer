@@ -37,7 +37,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    tools:text="Ivan"
+                    android:text="Ivan"
+                    android:textColor="@color/textBlack"
                     android:textSize="18sp"
                     android:layout_gravity="center"/>
 
@@ -51,18 +52,21 @@
                         android:id="@+id/profileAge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="19" />
+                        android:textColor="@color/textBlack"
+                        android:text="19" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/textBlack"
                         android:text=", " />
 
                     <TextView
                         android:id="@+id/profileCity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="Moscow" />
+                        android:textColor="@color/textBlack"
+                        android:text="Moscow" />
 
 
 
@@ -73,7 +77,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center|bottom"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:weightSum="100">
+
+                    <View
+                        android:layout_width="0.2dp"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        android:background="@color/separator"/>
 
 
                     <LinearLayout
@@ -81,66 +92,90 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_margin="@dimen/activity_horizontal_margin">
+                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:layout_weight="30">
 
                         <TextView
                             android:id="@+id/profileCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="3"
+                            android:text="3"
+                            android:textColor="@color/textBlack"
                             android:textSize="16sp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/textBlack"
                             android:text="Visits" />
 
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="0.2dp"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        android:background="@color/separator"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_margin="@dimen/activity_horizontal_margin">
+                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:layout_weight="30">
 
                         <TextView
                             android:id="@+id/profileRang"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="4.9/5"
+                            android:text="4.9/5"
+                            android:textColor="@color/textBlack"
                             android:textSize="16sp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/textBlack"
                             android:text="Rang" />
 
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="0.2dp"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        android:background="@color/separator"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_margin="@dimen/activity_horizontal_margin">
+                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:layout_weight="30">
 
                         <TextView
                             android:id="@+id/profileLike"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="162"
+                            android:text="162"
+                            android:textColor="@color/textBlack"
                             android:textSize="16sp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Like" />
+                            android:text="Like"
+                            android:textColor="@color/textBlack"/>
 
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="0.2dp"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        android:background="@color/separator"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -155,6 +190,21 @@
             android:orientation="vertical">
 
         </LinearLayout>
+
+        <View
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:visibility="visible"
+            android:background="@color/colorAccent"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
 
 
     </LinearLayout>
