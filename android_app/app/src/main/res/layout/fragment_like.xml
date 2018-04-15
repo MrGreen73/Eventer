@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.ivan.eventer.view.LikeFragment">
 
-    <TextView
-        android:layout_width="match_parent"
+    <ExpandableListView
+        android:id="@+id/lvExp"
         android:layout_height="match_parent"
-        android:text="Like" />
+        android:layout_width="match_parent"/>
 
 </FrameLayout>

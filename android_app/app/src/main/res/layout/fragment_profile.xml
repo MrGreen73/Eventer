@@ -11,14 +11,14 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="255dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/fon_24"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"/>
+                android:scaleType="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Ivan"
+                    android:text="Иван"
                     android:textColor="@color/textBlack"
                     android:textSize="18sp"
                     android:layout_gravity="center"/>
@@ -66,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textBlack"
-                        android:text="Moscow" />
+                        android:text="Москва" />
 
 
 
@@ -81,7 +81,7 @@
                     android:weightSum="100">
 
                     <View
-                        android:layout_width="0.2dp"
+                        android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:visibility="visible"
                         android:background="@color/separator"/>
@@ -93,7 +93,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_weight="30">
+                        android:layout_weight="25">
 
                         <TextView
                             android:id="@+id/profileCount"
@@ -107,12 +107,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/textBlack"
-                            android:text="Visits" />
+                            android:text="События" />
 
                     </LinearLayout>
 
                     <View
-                        android:layout_width="0.2dp"
+                        android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:visibility="visible"
                         android:background="@color/separator"/>
@@ -123,7 +123,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_weight="30">
+                        android:layout_weight="25">
 
                         <TextView
                             android:id="@+id/profileRang"
@@ -137,12 +137,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/textBlack"
-                            android:text="Rang" />
+                            android:text="Рейтинг" />
 
                     </LinearLayout>
 
                     <View
-                        android:layout_width="0.2dp"
+                        android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:visibility="visible"
                         android:background="@color/separator"/>
@@ -153,7 +153,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_weight="30">
+                        android:layout_weight="25">
 
                         <TextView
                             android:id="@+id/profileLike"
@@ -166,13 +166,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Like"
+                            android:text="Друзья"
                             android:textColor="@color/textBlack"/>
 
                     </LinearLayout>
 
                     <View
-                        android:layout_width="0.2dp"
+                        android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:visibility="visible"
                         android:background="@color/separator"/>
@@ -182,21 +182,6 @@
 
 
         </FrameLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
-        <View
-            android:layout_marginTop="1dp"
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:visibility="visible"
-            android:background="@color/colorAccent"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerProfile"

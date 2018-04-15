@@ -45,9 +45,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-
-
     private List<Person> persons;
 
     private void initializeData(){
