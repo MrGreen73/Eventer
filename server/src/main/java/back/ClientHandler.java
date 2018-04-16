@@ -1,3 +1,6 @@
+package back;
+
+import javax.print.attribute.standard.Severity;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,11 +12,16 @@ import java.sql.*;
  * Created by user on 13.04.2018.
  */
 public class ClientHandler {
-    public static void createThread(Socket fromclient) {
+    PrintWriter out = null;
+
+    public ClientHandler(Socket fromclient) {
         Thread thread = new Thread(() -> {
             System.out.println("Thread Running");
+
+            Server.listeners.add(this);
+
             BufferedReader in = null;
-            PrintWriter out = null;
+
             try {
                 in = new BufferedReader(new
                         InputStreamReader(fromclient.getInputStream()));
@@ -48,15 +56,29 @@ public class ClientHandler {
                     e.printStackTrace();
                 }
                 if (input.equalsIgnoreCase("exit")) break;
-                out.println("S ::: " + input);
+                //out.println("S ::: " + input);
+                String s = "";
                 try {
 
-                    if (input.split(" ")[0].equals("create"))
-                        statement.execute("INSERT INTO sys.employee VALUES(" + Server.ID++ + ",\"" + input.split(" ")[1] + "\"," + Integer.parseInt(input.split(" ")[2]) + ")");
-                    connection.close();
-                    statement.close();
-                } catch (SQLException ex) {
+                    if (input.split(" ")[0].equals("create")) {
+
+                        for (int i = 0; i < Server.listeners.size(); i++) {
+
+                            if (!Server.listeners.get(i).equals(this)) {
+                                Server.listeners.get(i).out.println("Левый чувак обновил базу");
+                            } else {
+                                Server.listeners.get(i).out.println("Ты обновил базу");
+                            }
+                        }
+                    }
+
+                } catch (Exception ex) {
+                    System.out.println(s);
+                    System.out.println(s.length());
+                    System.out.println(Server.ID);
+                    ex.printStackTrace();
                     System.out.println("E2xception creation connection");
+
                     return;
                 }
                 System.out.println(input);
@@ -65,6 +87,13 @@ public class ClientHandler {
                 out.close();
                 in.close();
                 fromclient.close();
+                try {
+                    connection.close();
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
