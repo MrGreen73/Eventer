@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.ivan.eventer.R;
 
@@ -14,6 +16,9 @@ import com.ivan.eventer.R;
  */
 public class CreateFragment extends Fragment {
 
+    private Button btn;
+    private EditText name;
+    private EditText age;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -21,7 +26,9 @@ public class CreateFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_create, container, false);
 
-
+        btn = v.findViewById(R.id.btn);
+        name = v.findViewById(R.id.name);
+        age = v.findViewById(R.id.age);
 
         return v;
 
