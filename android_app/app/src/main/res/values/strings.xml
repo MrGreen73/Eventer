@@ -6,4 +6,16 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnLogin">Вход</string>
+    <string name="btnRegister">Регистрация</string>
+    <string name="progressDialogLogin">Вход</string>
+    <string name="progressDialogWait">Это займет несколько секунд</string>
+    <string name="progressDialogRegister">Регистрация</string>
+    <string name="loginEmail">Почта</string>
+    <string name="loginPassword">Пароль</string>
+    <string name="registerName">Имя</string>
+    <string name="registerEmail">Почта</string>
+    <string name="registerAge">Возраст</string>
+    <string name="registerCity">Город</string>
+    <string name="registerPassword">Пароль</string>
 </resources>

@@ -1,9 +1,12 @@
 package com.ivan.eventer.controller;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.ivan.eventer.R;
+import com.ivan.eventer.view.StartFragment;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -14,7 +17,7 @@ public class StartActivity extends AppCompatActivity {
 
 
         // Необходима проверка: авторизован ли пользователь
-        if (false) {
+        if (true) {
 
             sentToStart();//Если не авторизован
 
@@ -38,7 +41,16 @@ public class StartActivity extends AppCompatActivity {
     //Посылает пользователя на страницу регистрации или авторизации
     private void sentToStart() {
 
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.startContainer);
 
+        if (fragment == null) {
+
+            fragment = new StartFragment();
+            fm.beginTransaction()
+                    .add(R.id.startContainer, fragment)
+                    .commit();
+        }
 
     }
 }
