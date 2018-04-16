@@ -2,204 +2,223 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ivan.eventer.view.ProfileFragment">
+    tools:context="com.ivan.eventer.view.ProfileFragment"
+    android:layout_marginBottom="@dimen/margin_for_menu">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="@dimen/margin_for_menu">
+        android:layout_height="match_parent">
 
-        <FrameLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="260dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/fon_24"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="260dp"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/ic_profile"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"/>
-
-                <TextView
-                    android:id="@+id/profileName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Иван"
-                    android:textColor="@color/textBlack"
-                    android:textSize="@dimen/size_text_profile_large"
-                    android:layout_gravity="center"/>
-
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/profileAge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/textBlack"
-                        android:textSize="@dimen/size_text_profile_midle"
-                        android:text="19" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/textBlack"
-                        android:textSize="@dimen/size_text_profile_midle"
-                        android:text=", " />
-
-                    <TextView
-                        android:id="@+id/profileCity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/textBlack"
-                        android:textSize="@dimen/size_text_profile_midle"
-                        android:text="Москва" />
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center|bottom"
-                    android:layout_marginTop="5dp"
-                    android:weightSum="100">
-
-                    <View
-                        android:layout_width="@dimen/profile_separator"
+                    <ImageView
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="visible"
-                        android:background="@color/separator"/>
-
+                        android:src="@drawable/fon_24"
+                        android:layout_gravity="center"
+                        android:scaleType="center"/>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_weight="@dimen/profile_weight">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/ic_profile"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"/>
 
                         <TextView
-                            android:id="@+id/profileCount"
+                            android:id="@+id/profileName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3"
+                            android:layout_marginTop="5dp"
+                            android:text="Иван"
                             android:textColor="@color/textBlack"
-                            android:textSize="@dimen/size_text_profile_large"/>
+                            android:textSize="@dimen/size_text_profile_large"
+                            android:layout_gravity="center"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/textBlack"
-                            android:textSize="@dimen/size_text_profile_midle"
-                            android:text="События" />
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/profileAge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/textBlack"
+                                android:textSize="@dimen/size_text_profile_midle"
+                                android:text="19" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/textBlack"
+                                android:textSize="@dimen/size_text_profile_midle"
+                                android:text=", " />
+
+                            <TextView
+                                android:id="@+id/profileCity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/textBlack"
+                                android:textSize="@dimen/size_text_profile_midle"
+                                android:text="Москва" />
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center|bottom"
+                            android:layout_marginTop="5dp"
+                            android:weightSum="100">
+
+                            <View
+                                android:layout_width="@dimen/profile_separator"
+                                android:layout_height="match_parent"
+                                android:visibility="visible"
+                                android:background="@color/separator"/>
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:layout_margin="@dimen/activity_horizontal_margin"
+                                android:layout_weight="@dimen/profile_weight">
+
+                                <TextView
+                                    android:id="@+id/profileCount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="3"
+                                    android:textColor="@color/textBlack"
+                                    android:textSize="@dimen/size_text_profile_large"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/textBlack"
+                                    android:textSize="@dimen/size_text_profile_midle"
+                                    android:text="События" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="@dimen/profile_separator"
+                                android:layout_height="match_parent"
+                                android:visibility="visible"
+                                android:background="@color/separator"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:layout_margin="@dimen/activity_horizontal_margin"
+                                android:layout_weight="@dimen/profile_weight">
+
+                                <TextView
+                                    android:id="@+id/profileRang"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="4.9/5"
+                                    android:textColor="@color/textBlack"
+                                    android:textSize="@dimen/size_text_profile_large"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/textBlack"
+                                    android:textSize="@dimen/size_text_profile_midle"
+                                    android:text="Рейтинг" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="@dimen/profile_separator"
+                                android:layout_height="match_parent"
+                                android:visibility="visible"
+                                android:background="@color/separator"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:layout_margin="@dimen/activity_horizontal_margin"
+                                android:layout_weight="@dimen/profile_weight">
+
+                                <TextView
+                                    android:id="@+id/profileLike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="162"
+                                    android:textColor="@color/textBlack"
+                                    android:textSize="@dimen/size_text_profile_large"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Друзья"
+                                    android:textSize="@dimen/size_text_profile_midle"
+                                    android:textColor="@color/textBlack"/>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="@dimen/profile_separator"
+                                android:layout_height="match_parent"
+                                android:visibility="visible"
+                                android:background="@color/separator"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="@dimen/profile_separator"
-                        android:layout_height="match_parent"
-                        android:visibility="visible"
-                        android:background="@color/separator"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_weight="@dimen/profile_weight">
-
-                        <TextView
-                            android:id="@+id/profileRang"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4.9/5"
-                            android:textColor="@color/textBlack"
-                            android:textSize="@dimen/size_text_profile_large"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/textBlack"
-                            android:textSize="@dimen/size_text_profile_midle"
-                            android:text="Рейтинг" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="@dimen/profile_separator"
-                        android:layout_height="match_parent"
-                        android:visibility="visible"
-                        android:background="@color/separator"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_weight="@dimen/profile_weight">
-
-                        <TextView
-                            android:id="@+id/profileLike"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="162"
-                            android:textColor="@color/textBlack"
-                            android:textSize="@dimen/size_text_profile_large"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Друзья"
-                            android:textSize="@dimen/size_text_profile_midle"
-                            android:textColor="@color/textBlack"/>
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="@dimen/profile_separator"
-                        android:layout_height="match_parent"
-                        android:visibility="visible"
-                        android:background="@color/separator"/>
-
-                </LinearLayout>
+                </FrameLayout>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="800dp"
+                android:orientation="vertical">
 
-        </FrameLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerProfile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                </android.support.v7.widget.RecyclerView>
 
-        </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
 
+        </LinearLayout>
 
-
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

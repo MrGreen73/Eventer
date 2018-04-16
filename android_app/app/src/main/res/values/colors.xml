@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#0097a7</color>
     <color name="colorAccent">#ff5177</color>
     <color name="textBlack">#000</color>
+    <color name="colorBlackLight">#323232</color>
     <color name="separator">#242424</color>
+    <color name="colorGray">#989898</color>
 </resources>

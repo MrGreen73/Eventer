@@ -32,14 +32,11 @@ public class LikeFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_like, container, false);
 
-//Связываемся с нашим ExpandableListView:
-        expListView = (ExpandableListView) v.findViewById(R.id.lvExp);
-
+        //Связываемся с нашим ExpandableListView:
+        expListView = v.findViewById(R.id.lvExp);
         //Подготавливаем список данных:
         prepareListData();
-
         listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
-
         //Настраиваем listAdapter:
         expListView.setAdapter(listAdapter);
 
@@ -51,42 +48,44 @@ public class LikeFragment extends Fragment {
     * Подготавливаем данные для списка:
     */
     private void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
 
         //Добавляем данные о пунктах списка:
-        listDataHeader.add("Пункт 1");
-        listDataHeader.add("Пункт 2");
-        listDataHeader.add("Пункт 3");
+        listDataHeader.add("Вид");
+        listDataHeader.add("Город");
+        listDataHeader.add("Время");
+        listDataHeader.add("Мелочи");
 
         //Добавляем данные о подпунктах:
-        List<String> top250 = new ArrayList<String>();
-        top250.add("Подпункт 1.1");
-        top250.add("Подпункт 1.2");
-        top250.add("Подпункт 1.3");
-        top250.add("Подпункт 1.4");
-        top250.add("Подпункт 1.5");
-        top250.add("Подпункт 1.6");
-        top250.add("Подпункт 1.7");
+        List<String> kind = new ArrayList<String>();
+        kind.add("Спорт");
+        kind.add("Тусовки");
+        kind.add("Кино");
+        kind.add("Прогулка");
+        kind.add("Пикник");
+        kind.add("Мероприятие");
 
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("Подпункт 2.1");
-        nowShowing.add("Подпункт 2.2");
-        nowShowing.add("Подпункт 2.3");
-        nowShowing.add("Подпункт 2.4");
-        nowShowing.add("Подпункт 2.5");
-        nowShowing.add("Подпункт 2.6");
+        List<String> city = new ArrayList<String>();
+        city.add("Москва");
+        city.add("Мурманск");
+        city.add("Гусь-Хрустальный");
+        city.add("Одинцово");
 
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("Подпункт 3.1");
-        comingSoon.add("Подпункт 3.2");
-        comingSoon.add("Подпункт 3.3");
-        comingSoon.add("Подпункт 3.4");
-        comingSoon.add("Подпункт 3.5");
+        List<String> time = new ArrayList<String>();
+        time.add("Утро");
+        time.add("День");
+        time.add("Вечер");
 
-        listDataChild.put(listDataHeader.get(0), top250);
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
+        List<String> things = new ArrayList<String>();
+        things.add("Деньги");
+        things.add("Специальная одежда");
+        things.add("Еда");
+
+        listDataChild.put(listDataHeader.get(0), kind);
+        listDataChild.put(listDataHeader.get(1), city);
+        listDataChild.put(listDataHeader.get(2), time);
+        listDataChild.put(listDataHeader.get(3), things);
 
     }
 
