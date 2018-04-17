@@ -2,6 +2,7 @@ package com.ivan.eventer.view;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.controller.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,6 +75,18 @@ public class RegisterFragment extends Fragment {
     private void registerUser(String name, String email, String age, String city, String password) {
 
         //TODO: добавить регистрацию пользователя
+
+        sentToMain();
+
+    }
+
+
+    //Посылает пользователя на главную страницу
+    private void sentToMain() {
+
+        Intent mainIntent = new Intent(getActivity(), MainActivity.class);
+        startActivity(mainIntent);
+        getActivity().finish();
 
     }
 

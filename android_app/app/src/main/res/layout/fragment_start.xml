@@ -8,19 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/fon_1">
+        android:background="@drawable/fon_1"
+        android:weightSum="100">
 
         <ImageView
             android:layout_width="330dp"
-            android:layout_height="330dp"
+            android:layout_height="0dp"
             android:src="@drawable/rocket"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_weight="60"/>
 
         <Button
             android:id="@+id/startLogBtn"
             android:layout_width="250dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="0dp"
+            android:layout_weight="15"
             android:text="@string/btnLogin"
             android:textSize="@dimen/size_text_profile_large"
             android:padding="20dp"
@@ -30,7 +32,8 @@
         <Button
             android:id="@+id/startRegBtn"
             android:layout_width="250dp"
-            android:layout_height="80dp"
+            android:layout_height="0dp"
+            android:layout_weight="15"
             android:layout_marginTop="15dp"
             android:text="@string/btnRegister"
             android:textSize="@dimen/size_text_profile_large"

@@ -1,7 +1,5 @@
 package com.ivan.eventer.model;
 
-import android.arch.persistence.room.Entity;
-
 /**
  * Created by ivan on 17.04.18.
  */
