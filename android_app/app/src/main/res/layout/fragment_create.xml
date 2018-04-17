@@ -4,49 +4,106 @@
     android:layout_height="match_parent"
     tools:context="com.ivan.eventer.view.CreateFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/activity_vertical_margin">
+        android:layout_height="match_parent">
 
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Имя" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Возраст" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Тыкни меня"
-            android:padding="15dp"
-            android:layout_gravity="end"
-            android:layout_margin="20dp"/>
+            android:orientation="vertical"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:weightSum="100">
 
 
+            <ImageView
+                android:id="@+id/createImageEvent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:src="@drawable/rocket"/>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageButton
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_heart"
+                    android:layout_marginEnd="80dp"
+                    android:scaleType="fitCenter"/>
+
+                <ImageButton
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_home"
+                    android:scaleType="fitCenter"
+                    android:layout_marginStart="80dp"/>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/createName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Название"
+                    android:textColorHint="@color/colorAccent"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/createCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Количество человек"
+                    android:textColorHint="@color/colorAccent"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/createDescribe"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Описание"
+                    android:textColorHint="@color/colorAccent"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:layout_gravity="end"
+                android:layout_marginTop="15dp"
+                android:text="Создать"
+                android:background="@drawable/back_for_btn_login"/>
+        </LinearLayout>
+
+
+    </ScrollView>
 
 </FrameLayout>
