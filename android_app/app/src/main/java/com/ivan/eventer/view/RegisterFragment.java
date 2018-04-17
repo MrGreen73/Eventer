@@ -76,6 +76,7 @@ public class RegisterFragment extends Fragment {
 
         //TODO: добавить регистрацию пользователя
 
+        mProgressDialog.dismiss();
         sentToMain();
 
     }

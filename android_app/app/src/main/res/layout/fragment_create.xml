@@ -6,28 +6,26 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/margin_for_menu">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:weightSum="100">
-
+            android:layout_margin="@dimen/activity_vertical_margin">
 
             <ImageView
                 android:id="@+id/createImageEvent"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="30"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
                 android:src="@drawable/rocket"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:gravity="center">
 
@@ -50,7 +48,6 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginTop="15dp">
 
                 <android.support.design.widget.TextInputEditText
@@ -65,7 +62,6 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginTop="15dp">
 
                 <android.support.design.widget.TextInputEditText
@@ -80,7 +76,6 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginTop="15dp">
 
                 <android.support.design.widget.TextInputEditText
@@ -94,11 +89,12 @@
 
 
             <Button
+                android:id="@+id/createBtn"
                 android:layout_width="130dp"
-                android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_height="50dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:text="Создать"
                 android:background="@drawable/back_for_btn_login"/>
         </LinearLayout>

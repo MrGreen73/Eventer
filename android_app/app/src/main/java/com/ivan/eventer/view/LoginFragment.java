@@ -67,6 +67,7 @@ public class LoginFragment extends Fragment {
 
         //TODO: выполнить проверку наличия пользователя в базе данных
 
+        mProgressDialog.dismiss();
         sentToMain();
 
 

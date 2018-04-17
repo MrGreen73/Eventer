@@ -17,7 +17,7 @@ public class StartActivity extends AppCompatActivity {
 
 
         // Необходима проверка: авторизован ли пользователь
-        if (true) {
+        if (false) {
 
             sentToStart();//Если не авторизован
 
