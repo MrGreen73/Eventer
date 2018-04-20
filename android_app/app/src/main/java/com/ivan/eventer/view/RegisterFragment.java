@@ -20,9 +20,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ivan.eventer.R;
 import com.ivan.eventer.controller.MainActivity;
+
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -116,6 +120,7 @@ public class RegisterFragment extends Fragment {
                     focusView = mName;
 
                 }
+
                 focusView.requestFocus();
 
             }
@@ -132,20 +137,33 @@ public class RegisterFragment extends Fragment {
 
             if (task.isSuccessful()){
 
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                String uID = currentUser.getUid();
 
-                mProgressDialog.dismiss();
-                sentToMain();
+                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uID);
+
+                HashMap<String, String> user = new HashMap<>();
+                user.put("email", email);
+                user.put("name", name);
+                user.put("age", age);
+                user.put("city", city);
+
+                mDatabaseReference.setValue(user).addOnCompleteListener(task1 -> {
+
+                    if (task1.isSuccessful()) {
+
+                        mProgressDialog.dismiss();
+                        sentToMain();
+
+                    }
+
+                });
 
             } else {
 
                 mProgressDialog.hide();
-                Snackbar snackbar = Snackbar.make(getView(), "Не получилось зарегистрировать пользователя", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Повторить", v1 -> {
-
-                   registerUser(name, email, age, city, password);
-
-                });
-
+                Snackbar snackbar = Snackbar.make(getView(), "Ошибка", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Повторить", v1 -> registerUser(name, email, age, city, password));
                 snackbar.show();
 
             }
