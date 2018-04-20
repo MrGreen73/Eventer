@@ -152,6 +152,7 @@ public class RegisterFragment extends Fragment {
 
                     if (task1.isSuccessful()) {
 
+                        //TODO: Добавить сохранение локально
                         mProgressDialog.dismiss();
                         sentToMain();
 
