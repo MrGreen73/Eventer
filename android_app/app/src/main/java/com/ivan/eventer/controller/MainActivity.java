@@ -6,6 +6,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private Fragment container;
     private Fragment fragment;
+//    private Toolbar mToolbar;
 
     private BottomNavigationViewEx.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -84,7 +87,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationViewEx bnve = (BottomNavigationViewEx) findViewById(R.id.bnve);
+
+        Toolbar mToolbar = findViewById(R.id.myToolbar);
+        setSupportActionBar(mToolbar);
+
+        BottomNavigationViewEx bnve = findViewById(R.id.bnve);
         bnve.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fragmentManager = getSupportFragmentManager();
         container = fragmentManager.findFragmentById(R.id.mainContainer);
@@ -107,6 +114,22 @@ public class MainActivity extends AppCompatActivity {
         bnve.setIconSize(widthDp, heightDp);
         bnve.setTextSize(sp);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.logOut) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
