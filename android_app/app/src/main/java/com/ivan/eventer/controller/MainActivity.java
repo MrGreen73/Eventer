@@ -21,59 +21,63 @@ import com.ivan.eventer.view.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FragmentManager fragmentManager;
-    private Fragment container;
-    private Fragment fragment;
-//    private Toolbar mToolbar;
+    private FragmentManager mFragmentManager;
+    private Fragment mContainer;
+    private Fragment mFragment;
+    private TextView mToolbarTitle;
 
     private BottomNavigationViewEx.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragment = new HomeFragment();
+                    mFragment = new HomeFragment();
 
-                    if (container == null) {
+                    if (mContainer == null) {
 
-                        fragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).commit();
+                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeTitle("Главная");
 
                     }
                     break;
                 case R.id.navigation_search:
-                    fragment = new SearchFragment();
+                    mFragment = new SearchFragment();
 
-                    if (container == null) {
+                    if (mContainer == null) {
 
-                        fragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).commit();
+                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeTitle("Поиск");
 
                     }
                     break;
                 case R.id.navigation_create:
-                    fragment = new CreateFragment();
+                    mFragment = new CreateFragment();
 
-                    if (container == null) {
+                    if (mContainer == null) {
 
-                        fragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).commit();
+                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeTitle("Создание");
 
                     }
                     break;
                 case R.id.navigation_like:
-                    fragment = new LikeFragment();
+                    mFragment = new LikeFragment();
 
-                    if (container == null) {
+                    if (mContainer == null) {
 
-                        fragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).commit();
+                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeTitle("Оповещения");
 
                     }
                     break;
                 case R.id.navigation_profile:
-                    fragment = new ProfileFragment();
+                    mFragment = new ProfileFragment();
 
-                    if (container == null) {
+                    if (mContainer == null) {
 
-                        fragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).commit();
+                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeTitle("Профиль");
 
                     }
                     break;
@@ -87,19 +91,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Toolbar mToolbar = findViewById(R.id.myToolbar);
+//        mToolbar.inflateMenu(R.menu.menu_help);
         setSupportActionBar(mToolbar);
+
+        mToolbarTitle = findViewById(R.id.toolbarTitle);
 
         BottomNavigationViewEx bnve = findViewById(R.id.bnve);
         bnve.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        fragmentManager = getSupportFragmentManager();
-        container = fragmentManager.findFragmentById(R.id.mainContainer);
-        fragment = new HomeFragment();
+        mFragmentManager = getSupportFragmentManager();
+        mContainer = mFragmentManager.findFragmentById(R.id.mainContainer);
+        mFragment = new HomeFragment();
 
-        if (container == null) {
 
-            fragmentManager.beginTransaction().add(R.id.mainContainer, fragment).addToBackStack(null).commit();
+        if (mContainer == null) {
+
+            mFragmentManager.beginTransaction().add(R.id.mainContainer, mFragment).addToBackStack(null).commit();
+            changeTitle("Главная");
 
         }
 
@@ -118,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings, menu);
+        getMenuInflater().inflate(R.menu.menu_help, menu);
         return true;
     }
 
@@ -130,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void changeTitle(String title){
+
+        mToolbarTitle.setText(title);
+
     }
 
 }
