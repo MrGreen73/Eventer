@@ -23,14 +23,18 @@
             android:layout_height="0dp"
             android:layout_weight="12"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin">
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textColorHint="@color/textBlack">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/registerName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/registerName"
-                android:textColorHint="@color/colorAccent"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
                 android:textColor="@color/textBlack"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -41,19 +45,24 @@
             android:layout_weight="12"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textColorHint="@color/textBlack">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/registerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/registerEmail"
-                android:textColorHint="@color/colorAccent"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
                 android:textColor="@color/textBlack"/>
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:textColorHint="@color/textBlack"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="12"
@@ -66,7 +75,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/registerAge"
-                android:textColorHint="@color/colorAccent"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
                 android:textColor="@color/textBlack"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -77,15 +89,19 @@
             android:layout_weight="12"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textColorHint="@color/textBlack">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/registerCity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/registerCity"
-                android:textColorHint="@color/colorAccent"
-                android:textColor="@color/textBlack"/>
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
+                android:textColorHint="@color/colorAccent"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -95,14 +111,18 @@
             android:layout_weight="12"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textColorHint="@color/textBlack">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/registerPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/registerPassword"
-                android:textColorHint="@color/colorAccent"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
                 android:textColor="@color/textBlack"/>
 
         </android.support.design.widget.TextInputLayout>

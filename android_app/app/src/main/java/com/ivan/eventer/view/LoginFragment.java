@@ -77,7 +77,7 @@ public class LoginFragment extends Fragment {
 
                 }
 
-                focusView.requestFocus();
+                    focusView.requestFocus();
 
             }
 
