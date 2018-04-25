@@ -21,7 +21,10 @@
         </activity>
         <activity
             android:name=".controller.MainActivity"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main"
+            android:configChanges="orientation"
+            android:hardwareAccelerated="false"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -16,9 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -42,8 +38,8 @@ public class RegisterFragment extends Fragment {
     private ProgressDialog mProgressDialog;
 
     //Firebase
-    private FirebaseAuth mFirebaseAuth;
-    private DatabaseReference mDatabaseReference;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +55,7 @@ public class RegisterFragment extends Fragment {
         mButton = v.findViewById(R.id.regBtn);
         mProgressDialog = new ProgressDialog(getActivity());
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         mButton.setOnClickListener(v1 -> {
 
@@ -133,14 +129,14 @@ public class RegisterFragment extends Fragment {
 
     private void registerUser(String name, String email, String age, String city, String password) {
 
-        mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
 
             if (task.isSuccessful()){
 
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 String uID = currentUser.getUid();
 
-                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uID);
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uID);
 
                 HashMap<String, String> user = new HashMap<>();
                 user.put("email", email);
@@ -148,11 +144,11 @@ public class RegisterFragment extends Fragment {
                 user.put("age", age);
                 user.put("city", city);
 
-                mDatabaseReference.setValue(user).addOnCompleteListener(task1 -> {
+                mDatabase.setValue(user).addOnCompleteListener(task1 -> {
 
                     if (task1.isSuccessful()) {
 
-                        //TODO: Добавить сохранение локально
+                        //TODO: Добавить сохранение данных о пользователе локально
                         mProgressDialog.dismiss();
                         sentToMain();
 

@@ -55,7 +55,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Название"
-                    android:textColorHint="@color/colorAccent"/>
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:singleLine="true"
+                    android:textColorHint="@color/colorAccent" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -69,7 +73,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Количество человек"
-                    android:textColorHint="@color/colorAccent"/>
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:singleLine="true"
+                    android:textColorHint="@color/colorAccent" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -83,7 +91,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Описание"
-                    android:textColorHint="@color/colorAccent"/>
+                    android:inputType="textLongMessage"
+                    android:minLines="1"
+                    android:textColorHint="@color/colorAccent" />
 
             </android.support.design.widget.TextInputLayout>
 

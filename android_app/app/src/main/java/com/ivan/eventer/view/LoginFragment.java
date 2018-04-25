@@ -18,7 +18,6 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ivan.eventer.R;
 import com.ivan.eventer.controller.MainActivity;
-import com.ivan.eventer.controller.StartActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +28,7 @@ public class LoginFragment extends Fragment {
     private EditText mPassword;
     private Button mButton;
     private ProgressDialog mProgressDialog;
-    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +40,7 @@ public class LoginFragment extends Fragment {
         mPassword= v.findViewById(R.id.loginPassword);
         mButton= v.findViewById(R.id.logBtn);
         mProgressDialog = new ProgressDialog(getActivity());
-        mFirebaseAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         mButton.setOnClickListener(v1 -> {
 
@@ -54,6 +53,7 @@ public class LoginFragment extends Fragment {
                 mProgressDialog.setTitle(getString(R.string.progressDialogLogin));
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
                 mProgressDialog.setCanceledOnTouchOutside(false);
+                mProgressDialog.show();
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -89,11 +89,11 @@ public class LoginFragment extends Fragment {
 
     private void loginUser(String email, String password) {
 
-        mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
 
             if (task.isSuccessful()){
 
-                //TODO: Добавить локальную загрузку
+                //TODO: Добавить локальную загрузку данных о пользователе
                 mProgressDialog.dismiss();
                 sentToMain();
 
