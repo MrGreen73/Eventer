@@ -15,10 +15,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 import com.ivan.eventer.R;
 import com.ivan.eventer.controller.MainActivity;
 
@@ -38,8 +38,8 @@ public class RegisterFragment extends Fragment {
     private ProgressDialog mProgressDialog;
 
     //Firebase
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+//    private FirebaseAuth mAuth;
+//    private DatabaseReference mDatabase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +55,7 @@ public class RegisterFragment extends Fragment {
         mButton = v.findViewById(R.id.regBtn);
         mProgressDialog = new ProgressDialog(getActivity());
 
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
 
         mButton.setOnClickListener(v1 -> {
 
@@ -128,6 +128,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void registerUser(String name, String email, String age, String city, String password) {
+/*
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
 
@@ -167,6 +168,7 @@ public class RegisterFragment extends Fragment {
 
         });
 
+*/
     }
 
     //Посылает пользователя на главную страницу

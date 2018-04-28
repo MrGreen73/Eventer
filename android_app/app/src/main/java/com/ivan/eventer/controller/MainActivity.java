@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuth;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.ivan.eventer.R;
 import com.ivan.eventer.view.CreateFragment;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
         mLogOut.setOnClickListener(v -> {
 
-            FirebaseAuth.getInstance().signOut(); // Выход из учетной записи
+//            FirebaseAuth.getInstance().signOut(); // Выход из учетной записи
             Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
             startActivity(startIntent);// Возвращает в активность авторизации
             finish();

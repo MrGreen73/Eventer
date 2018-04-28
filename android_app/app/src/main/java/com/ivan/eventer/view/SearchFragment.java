@@ -28,58 +28,120 @@ public class SearchFragment extends Fragment {
 
         btnKind = v.findViewById(R.id.btnSearchKind);
 
-        btnKind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnKind.setOnClickListener(view -> {
 
-                PopupMenu popupMenu = new PopupMenu(getActivity(), view);
-                popupMenu.inflate(R.menu.popupmenu); // Для Android 4.0
-                // для версии Android 3.0 нужно использовать длинный вариант
-                // popupMenu.getMenuInflater().inflate(R.menu.popupmenu,
-                // popupMenu.getMenu());
+            PopupMenu popupMenu = new PopupMenu(getActivity(), view);
+            popupMenu.inflate(R.menu.popupmenu);
+            // Для Android 4.0
+            // для версии Android 3.0 нужно использовать длинный вариант
+            // popupMenu.getMenuInflater().inflate(R.menu.popupmenu,
+            // popupMenu.getMenu());
 
-                popupMenu
-                        .setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                // Toast.makeText(PopupMenuDemoActivity.this,
-                                // item.toString(), Toast.LENGTH_LONG).show();
-                                // return true;
-                                switch (item.getItemId()) {
 
-                                    case R.id.menu1:
-                                        Toast.makeText(getContext(),
-                                                "Вы выбрали PopupMenu 1",
-                                                Toast.LENGTH_SHORT).show();
-                                        return true;
-                                    case R.id.menu2:
-                                        Toast.makeText(getContext(),
-                                                "Вы выбрали PopupMenu 2",
-                                                Toast.LENGTH_SHORT).show();
-                                        return true;
-                                    case R.id.btnSearchCity:
-                                        Toast.makeText(getContext(),
-                                                "Вы выбрали PopupMenu 3",
-                                                Toast.LENGTH_SHORT).show();
-                                        return true;
-                                    default:
-                                        return true;
+            popupMenu
+                    .setOnMenuItemClickListener(item -> {
+                        // Toast.makeText(PopupMenuDemoActivity.this,
+                        // item.toString(), Toast.LENGTH_LONG).show();
+                        // return true;
+                        switch (item.getItemId()) {
+
+                            case R.id.menu1:
+
+                                if (item.isChecked()){
+
+                                    item.setChecked(false);
+
+                                } else {
+
+                                    item.setChecked(true);
+
                                 }
-                            }
-                        });
+break;
 
-                popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+                            case R.id.menu2:
 
-                    @Override
-                    public void onDismiss(PopupMenu menu) {
-                        Toast.makeText(getContext(), "onDismiss",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-                popupMenu.show();
+                                if (item.isChecked()){
 
-            }
+                                    item.setChecked(false);
+
+                                } else {
+
+                                    item.setChecked(true);
+
+                                }
+break;
+
+                            /*case R.id.menu3:
+
+                                if (item.isChecked()){
+
+                                    item.setChecked(false);
+
+                                } else {
+
+                                    item.setChecked(true);
+
+                                }*/
+
+                            case R.id.menu4:
+
+                                if (item.isChecked()){
+
+                                    item.setChecked(false);
+
+                                } else {
+
+                                    item.setChecked(true);
+
+                                }
+break;
+
+                            case R.id.menu5:
+
+                                if (item.isChecked()){
+
+                                    item.setChecked(false);
+
+                                } else {
+
+                                    item.setChecked(true);
+
+                                }
+break;
+
+                            case R.id.menu6:
+
+                                if (item.isChecked()){
+
+                                    item.setChecked(false);
+
+                                } else {
+
+                                    item.setChecked(true);
+
+                                }
+break;
+
+                            default:
+                                break;
+
+                        }
+
+                        return true;
+                        //TODO: Добавить обновление списка
+
+                    });
+
+            popupMenu.setOnDismissListener(menu -> {
+
+                //TODO: Добавить обновление списка
+                Toast.makeText(getContext(), "Обновление", Toast.LENGTH_SHORT).show();
+
+
+            });
+            popupMenu.show();
+
         });
 
 

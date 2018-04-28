@@ -15,7 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuth;
 import com.ivan.eventer.R;
 import com.ivan.eventer.controller.MainActivity;
 
@@ -28,7 +28,7 @@ public class LoginFragment extends Fragment {
     private EditText mPassword;
     private Button mButton;
     private ProgressDialog mProgressDialog;
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +40,7 @@ public class LoginFragment extends Fragment {
         mPassword= v.findViewById(R.id.loginPassword);
         mButton= v.findViewById(R.id.logBtn);
         mProgressDialog = new ProgressDialog(getActivity());
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
 
         mButton.setOnClickListener(v1 -> {
 
@@ -88,6 +88,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void loginUser(String email, String password) {
+/*
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
 
@@ -109,6 +110,7 @@ public class LoginFragment extends Fragment {
         });
 
 
+*/
 
     }
 

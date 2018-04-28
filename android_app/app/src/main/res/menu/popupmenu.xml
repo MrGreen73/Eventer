@@ -5,17 +5,19 @@
     <item
         android:id="@+id/menu1"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Popup menu item 1"/>
+        android:checkable="true"
+        android:title="Кино"/>
     <item
         android:id="@+id/menu2"
-        android:title="Popup menu item 2"/>
+        android:checkable="true"
+        android:title="Пикник"/>
     <item
         android:id="@+id/menu3"
-        android:title="Popup menu item 3">
+        android:title="Тусовка">
         <menu>
             <item
                 android:id="@+id/submenu"
-                android:title="Подменю"/>
+                android:title="У бассейна"/>
         </menu>
     </item>
 </group>
@@ -23,16 +25,17 @@
     <item
         android:id="@+id/menu4"
         android:checkable="true"
-        android:checked="true"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="Popup menu item 4"/>
+        android:title="Спорт"/>
     <item
         android:id="@+id/menu5"
-        android:title="Popup menu item 5"
+        android:checkable="true"
+        android:title="Театр"
         android:enabled="false"/>
     <item
         android:id="@+id/menu6"
-        android:title="Popup menu item 6"/>
+        android:checkable="true"
+        android:title="Прогулка"/>
 </group>
 
 </menu>

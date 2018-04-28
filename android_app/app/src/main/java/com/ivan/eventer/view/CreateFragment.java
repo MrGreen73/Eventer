@@ -16,10 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 import com.ivan.eventer.R;
 
 import java.io.*;
@@ -38,8 +38,8 @@ public class CreateFragment extends Fragment {
     private ProgressDialog mProgressDialog;
 
     //Firebase
-    private DatabaseReference mDatabase;
-    private FirebaseUser mUser;
+//    private DatabaseReference mDatabase;
+//    private FirebaseUser mUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,6 +108,7 @@ public class CreateFragment extends Fragment {
     }
 
     private void makeEvent(String name, String count, String describe) {
+/*
 
         mProgressDialog.dismiss();
 
@@ -137,7 +138,8 @@ public class CreateFragment extends Fragment {
             }
 
         });
-
+*/
     }
+
 
 }
