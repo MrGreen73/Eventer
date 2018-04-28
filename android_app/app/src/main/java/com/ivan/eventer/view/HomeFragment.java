@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.adapters.adapterEvents;
 import com.ivan.eventer.adapters.adapterPerson;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ import com.ivan.eventer.model.*;
  */
 public class HomeFragment extends Fragment {
 
+    private List<Event> mEventList;
+    private adapterEvents mAdapterEvents;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,39 +41,33 @@ public class HomeFragment extends Fragment {
 
         initializeData();
 
-        adapterPerson adapter = new adapterPerson(persons);
-        rv.setAdapter(adapter);
+        mAdapterEvents = new adapterEvents(mEventList);
+        rv.setAdapter(mAdapterEvents);
 
         return v;
 
     }
 
-    private List<Person> persons;
 
     private void initializeData(){
-        persons = new ArrayList<>();
-        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.ic_home_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.ic_home_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_dashboard_black_24dp));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_notifications_black_24dp));
+
+        //TODO: Сделать выгрузку событий из базы данных
+
+        mEventList = new ArrayList<>();
+
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
+        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
 
 
     }
