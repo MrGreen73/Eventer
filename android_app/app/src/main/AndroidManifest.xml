@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ivan.eventer">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -21,10 +21,11 @@
         </activity>
         <activity
             android:name=".controller.MainActivity"
-            android:label="@string/title_activity_main"
             android:configChanges="orientation"
             android:hardwareAccelerated="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:label="@string/title_activity_main"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".controller.EventActivity"></activity>
     </application>
 
 </manifest>
