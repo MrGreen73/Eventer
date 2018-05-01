@@ -2,12 +2,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ivan.eventer.view.SettingsFragment">
+    tools:context="com.ivan.eventer.view.SettingsFragment"
+    android:layout_marginBottom="@dimen/margin_for_menu">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:background="@drawable/fon_1"
+        android:weightSum="100">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:layout_weight="24"
+            android:src="@drawable/rocket"
+            android:layout_gravity="center"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textColorHint="@color/textBlack">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/settingsName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/registerName"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
+                android:textColor="@color/textBlack"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:textColorHint="@color/textBlack"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/settingsAge"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/registerAge"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
+                android:textColor="@color/textBlack"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textColorHint="@color/textBlack">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/settinsgCity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/registerCity"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
+                android:textColorHint="@color/colorAccent"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:layout_weight="14"
+            android:layout_marginTop="15dp"
+            android:text="Сохранить"
+            android:textSize="@dimen/size_text_profile_midle"
+            android:padding="20dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:background="@drawable/back_for_btn_login"/>
+
+    </LinearLayout>
+
+
 
 </FrameLayout>

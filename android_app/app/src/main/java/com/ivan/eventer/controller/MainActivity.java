@@ -22,6 +22,7 @@ import com.ivan.eventer.view.HomeFragment;
 import com.ivan.eventer.view.LikeFragment;
 import com.ivan.eventer.view.ProfileFragment;
 import com.ivan.eventer.view.SearchFragment;
+import com.ivan.eventer.view.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -110,11 +111,22 @@ public class MainActivity extends AppCompatActivity {
         mLogOut = findViewById(R.id.logOut);
 
         mLogOut.setOnClickListener(v -> {
+/*
 
 //            FirebaseAuth.getInstance().signOut(); // Выход из учетной записи
             Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
             startActivity(startIntent);// Возвращает в активность авторизации
             finish();
+*/
+
+            mFragment = new SettingsFragment();
+
+            if (mContainer == null) {
+
+                mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                changeTitle("Настройки");
+
+            }
 
         });
 
