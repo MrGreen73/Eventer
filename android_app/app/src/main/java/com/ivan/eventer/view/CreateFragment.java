@@ -26,7 +26,10 @@ import com.ivan.eventer.R;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +43,7 @@ public class CreateFragment extends Fragment {
     private ImageButton mChangeImageBtn;
     private ImageView mImageEvent;
     private ProgressDialog mProgressDialog;
+    private List<Integer> mListImage;
 
     //Firebase
 //    private DatabaseReference mDatabase;
@@ -57,12 +61,16 @@ public class CreateFragment extends Fragment {
         mButton = v.findViewById(R.id.createBtn);
         mChangeImageBtn = v.findViewById(R.id.changeImageBtn);
         mImageEvent = v.findViewById(R.id.createImageEvent);
+        mListImage = initializeData();
+
 
         mProgressDialog = new ProgressDialog(getActivity());
 
         mChangeImageBtn.setOnClickListener(v1 -> {
 
-
+            Random random = new Random();
+            Integer position = random.nextInt(mListImage.size());
+            mImageEvent.setImageResource(mListImage.get(position));
 
         });
 
@@ -117,6 +125,22 @@ public class CreateFragment extends Fragment {
         });
 
         return v;
+
+    }
+
+    private List<Integer> initializeData() {
+
+        List<Integer> date = new ArrayList<>();
+
+        date.add(R.drawable.item1);
+        date.add(R.drawable.item2);
+        date.add(R.drawable.item3);
+        date.add(R.drawable.item4);
+        date.add(R.drawable.item5);
+        date.add(R.drawable.item6);
+        date.add(R.drawable.item7);
+
+        return date;
 
     }
 

@@ -94,7 +94,7 @@
 
 
             <Button
-                android:id="@+id/saveBtn"
+                android:id="@+id/outBtn"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Выйти"
@@ -107,7 +107,7 @@
 
 
             <Button
-                android:id="@+id/outBtn"
+                android:id="@+id/saveBtn"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:text="Сохранить"
