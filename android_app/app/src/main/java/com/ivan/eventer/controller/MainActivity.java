@@ -1,6 +1,5 @@
 package com.ivan.eventer.controller;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment mFragment;
     private TextView mToolbarTitle;
 
-    //For delete
-    private ImageButton mLogOut;
+    private ImageButton mSettingsBtn;
 
     private BottomNavigationViewEx.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -108,16 +105,9 @@ public class MainActivity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
         mContainer = mFragmentManager.findFragmentById(R.id.mainContainer);
         mFragment = new HomeFragment();
-        mLogOut = findViewById(R.id.logOut);
+        mSettingsBtn = findViewById(R.id.logOut);
 
-        mLogOut.setOnClickListener(v -> {
-/*
-
-//            FirebaseAuth.getInstance().signOut(); // Выход из учетной записи
-            Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
-            startActivity(startIntent);// Возвращает в активность авторизации
-            finish();
-*/
+        mSettingsBtn.setOnClickListener(v -> {
 
             mFragment = new SettingsFragment();
 

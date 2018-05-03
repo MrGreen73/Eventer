@@ -7,4 +7,5 @@
     <color name="colorBlackLight">#323232</color>
     <color name="separator">#242424</color>
     <color name="colorGray">#989898</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
