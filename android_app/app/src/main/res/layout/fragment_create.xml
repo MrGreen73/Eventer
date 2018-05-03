@@ -37,6 +37,7 @@
                     android:scaleType="fitCenter"/>
 
                 <ImageButton
+                    android:id="@+id/changeImageBtn"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_home"

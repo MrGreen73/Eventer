@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 //import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +37,8 @@ public class CreateFragment extends Fragment {
     private EditText mCount;
     private EditText mDescribe;
     private Button mButton;
+    private ImageButton mChangeImageBtn;
+    private ImageView mImageEvent;
     private ProgressDialog mProgressDialog;
 
     //Firebase
@@ -51,7 +55,15 @@ public class CreateFragment extends Fragment {
         mCount= v.findViewById(R.id.createCount);
         mDescribe= v.findViewById(R.id.createDescribe);
         mButton = v.findViewById(R.id.createBtn);
+        mChangeImageBtn = v.findViewById(R.id.changeImageBtn);
+        mImageEvent = v.findViewById(R.id.createImageEvent);
         mProgressDialog = new ProgressDialog(getActivity());
+
+        mChangeImageBtn.setOnClickListener(v1 -> {
+
+            //TODO:Сделать смену картинки изображения
+
+        });
 
         mButton.setOnClickListener(v1 -> {
 
