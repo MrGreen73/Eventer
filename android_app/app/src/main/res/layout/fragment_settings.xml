@@ -85,18 +85,41 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/saveBtn"
-            android:layout_width="150dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="14"
-            android:layout_marginTop="15dp"
-            android:text="Сохранить"
-            android:textSize="@dimen/size_text_profile_midle"
-            android:padding="20dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:background="@drawable/back_for_btn_login"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_weight="14">
+
+
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Выйти"
+                android:layout_marginStart="15dp"
+                android:textSize="@dimen/size_text_profile_midle"
+                android:padding="20dp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:background="@drawable/back_for_btn_out"/>
+
+
+            <Button
+                android:id="@+id/outBtn"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Сохранить"
+                android:layout_marginStart="40dp"
+                android:textSize="@dimen/size_text_profile_midle"
+                android:padding="20dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:background="@drawable/back_for_btn_login"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

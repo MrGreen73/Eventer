@@ -57,11 +57,12 @@ public class CreateFragment extends Fragment {
         mButton = v.findViewById(R.id.createBtn);
         mChangeImageBtn = v.findViewById(R.id.changeImageBtn);
         mImageEvent = v.findViewById(R.id.createImageEvent);
+
         mProgressDialog = new ProgressDialog(getActivity());
 
         mChangeImageBtn.setOnClickListener(v1 -> {
 
-            //TODO:Сделать смену картинки изображения
+
 
         });
 
