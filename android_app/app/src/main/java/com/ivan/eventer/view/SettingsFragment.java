@@ -17,6 +17,13 @@ import com.ivan.eventer.R;
  */
 public class SettingsFragment extends Fragment {
 
+    public static final String USER_SETTINGS = "user_settings";
+    public static final String USER_NAME = "name";
+    public static final String USER_AGE = "age";
+    public static final String USER_CITY = "city";
+
+
+
     private EditText mName;
     private EditText mAge;
     private EditText mCity;

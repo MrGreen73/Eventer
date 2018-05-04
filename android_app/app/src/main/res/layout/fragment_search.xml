@@ -71,18 +71,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <TextView
+            <EditText
+                android:id="@+id/search_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Search" />
+                tools:hint="Имя"/>
 
-
-            <TextView
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/search_save_btn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search" />
+                android:background="@drawable/back_for_btn_login"
+                android:text="save"/>
 
+            <Button
+                android:id="@+id/search_load_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="250dp"
+                android:background="@drawable/back_for_btn_out"
+                android:text="load"/>
 
         </LinearLayout>
 

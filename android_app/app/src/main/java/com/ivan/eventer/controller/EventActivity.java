@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.view.SearchFragment;
+import com.ivan.eventer.view.SettingsFragment;
 
 public class EventActivity extends AppCompatActivity {
 

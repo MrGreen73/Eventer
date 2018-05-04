@@ -1,6 +1,8 @@
 package com.ivan.eventer.view;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.PopupMenu;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ivan.eventer.R;
@@ -19,6 +22,16 @@ import com.ivan.eventer.R;
 public class SearchFragment extends Fragment {
 
     Button btnKind;
+
+    // это будет именем файла настроек
+    private static final String APP_PREFERENCES = "mysettings";
+    private static final String APP_PREFERENCES_NAME = "NAME";
+    private SharedPreferences mSettings;
+
+    private Button mSaveBtn;
+    private Button mLoadBtn;
+    private EditText mName;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,6 +154,31 @@ break;
 
             });
             popupMenu.show();
+
+        });
+
+
+        mSaveBtn = v.findViewById(R.id.search_save_btn);
+        mLoadBtn= v.findViewById(R.id.search_load_btn);
+        mName = v.findViewById(R.id.search_name);
+        mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        mSaveBtn.setOnClickListener(v1 -> {
+
+            String name = mName.getText().toString();
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putString(APP_PREFERENCES_NAME, name);
+            editor.apply();
+            Toast.makeText(getActivity(), "SAVED", Toast.LENGTH_SHORT).show();
+
+
+        });
+
+        mLoadBtn.setOnClickListener(v1 -> {
+
+            String name = mSettings.getString("EE", "DD");
+            mName.setText(name);
+            Toast.makeText(getActivity(), "LOADED", Toast.LENGTH_SHORT).show();
 
         });
 
