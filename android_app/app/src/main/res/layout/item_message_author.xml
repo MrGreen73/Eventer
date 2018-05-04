@@ -9,19 +9,17 @@
         android:layout_width="match_parent"
         android:layout_marginEnd="30dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="100">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="60"
             android:weightSum="100">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="55dp"
                 android:src="@drawable/ic_profile"
                 android:layout_gravity="center"
                 android:layout_weight="15"/>
@@ -31,11 +29,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 tools:text="Hello"
-                android:padding="6dp"
+                android:paddingHorizontal="10dp"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/size_text_profile_midle"
+                android:textSize="@dimen/size_text_profile_small"
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center"
                 android:gravity="center_vertical"
                 android:layout_weight="80"
                 android:background="@drawable/back_for_item_message_author"/>
@@ -47,28 +44,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="5"
             android:layout_marginTop="2dp"
             android:weightSum="100">
 
             <TextView
-                android:id="@+id/chat_name"
+                android:id="@+id/chat_author"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="dedog@gmail.com"
                 android:textColor="#222222"
                 android:textSize="@dimen/size_text_profile_small"
-                android:layout_weight="70"/>
+                android:layout_weight="50"/>
+
             <TextView
                 android:id="@+id/chat_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="14.14.1444"
                 android:textColor="#222222"
-                android:layout_weight="30"
+                android:layout_weight="50"
+                android:layout_marginEnd="10dp"
                 android:textSize="@dimen/size_text_profile_small" />
 
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

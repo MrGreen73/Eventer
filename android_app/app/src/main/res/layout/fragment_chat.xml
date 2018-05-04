@@ -16,7 +16,7 @@
         android:layout_weight="90">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/global_list_message"
+            android:id="@+id/recyclerChat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarSize="@dimen/scrollbar_size"
@@ -42,7 +42,7 @@
 
 
             <EditText
-                android:id="@+id/chat_edit_textmessage"
+                android:id="@+id/chat_edit_text_message"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="83"
@@ -51,18 +51,12 @@
                 android:textColor="#000000"
                 android:textColorHint="#727272" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:visibility="visible"
-                android:background="@color/textBlack"/>
 
             <ImageButton
                 android:id="@+id/globalchat_btn_send"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="16.7"
+                android:layout_weight="17"
                 android:background="@color/colorWhite"
                 app:srcCompat="@drawable/ic_notifications_black_24dp" />
         </LinearLayout>
