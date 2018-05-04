@@ -1,13 +1,73 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#eeeeff"
+    android:weightSum="100"
+    android:orientation="vertical"
     tools:context="com.ivan.eventer.view.ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="the chat" />
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_weight="90">
 
-</FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/global_list_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarSize="@dimen/scrollbar_size"
+            android:scrollbarThumbVertical="@color/colorPrimaryDark"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+
+            <EditText
+                android:id="@+id/chat_edit_textmessage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="83"
+                android:hint="Enter message..."
+                android:inputType="textAutoCorrect|textLongMessage"
+                android:textColor="#000000"
+                android:textColorHint="#727272" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:visibility="visible"
+                android:background="@color/textBlack"/>
+
+            <ImageButton
+                android:id="@+id/globalchat_btn_send"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="16.7"
+                android:background="@color/colorWhite"
+                app:srcCompat="@drawable/ic_notifications_black_24dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
