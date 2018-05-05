@@ -20,13 +20,13 @@ import java.util.List;
  * Created by ivan on 28.04.18.
  */
 
-public class adapterProfile extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
     List<Event> mEventList;
 
-    public adapterProfile(List<Event> eventList) {
+    public ProfileAdapter(List<Event> eventList) {
 
         mEventList = eventList;
     }

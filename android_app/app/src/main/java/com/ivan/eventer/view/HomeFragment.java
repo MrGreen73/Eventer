@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.R;
-import com.ivan.eventer.adapters.adapterEvents;
+import com.ivan.eventer.adapters.EventsListAdapter;
 import com.ivan.eventer.model.Event;
 
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private List<Event> mEventList;
-    private adapterEvents mAdapterEvents;
+    private EventsListAdapter mEventsListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,8 +38,8 @@ public class HomeFragment extends Fragment {
 
         initializeData();
 
-        mAdapterEvents = new adapterEvents(mEventList);
-        rv.setAdapter(mAdapterEvents);
+        mEventsListAdapter = new EventsListAdapter(mEventList);
+        rv.setAdapter(mEventsListAdapter);
 
         return v;
 

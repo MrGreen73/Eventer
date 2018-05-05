@@ -16,12 +16,12 @@ import com.ivan.eventer.model.Event;
 import java.util.List;
 
 
-public class adapterEvents extends RecyclerView.Adapter<adapterEvents.EventViewHolder> {
+public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.EventViewHolder> {
 
 
     List<Event> mEventList;
 
-    public adapterEvents(List<Event> eventList) {
+    public EventsListAdapter(List<Event> eventList) {
         mEventList = eventList;
     }
 
@@ -60,7 +60,7 @@ public class adapterEvents extends RecyclerView.Adapter<adapterEvents.EventViewH
 
     @NonNull
     @Override
-    public adapterEvents.EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public EventsListAdapter.EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, parent, false);
 
@@ -69,7 +69,7 @@ public class adapterEvents extends RecyclerView.Adapter<adapterEvents.EventViewH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull adapterEvents.EventViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EventsListAdapter.EventViewHolder holder, int position) {
 
         holder.eventTitle.setText(mEventList.get(position).getTitle());
         holder.eventDescribe.setText(mEventList.get(position).getDescribe());

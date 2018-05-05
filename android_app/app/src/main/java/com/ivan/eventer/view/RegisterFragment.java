@@ -1,6 +1,5 @@
 package com.ivan.eventer.view;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,18 +19,7 @@ import com.ivan.eventer.R;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.auth.FirebaseUser;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RegisterFragment extends Fragment {
-
-
-
 
     private EditText mName;
     private EditText mEmail;
@@ -41,11 +29,6 @@ public class RegisterFragment extends Fragment {
     private Button mButton;
     private ProgressDialog mProgressDialog;
     private SharedPreferences mSharedPreferences;
-
-
-    //Firebase
-//    private FirebaseAuth mAuth;
-//    private DatabaseReference mDatabase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,9 +43,6 @@ public class RegisterFragment extends Fragment {
         mPassword= v.findViewById(R.id.registerPassword);
         mButton = v.findViewById(R.id.regBtn);
         mProgressDialog = new ProgressDialog(getActivity());
-
-
-//        mAuth = FirebaseAuth.getInstance();
 
         mButton.setOnClickListener(v1 -> {
 
@@ -85,7 +65,6 @@ public class RegisterFragment extends Fragment {
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                 registerUser(name, email, age, city, password);
-
 
             } else {
 
@@ -161,7 +140,6 @@ public class RegisterFragment extends Fragment {
         }
 
         saveDate(name, email, age, city);
-        //TODO: Локально сохранить данные
         mProgressDialog.dismiss();
         sentToMain();
 

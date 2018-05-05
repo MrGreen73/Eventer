@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ivan.eventer.R;
-import com.ivan.eventer.adapters.adapterProfile;
-import com.ivan.eventer.adapters.adapterPerson;
+import com.ivan.eventer.adapters.ProfileAdapter;
 import com.ivan.eventer.model.Event;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
     private List<Event> mEventList;
-    private adapterProfile mAdapterProfile;
+    private ProfileAdapter mProfileAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,8 +38,8 @@ public class ProfileFragment extends Fragment {
 
         initializeData();
 
-        mAdapterProfile = new adapterProfile(mEventList);
-        rv.setAdapter(mAdapterProfile);
+        mProfileAdapter = new ProfileAdapter(mEventList);
+        rv.setAdapter(mProfileAdapter);
 
         return v;
 
@@ -48,7 +47,7 @@ public class ProfileFragment extends Fragment {
 
     private void initializeData(){
 
-        //TODO: Сделать выгрузку событий из базы данных
+        //TODO: Сделать выгрузку ЛИЧНЫХ событий из базы данных
 
         mEventList = new ArrayList<>();
 

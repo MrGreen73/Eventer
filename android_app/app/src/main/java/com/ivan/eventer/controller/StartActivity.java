@@ -8,8 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.auth.FirebaseUser;
 import com.ivan.eventer.R;
 import com.ivan.eventer.view.StartFragment;
 
@@ -22,9 +20,6 @@ public class StartActivity extends AppCompatActivity {
     public static final String USER_CITY = "CITY";
     private SharedPreferences mSharedPreferences;
 
-    // Firebase
-//    private FirebaseAuth mFirebaseAuth; // Для проверки аутентификации
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +27,14 @@ public class StartActivity extends AppCompatActivity {
 
         mSharedPreferences = this.getSharedPreferences(PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
 
-//        mFirebaseAuth = FirebaseAuth.getInstance();
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
-//        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-
         // Необходима проверка: авторизован ли пользователь
-        if (/*currentUser == null*//*mSharedPreferences.getString("NAME", "-1").equals("-1")*/true) {
+        if (mSharedPreferences.getString("NAME", "").equals("")) {
 
             sentToStart();//Если не авторизован
 

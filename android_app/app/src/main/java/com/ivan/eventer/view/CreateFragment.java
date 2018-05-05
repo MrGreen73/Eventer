@@ -1,11 +1,8 @@
 package com.ivan.eventer.view;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,24 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.auth.FirebaseUser;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
 import com.ivan.eventer.R;
 
-import java.io.*;
-import java.net.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CreateFragment extends Fragment {
 
     private EditText mName;
@@ -44,10 +30,6 @@ public class CreateFragment extends Fragment {
     private ImageView mImageEvent;
     private ProgressDialog mProgressDialog;
     private List<Integer> mListImage;
-
-    //Firebase
-//    private DatabaseReference mDatabase;
-//    private FirebaseUser mUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -145,37 +127,31 @@ public class CreateFragment extends Fragment {
     }
 
     private void makeEvent(String name, String count, String describe) {
-/*
 
-        mProgressDialog.dismiss();
+        Thread thread = new Thread() {
 
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").push();
+            @Override
+            public void run() {
 
-        HashMap<String, String> event = new HashMap<>();
-        event.put("name", name);
-        event.put("count", count);
-        event.put("describe", describe);
-        event.put("author", mUser.getEmail());
-        event.put("place", "0 0");
-        event.put("address", "NaN");
-
-        mDatabase.setValue(event).addOnCompleteListener(task -> {
-
-            if (task.isSuccessful()){
-
-                Snackbar.make(getView(), "Событие создано", Snackbar.LENGTH_LONG).show();
-
-            } else {
-
-                Snackbar snackbar = Snackbar.make(getView(), "Ошибка", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Повторить", v12 -> makeEvent(name, count, describe));
-                snackbar.show();
+                super.run();
+                //TODO: Добавить создание события
 
             }
 
-        });
-*/
+        };
+
+        thread.start();
+
+        try {
+
+            thread.join();
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+
+        }
+
     }
 
 

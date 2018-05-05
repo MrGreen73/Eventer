@@ -22,11 +22,6 @@ import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 import com.ivan.eventer.model.User;
 
-//import com.google.firebase.auth.FirebaseAuth;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class LoginFragment extends Fragment {
 
     private EditText mEmail;
@@ -35,7 +30,6 @@ public class LoginFragment extends Fragment {
     private ProgressDialog mProgressDialog;
     private SharedPreferences mSharedPreferences;
 
-//    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +41,6 @@ public class LoginFragment extends Fragment {
         mPassword= v.findViewById(R.id.loginPassword);
         mButton= v.findViewById(R.id.logBtn);
         mProgressDialog = new ProgressDialog(getActivity());
-//        mAuth = FirebaseAuth.getInstance();
 
         mButton.setOnClickListener(v1 -> {
 
@@ -66,7 +59,6 @@ public class LoginFragment extends Fragment {
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                 loginUser(email, password);
-
 
             } else {
 
@@ -123,34 +115,10 @@ public class LoginFragment extends Fragment {
 
         } else {
 
+            mProgressDialog.dismiss();
             Toast.makeText(getActivity(), "NOPE", Toast.LENGTH_SHORT).show();
 
         }
-
-
-/*
-
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-
-            if (task.isSuccessful()){
-
-                //TODO: Добавить локальную загрузку данных о пользователе
-                mProgressDialog.dismiss();
-                sentToMain();
-
-            } else {
-
-                mProgressDialog.hide();
-                Snackbar snackbar = Snackbar.make(getView(), "Ошибка", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Повторить", v12 -> loginUser(email, password));
-                snackbar.show();
-
-            }
-
-        });
-
-
-*/
 
     }
 

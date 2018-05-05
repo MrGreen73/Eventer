@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.MessageAdapter;
-import com.ivan.eventer.adapters.adapterEvents;
-import com.ivan.eventer.model.Event;
 import com.ivan.eventer.model.Message;
 
 import java.util.ArrayList;
@@ -46,9 +44,6 @@ public class ChatFragment extends Fragment {
         rv.setAdapter(mMessageAdapter);
 
         return v;
-
-
-
 
     }
 

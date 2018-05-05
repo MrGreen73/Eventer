@@ -156,7 +156,6 @@ break;
 
         });
 
-
         mSaveBtn = v.findViewById(R.id.search_save_btn);
         mLoadBtn= v.findViewById(R.id.search_load_btn);
         mName = v.findViewById(R.id.search_name);
