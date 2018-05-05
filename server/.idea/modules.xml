@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/cors.iml" filepath="$PROJECT_DIR$/cors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chat-spring.iml" filepath="$PROJECT_DIR$/.idea/modules/chat-spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chat-spring_main.iml" filepath="$PROJECT_DIR$/.idea/modules/chat-spring_main.iml" group="chat-spring" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chat-spring_test.iml" filepath="$PROJECT_DIR$/.idea/modules/chat-spring_test.iml" group="chat-spring" />
+      <module fileurl="file://$PROJECT_DIR$/spring-chat.iml" filepath="$PROJECT_DIR$/spring-chat.iml" />
     </modules>
   </component>
 </project>
