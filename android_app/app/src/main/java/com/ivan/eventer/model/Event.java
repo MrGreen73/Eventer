@@ -16,6 +16,8 @@ public class Event {
         mAuthor = author;
     }
 
+    public Event() {}
+
     public String getTitle() {
         return mTitle;
     }

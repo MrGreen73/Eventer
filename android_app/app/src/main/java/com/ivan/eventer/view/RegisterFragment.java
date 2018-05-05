@@ -4,8 +4,8 @@ package com.ivan.eventer.view;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -15,19 +15,22 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.ivan.eventer.R;
+import com.ivan.eventer.controller.MainActivity;
+import com.ivan.eventer.controller.StartActivity;
+
 //import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.auth.FirebaseUser;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
-import com.ivan.eventer.R;
-import com.ivan.eventer.controller.MainActivity;
-
-import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RegisterFragment extends Fragment {
+
+
+
 
     private EditText mName;
     private EditText mEmail;
@@ -36,6 +39,8 @@ public class RegisterFragment extends Fragment {
     private EditText mPassword;
     private Button mButton;
     private ProgressDialog mProgressDialog;
+    private SharedPreferences mSharedPreferences;
+
 
     //Firebase
 //    private FirebaseAuth mAuth;
@@ -54,6 +59,7 @@ public class RegisterFragment extends Fragment {
         mPassword= v.findViewById(R.id.registerPassword);
         mButton = v.findViewById(R.id.regBtn);
         mProgressDialog = new ProgressDialog(getActivity());
+
 
 //        mAuth = FirebaseAuth.getInstance();
 
@@ -128,47 +134,48 @@ public class RegisterFragment extends Fragment {
     }
 
     private void registerUser(String name, String email, String age, String city, String password) {
-/*
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+        //Запустить новый тред
+        Thread thread = new Thread() {
 
-            if (task.isSuccessful()){
+            @Override
+            public void run() {
 
-                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                String uID = currentUser.getUid();
-
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uID);
-
-                HashMap<String, String> user = new HashMap<>();
-                user.put("email", email);
-                user.put("name", name);
-                user.put("age", age);
-                user.put("city", city);
-
-                mDatabase.setValue(user).addOnCompleteListener(task1 -> {
-
-                    if (task1.isSuccessful()) {
-
-                        //TODO: Добавить сохранение данных о пользователе локально
-                        mProgressDialog.dismiss();
-                        sentToMain();
-
-                    }
-
-                });
-
-            } else {
-
-                mProgressDialog.hide();
-                Snackbar snackbar = Snackbar.make(getView(), "Ошибка", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Повторить", v1 -> registerUser(name, email, age, city, password));
-                snackbar.show();
+                Commands.createUser(name, email, age, city, password);
 
             }
 
-        });
+        };
 
-*/
+        thread.start();
+
+        try {
+
+            thread.join();
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+
+        }
+
+        saveDate(name, email, age, city);
+        //TODO: Локально сохранить данные
+        mProgressDialog.dismiss();
+        sentToMain();
+
+    }
+
+    private void saveDate(String name, String email, String age, String city) {
+
+        mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(StartActivity.USER_NAME, name);
+        editor.putString(StartActivity.USER_EMAIL, email);
+        editor.putString(StartActivity.USER_AGE, age);
+        editor.putString(StartActivity.USER_CITY, city);
+        editor.apply();
+
     }
 
     //Посылает пользователя на главную страницу

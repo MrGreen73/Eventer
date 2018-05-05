@@ -1,5 +1,7 @@
 package com.ivan.eventer.controller;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,9 +14,9 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-//import com.google.firebase.auth.FirebaseAuth;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.ivan.eventer.R;
+import com.ivan.eventer.model.PersonDate;
 import com.ivan.eventer.view.CreateFragment;
 import com.ivan.eventer.view.HomeFragment;
 import com.ivan.eventer.view.LikeFragment;
@@ -22,12 +24,16 @@ import com.ivan.eventer.view.ProfileFragment;
 import com.ivan.eventer.view.SearchFragment;
 import com.ivan.eventer.view.SettingsFragment;
 
+//import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
     private FragmentManager mFragmentManager;
     private Fragment mContainer;
     private Fragment mFragment;
     private TextView mToolbarTitle;
+    private SharedPreferences mSharedPreferences;
+    public static PersonDate sPersonDate;
 
     private ImageButton mSettingsBtn;
 
@@ -96,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loadDate();
+
         Toolbar mToolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(mToolbar);
         mToolbarTitle = findViewById(R.id.toolbarTitle);
@@ -138,6 +146,18 @@ public class MainActivity extends AppCompatActivity {
 
         bnve.setIconSize(widthDp, heightDp);
         bnve.setTextSize(sp);
+
+    }
+
+    private void loadDate() {
+
+        mSharedPreferences = this.getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
+        sPersonDate = new PersonDate(
+                mSharedPreferences.getString(StartActivity.USER_NAME, "User"),
+                mSharedPreferences.getString(StartActivity.USER_EMAIL, "user@email.ru"),
+                mSharedPreferences.getString(StartActivity.USER_AGE, "18"),
+                mSharedPreferences.getString(StartActivity.USER_CITY, "Moscow")
+        );
 
     }
 

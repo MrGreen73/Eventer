@@ -4,8 +4,8 @@ package com.ivan.eventer.view;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,10 +14,14 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-//import com.google.firebase.auth.FirebaseAuth;
 import com.ivan.eventer.R;
 import com.ivan.eventer.controller.MainActivity;
+import com.ivan.eventer.controller.StartActivity;
+import com.ivan.eventer.model.User;
+
+//import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +32,8 @@ public class LoginFragment extends Fragment {
     private EditText mPassword;
     private Button mButton;
     private ProgressDialog mProgressDialog;
+    private SharedPreferences mSharedPreferences;
+
 //    private FirebaseAuth mAuth;
 
     @Override
@@ -88,6 +94,39 @@ public class LoginFragment extends Fragment {
     }
 
     private void loginUser(String email, String password) {
+
+        final User[] user = new User[1];
+        Thread thread = new Thread(){
+
+            @Override
+            public void run() {
+
+                user[0] = Commands.loginUser(email, password);
+
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        if (user[0] != null){
+
+            saveDate(user[0].getName(), user[0].getEmail(), user[0].getAge(), user[0].getCity());
+            mProgressDialog.dismiss();
+            sentToMain();
+
+        } else {
+
+            Toast.makeText(getActivity(), "NOPE", Toast.LENGTH_SHORT).show();
+
+        }
+
+
 /*
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
@@ -111,6 +150,18 @@ public class LoginFragment extends Fragment {
 
 
 */
+
+    }
+
+    private void saveDate(String name, String email, String age, String city) {
+
+        mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(StartActivity.USER_NAME, name);
+        editor.putString(StartActivity.USER_EMAIL, email);
+        editor.putString(StartActivity.USER_AGE, age);
+        editor.putString(StartActivity.USER_CITY, city);
+        editor.apply();
 
     }
 

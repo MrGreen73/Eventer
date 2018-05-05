@@ -1,6 +1,5 @@
 package com.ivan.eventer.view;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,12 +10,9 @@ import android.view.ViewGroup;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.adapterEvents;
-import com.ivan.eventer.adapters.adapterPerson;
+import com.ivan.eventer.model.Event;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.ivan.eventer.model.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +49,27 @@ public class HomeFragment extends Fragment {
 
         //TODO: Сделать выгрузку событий из базы данных
 
-        mEventList = new ArrayList<>();
+
+
+        Thread thread = new Thread(){
+
+            @Override
+            public void run() {
+//                mEventList = Commands.getEvents();
+            mEventList = Commands.getEvents();
+//                Toast.makeText(getActivity(), ""+(mEventList.size()), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+/*
 
         mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
         mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
@@ -69,6 +85,7 @@ public class HomeFragment extends Fragment {
         mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
         mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
 
+*/
 
     }
 

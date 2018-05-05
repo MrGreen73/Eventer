@@ -1,6 +1,8 @@
 package com.ivan.eventer.controller;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,13 @@ import com.ivan.eventer.view.StartFragment;
 
 public class StartActivity extends AppCompatActivity {
 
+    public static final String PATH_TO_DATA_ABOUT_USER = "dataAboutUser";
+    public static final String USER_NAME = "NAME";
+    public static final String USER_EMAIL= "EMAIL";
+    public static final String USER_AGE = "AGE";
+    public static final String USER_CITY = "CITY";
+    private SharedPreferences mSharedPreferences;
+
     // Firebase
 //    private FirebaseAuth mFirebaseAuth; // Для проверки аутентификации
 
@@ -20,6 +29,8 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        mSharedPreferences = this.getSharedPreferences(PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
 
 //        mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -32,7 +43,7 @@ public class StartActivity extends AppCompatActivity {
 //        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
 
         // Необходима проверка: авторизован ли пользователь
-        if (/*currentUser == null*/false) {
+        if (/*currentUser == null*//*mSharedPreferences.getString("NAME", "-1").equals("-1")*/true) {
 
             sentToStart();//Если не авторизован
 
