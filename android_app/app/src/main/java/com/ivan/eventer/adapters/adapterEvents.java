@@ -3,24 +3,18 @@ package com.ivan.eventer.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.controller.EventActivity;
-import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.model.Event;
 
 import java.util.List;
 
-/**
- * Created by ivan on 28.04.18.
- */
 
 public class adapterEvents extends RecyclerView.Adapter<adapterEvents.EventViewHolder> {
 
@@ -59,6 +53,7 @@ public class adapterEvents extends RecyclerView.Adapter<adapterEvents.EventViewH
                 context.startActivity(eventIntent);
 
             }
+
         }
 
     }
@@ -89,9 +84,9 @@ public class adapterEvents extends RecyclerView.Adapter<adapterEvents.EventViewH
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+
         super.onAttachedToRecyclerView(recyclerView);
+
     }
-
-
 
 }

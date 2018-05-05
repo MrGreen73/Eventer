@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.adapterEvents;
 import com.ivan.eventer.model.Event;

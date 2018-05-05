@@ -1,9 +1,5 @@
 package com.ivan.eventer.model;
 
-/**
- * Created by ivan on 05.05.18.
- */
-
 public class PersonDate {
 
     private String mName;
@@ -17,6 +13,12 @@ public class PersonDate {
         mEmail = email;
         mAge = age;
         mCity = city;
+
+    }
+
+    public PersonDate(){
+
+        deletePerson();
 
     }
 
@@ -50,6 +52,23 @@ public class PersonDate {
 
     public void setCity(String city) {
         mCity = city;
+    }
+
+    public void deletePerson(){
+
+        mName = "";
+        mEmail = "";
+        mAge = "";
+        mCity = "";
+
+    }
+
+    public void updatePerson(String name, String age, String city){
+
+        mName = name;
+        mAge = age;
+        mCity = city;
+
     }
 
 }

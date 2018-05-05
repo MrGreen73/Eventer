@@ -1,4 +1,4 @@
-package com.ivan.eventer.view;
+package com.ivan.eventer.backend;
 
 import com.ivan.eventer.model.Event;
 import com.ivan.eventer.model.ListEvents;

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.R;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
