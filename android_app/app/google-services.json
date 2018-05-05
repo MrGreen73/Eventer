@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "103842352068",
+    "firebase_url": "https://eventer-692f4.firebaseio.com",
+    "project_id": "eventer-692f4",
+    "storage_bucket": "eventer-692f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103842352068:android:7bc77d63adc00f4f",
+        "android_client_info": {
+          "package_name": "com.ivan.eventer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103842352068-f25r14krqlfd7j4lbmijsgmref9nn93b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ivan.eventer",
+            "certificate_hash": "013b59a5c0fd1ace93f15c00a798e7e39c101bad"
+          }
+        },
+        {
+          "client_id": "103842352068-f9onlq4l135c5e21hg7msdbtc979n4os.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQIR2Miqyv7oDvAW8QZGOGBk-AAqUcyHI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103842352068-f9onlq4l135c5e21hg7msdbtc979n4os.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
