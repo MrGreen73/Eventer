@@ -9,7 +9,6 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/margin_for_menu">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,7 +18,7 @@
             <ImageView
                 android:id="@+id/createImageEvent"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:src="@drawable/rocket"/>
 
@@ -98,7 +97,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-
             <Button
                 android:id="@+id/createBtn"
                 android:layout_width="130dp"
@@ -108,8 +106,8 @@
                 android:layout_marginBottom="5dp"
                 android:text="Создать"
                 android:background="@drawable/back_for_btn_login"/>
-        </LinearLayout>
 
+        </LinearLayout>
 
     </ScrollView>
 

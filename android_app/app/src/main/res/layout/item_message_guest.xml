@@ -24,7 +24,7 @@
                 tools:text="Hello"
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/size_text_profile_small"
+                android:textSize="@dimen/size_text_profile_midle"
                 android:layout_marginEnd="10dp"
                 android:gravity="center_vertical"
                 android:layout_weight="80"

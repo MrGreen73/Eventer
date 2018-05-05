@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#eeeeff"
+    android:background="@color/colorMalibu"
     android:weightSum="100"
     android:orientation="vertical"
     tools:context="com.ivan.eventer.view.ChatFragment">
@@ -40,28 +40,35 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-
             <EditText
                 android:id="@+id/chat_edit_text_message"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="83"
-                android:hint="Enter message..."
+                android:hint="Введите сообщение..."
                 android:inputType="textAutoCorrect|textLongMessage"
                 android:textColor="#000000"
                 android:textColorHint="#727272" />
 
-
-            <ImageButton
-                android:id="@+id/globalchat_btn_send"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:layout_weight="17"
-                android:background="@color/colorWhite"
-                app:srcCompat="@drawable/ic_notifications_black_24dp" />
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/chat_send_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_chat_sent" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>
