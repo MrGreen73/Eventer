@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,8 +134,7 @@ public class CreateFragment extends Fragment {
             @Override
             public void run() {
 
-                super.run();
-                //TODO: Добавить создание события
+                Commands.createEvent(count, describe, name, "NaN");
 
             }
 
@@ -152,7 +152,8 @@ public class CreateFragment extends Fragment {
 
         }
 
-    }
+        mProgressDialog.dismiss();
 
+    }
 
 }

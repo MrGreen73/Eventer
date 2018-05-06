@@ -24,15 +24,18 @@ import java.util.ArrayList;
  */
 public class Commands {
     // Create a new RestTemplate instance
-    public static String IP = "192.168.180.58:8080";
+//    public static String IP = "159.65.212.127:8008";
+    public static String IP = "192.168.180.58:8008";
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
     static String address = "192.168.180.58"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
     public static Long createUser(String name, String email, String age, String city, String password) {
         // The connection URL
+
         String url = "http://" + IP + "/add?name=" + name + "&email=" + email + "&password=" + password +
                 "&age=" + age + "&city=" + city;
 // Add the String message converter
+
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 
@@ -40,6 +43,7 @@ public class Commands {
         Long result = restTemplate.getForObject(url, Long.class);
 
         System.out.println(result);
+
         return result;
     }
 
@@ -68,7 +72,7 @@ public class Commands {
         return user;
     }
 
-    public static String createEvent(Integer maxPeople, String name, String description, String place) {
+    public static String createEvent(String maxPeople, String name, String description, String place) {
         String url = "http://" + IP + "/createEvent?maxPeople=" + maxPeople +
                 "&name=" + name +
                 "&description=" + description +
@@ -76,7 +80,7 @@ public class Commands {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         String s = restTemplate.getForObject(url, String.class);
-        System.out.println(s);
+        System.err.println(s);
         return s;
     }
 
