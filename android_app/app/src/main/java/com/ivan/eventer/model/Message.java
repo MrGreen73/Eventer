@@ -17,6 +17,7 @@ public class Message {
 
     }
 
+
     // Пустой конструктор
     public Message() { }
 

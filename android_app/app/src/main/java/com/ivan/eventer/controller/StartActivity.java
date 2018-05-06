@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.view.StartFragment;
 
 public class StartActivity extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class StartActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-
+        Commands.makeConnection();
         // Необходима проверка: авторизован ли пользователь
         if (mSharedPreferences.getString("NAME", "").equals("")) {
 

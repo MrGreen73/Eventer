@@ -143,7 +143,7 @@ public class Commands {
     }
 
     public static void update() {
-        System.out.println("Ебать пацаны обновились");
+        System.err.println("Ебать пацаны обновились");
     }
 
 }

@@ -7,17 +7,27 @@ package com.ivan.eventer.model;
 public class Event {
 
     //TODO: Сделать хранение ID
+    private String mID;
     private String mTitle;
     private String mDescribe;
     private String mAuthor;
 
-    public Event(String title, String describe, String author) {
+    public Event(String ID, String title, String describe, String author) {
+        mID = ID;
         mTitle = title;
         mDescribe = describe;
         mAuthor = author;
     }
 
     public Event() {}
+
+    public String getID() {
+        return mID;
+    }
+
+    public void setID(String ID) {
+        mID = ID;
+    }
 
     public String getTitle() {
         return mTitle;

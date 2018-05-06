@@ -104,14 +104,27 @@ public class SettingsFragment extends Fragment {
     private void saveNewDate(String name, String age, String city) {
 
         MainActivity.sPersonDate.updatePerson(name, age, city);
+        updateSharedPreferences(name, age, city);
+//        Commands.updatePerson(name, age, city);
+
+    }
+
+    private void updateSharedPreferences(String name, String age, String city) {
+
+        mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(StartActivity.USER_NAME, name);
+        editor.putString(StartActivity.USER_AGE, age);
+        editor.putString(StartActivity.USER_CITY, city);
+        editor.apply();
 
     }
 
     private void loadOldDate() {
 
-        mName.setHint(mSharedPreferences.getString(StartActivity.USER_NAME, "User"));
-        mAge.setHint(mSharedPreferences.getString(StartActivity.USER_AGE, "18"));
-        mCity.setHint(mSharedPreferences.getString(StartActivity.USER_CITY, "City"));
+        mName.setText(MainActivity.sPersonDate.getName());
+        mAge.setText(MainActivity.sPersonDate.getAge());
+        mCity.setText(MainActivity.sPersonDate.getCity());
 
     }
 

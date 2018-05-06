@@ -79,9 +79,9 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         } else {
 
-            ((ItemViewHolder) holder).eventTitle.setText(mEventList.get(position).getTitle());
-            ((ItemViewHolder) holder).eventDescribe.setText(mEventList.get(position).getDescribe());
-            ((ItemViewHolder) holder).eventAuthor.setText(mEventList.get(position).getAuthor());
+            ((ItemViewHolder) holder).eventTitle.setText(mEventList.get(position - 1).getTitle());
+            ((ItemViewHolder) holder).eventDescribe.setText(mEventList.get(position - 1).getDescribe());
+            ((ItemViewHolder) holder).eventAuthor.setText(mEventList.get(position - 1).getAuthor());
 
         }
 
