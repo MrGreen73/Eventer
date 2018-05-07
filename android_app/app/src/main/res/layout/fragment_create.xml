@@ -6,8 +6,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/margin_for_menu">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,8 +18,9 @@
                 android:id="@+id/createImageEvent"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                android:src="@drawable/rocket"/>
+                android:src="@drawable/natural_item1"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,16 +32,20 @@
                     android:id="@+id/createLoadImageBtn"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_heart"
+                    android:src="@drawable/ic_load_image"
                     android:layout_marginEnd="80dp"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="fitCenter"
+                    android:padding="10dp"
+                    android:background="@drawable/back_for_btn_register"/>
 
                 <ImageButton
                     android:id="@+id/createChangeImageBtn"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_home"
+                    android:src="@drawable/ic_change_image"
                     android:scaleType="fitCenter"
+                    android:padding="10dp"
+                    android:background="@drawable/back_for_btn_login"
                     android:layout_marginStart="80dp"/>
 
             </LinearLayout>
@@ -106,7 +110,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
                 android:text="Создать"
-                android:background="@drawable/back_for_btn_login"/>
+                android:background="@drawable/back_for_btn_out"/>
 
         </LinearLayout>
 
