@@ -5,6 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ivan.eventer.view.ChatFragment;
+import com.ivan.eventer.view.PreviewFragment;
+import com.ivan.eventer.view.SettingsEventFragment;
+import com.ivan.eventer.view.ThingsFragment;
 
 public class EventMonitorAdapter extends FragmentPagerAdapter {
 
@@ -26,13 +29,13 @@ public class EventMonitorAdapter extends FragmentPagerAdapter {
         }
         switch (position) {
             case 0:
-                return (new ChatFragment());
+                return (new SettingsEventFragment());
             case 1:
-                return (new ChatFragment());
+                return (new PreviewFragment());
             case 2:
                 return (new ChatFragment());
             case 3:
-                return (new ChatFragment());
+                return (new ThingsFragment());
             default:
                 return null;
         }
@@ -40,11 +43,16 @@ public class EventMonitorAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
+
         if (mIsAuthor) {
+
             return mNumOfTabs;
+
         }
+
         // Если гость, то страниц на одну меньше
         return mNumOfTabs - 1;
+
     }
 
 }

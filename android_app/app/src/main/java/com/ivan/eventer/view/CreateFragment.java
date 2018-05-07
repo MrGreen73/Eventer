@@ -24,6 +24,9 @@ import android.widget.Toast;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
+import com.ivan.eventer.controller.EventActivity;
+import com.ivan.eventer.controller.MainActivity;
+import com.ivan.eventer.model.EventPreview;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -87,7 +90,7 @@ public class CreateFragment extends Fragment {
         });
 
         // Загрузка картинки
-        mChangeImageBtn.setOnClickListener(v1 -> {
+        mLoadImageBtn.setOnClickListener(v1 -> {
 
             //TODO: Добавить загрузку картинки из галереи
             loadImage();
@@ -213,12 +216,14 @@ public class CreateFragment extends Fragment {
 
     private void makeEvent(String name, String count, String describe) {
 
+        final String[] id = new String[1];
         Thread thread = new Thread() {
 
             @Override
             public void run() {
 
-                Commands.createEvent(count, describe, name, "NaN");
+                id[0] = Commands.createEvent(Integer.valueOf(count), describe, name, "NaN");
+                //TODO: Добавить сохранение картинки в базе данных
 
             }
 
@@ -238,8 +243,14 @@ public class CreateFragment extends Fragment {
 
         //TODO: Сделать проверку на создание события
         //TODO: Сделать переход на EventActivity
+        EventActivity.sEventPreview = new EventPreview(id[0], name, count, describe, "NaN", MainActivity.sPersonDate.getEmail());
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
+
+        Intent eventIntent = new Intent(getActivity(), EventActivity.class);
+        eventIntent.putExtra("ID", id);
+        startActivity(eventIntent);
+        getActivity().finish();
 
     }
 

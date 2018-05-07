@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.ProfileAdapter;
+import com.ivan.eventer.backend.Commands;
+import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.model.Event;
 
 import java.util.ArrayList;
@@ -49,7 +51,11 @@ public class ProfileFragment extends Fragment {
 
         //TODO: Сделать выгрузку ЛИЧНЫХ событий из базы данных
 
-        mEventList = new ArrayList<>();
+        mEventList = Commands.allEventsOfUser(MainActivity.sPersonDate.getEmail());
+
+        if (mEventList == null) {
+            mEventList = new ArrayList<>();
+        }
 
 /*
         mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));

@@ -24,18 +24,15 @@ import java.util.ArrayList;
  */
 public class Commands {
     // Create a new RestTemplate instance
-//    public static String IP = "159.65.212.127:8008";
     public static String IP = "192.168.180.58:8008";
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
     static String address = "192.168.180.58"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
     public static Long createUser(String name, String email, String age, String city, String password) {
         // The connection URL
-
         String url = "http://" + IP + "/add?name=" + name + "&email=" + email + "&password=" + password +
                 "&age=" + age + "&city=" + city;
 // Add the String message converter
-
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 
@@ -43,24 +40,8 @@ public class Commands {
         Long result = restTemplate.getForObject(url, Long.class);
 
         System.out.println(result);
-
         return result;
     }
-
-    public static ArrayList<Event> getEvents(){
-
-        String url = "http://" + IP + "/AllEvents";
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-        ListEvents s = restTemplate.getForObject(url, ListEvents.class);
-        System.err.println("1111111111111111111111 " + s.getListEvent().size() + " 11111111111111111111111111111111111111111111111111111");
-//        return s;
-//        System.err.println(s.mListEvent.size());
-
-        return s.getListEvent();
-
-    }
-
 
     public static User loginUser(String email, String password) {
 
@@ -72,7 +53,72 @@ public class Commands {
         return user;
     }
 
-    public static String createEvent(String maxPeople, String name, String description, String place) {
+
+    public static void updatePerson(String email, String name, String age, String city) {
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/updatePerson?name=" + name +
+                        "&age=" + age + "&city=" + city + "&email=" + email;
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.getForObject(url, Void.class);
+            }
+        };
+        thread.start();
+    }
+
+
+    public static ArrayList<Event> allEventsOfUser(String email) {
+        ListEvents s = null;
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/AllEventsOfUser?email=" + email;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                ListEvents s = restTemplate.getForObject(url, ListEvents.class);
+
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if (s == null)
+            return null;
+        return s.getListEvent();
+    }
+
+
+    public static Event findEventById(String id) {
+        Event s = null;
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/findEventById?email=" + id;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                Event s = restTemplate.getForObject(url, Event.class);
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+
+    public static String createEvent(Integer maxPeople, String name, String description, String place) {
         String url = "http://" + IP + "/createEvent?maxPeople=" + maxPeople +
                 "&name=" + name +
                 "&description=" + description +
@@ -80,9 +126,24 @@ public class Commands {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         String s = restTemplate.getForObject(url, String.class);
-        System.err.println(s);
+        System.out.println(s);
         return s;
     }
+
+    public static ArrayList<Event> getEvents() {
+
+        String url = "http://" + IP + "/AllEvents";
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        ListEvents s = restTemplate.getForObject(url, ListEvents.class);
+        System.err.println("1111111111111111111111 " + s.getListEvent().size() + " 11111111111111111111111111111111111111111111111111111");
+// return s;
+// System.err.println(s.mListEvent.size());
+
+        return s.getListEvent();
+
+    }
+
 
     /* public static void makeConnection() {
          WebSocketClient webSocketClient = new StandardWebSocketClient();
@@ -143,7 +204,7 @@ public class Commands {
     }
 
     public static void update() {
-        System.err.println("Ебать пацаны обновились");
+        System.out.println("Ебать пацаны обновились");
     }
 
 }

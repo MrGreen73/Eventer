@@ -11,11 +11,15 @@ import android.view.ViewGroup;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.EventMonitorAdapter;
+import com.ivan.eventer.controller.EventActivity;
+import com.ivan.eventer.controller.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class EventFragment extends Fragment {
+
+    //TODO: Поставить заполнение информации о событии через базу
 
     // Для отображения табов
     private ViewPager mViewPager;
@@ -43,11 +47,11 @@ public class EventFragment extends Fragment {
         mViewPager = view.findViewById(R.id.viewPager);
         mTabLayout = view.findViewById(R.id.tabLayout);
 
-        mViewPager.setAdapter(new EventMonitorAdapter(getFragmentManager(),  4, true));
+        mViewPager.setAdapter(new EventMonitorAdapter(getFragmentManager(),  4, isAuthor()));
 
         // Добавляем стандартного слушателя
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-        //mTabLayout.setupWithViewPager(viewPager);
+//        mTabLayout.setupWithViewPager(viewPager);
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -66,7 +70,7 @@ public class EventFragment extends Fragment {
             }
         });
 
-        mViewPager.setCurrentItem(/*mPageNumber*/4);
+        mViewPager.setCurrentItem(/*mPageNumber*/1);
 
         return view;
 
@@ -74,7 +78,8 @@ public class EventFragment extends Fragment {
 
     private boolean isAuthor() {
 
-        return true;
+        //TODO: Добавить проверку на автора
+        return EventActivity.sEventPreview.getAuthor().equals(MainActivity.sPersonDate.getEmail());
 
     }
 

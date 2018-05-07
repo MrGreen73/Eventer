@@ -45,12 +45,17 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
 
         class MyEventListener implements View.OnClickListener {
 
+            String id;
+
             @Override
             public void onClick(View v) {
 
                 Intent eventIntent = new Intent(v.getContext(), EventActivity.class);
+                eventIntent.putExtra("ID", id);
+
                 Context context = v.getContext();
                 context.startActivity(eventIntent);
+
 
             }
 
@@ -74,6 +79,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         holder.eventTitle.setText(mEventList.get(position).getTitle());
         holder.eventDescribe.setText(mEventList.get(position).getDescribe());
         holder.eventAuthor.setText(mEventList.get(position).getAuthor());
+        holder.mEventListener.id = "100";//TODO:
 
     }
 

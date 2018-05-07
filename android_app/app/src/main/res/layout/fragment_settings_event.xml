@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMalibu"
+    android:orientation="vertical"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_vertical_margin">
+
+
+            <EditText
+                android:id="@+id/nameSettingsEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Название события"
+                android:textColor="@color/textBlack"
+                android:textColorHint="@color/textBlack"
+                />
+
+            <EditText
+                android:id="@+id/countSettingsEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Количество людей"
+                android:textColor="@color/textBlack"
+                android:textColorHint="@color/textBlack"
+                android:inputType="numberDecimal"/>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:id="@+id/mapSettingsEvent"
+                          android:layout_width="match_parent"
+                          android:layout_height="250dp"
+                          android:orientation="horizontal"/>
+
+            <TextView
+                android:id="@+id/seAddress"
+                android:textSize="18sp"
+                android:paddingLeft="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textBlack"
+                android:hint="Неизвестно"/>
+
+            <Button
+                android:id="@+id/chooseBtnSettingsEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Выбрать место"/>
+
+            <EditText
+                android:id="@+id/describeSettingsEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Описание"
+                android:textColor="@color/textBlack"
+                android:textColorHint="@color/textBlack"
+                />
+
+            <Button
+                android:id="@+id/saveEventSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_btn_out"
+                android:padding="10dp"
+                android:text="Сохранить"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
