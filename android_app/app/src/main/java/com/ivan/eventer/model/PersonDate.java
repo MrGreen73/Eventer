@@ -1,11 +1,13 @@
 package com.ivan.eventer.model;
 
+// Класс, хранящий информацию о пользователе
 public class PersonDate {
 
-    private String mName;
-    private String mEmail;
-    private String mAge;
-    private String mCity;
+    private String mName; // Имя
+    private String mEmail; // Почта
+    private String mAge; // Возраст
+    private String mCity; // Город
+
 
     public PersonDate(String name, String email, String age, String city) {
 

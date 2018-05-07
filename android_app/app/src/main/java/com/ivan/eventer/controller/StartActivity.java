@@ -14,11 +14,13 @@ import com.ivan.eventer.view.StartFragment;
 
 public class StartActivity extends AppCompatActivity {
 
+    //Ключи для сохранения информации о пользователе
     public static final String PATH_TO_DATA_ABOUT_USER = "dataAboutUser";
     public static final String USER_NAME = "NAME";
     public static final String USER_EMAIL= "EMAIL";
     public static final String USER_AGE = "AGE";
     public static final String USER_CITY = "CITY";
+
     private SharedPreferences mSharedPreferences;
 
     @Override

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
@@ -23,13 +24,23 @@ import java.util.Random;
 
 public class CreateFragment extends Fragment {
 
-    private EditText mName;
-    private EditText mCount;
-    private EditText mDescribe;
-    private Button mButton;
-    private ImageButton mChangeImageBtn;
+    //Поля ввода
+    private EditText mName; // Название
+    private EditText mCount; // Количество человек
+    private EditText mDescribe; // Описание
+
+    // Кнопки
+    private Button mButtonCreate; // Для создания события
+    private ImageButton mChangeImageBtn; // Для смены картинки
+    private ImageButton mLoadImageBtn; // Для загрузки картинки
+
+    // Картинка
     private ImageView mImageEvent;
+
+    // Диалог для ожидания создания события
     private ProgressDialog mProgressDialog;
+
+    // Список стандартных картинок
     private List<Integer> mListImage;
 
     @Override
@@ -41,14 +52,16 @@ public class CreateFragment extends Fragment {
         mName = v.findViewById(R.id.createName);
         mCount= v.findViewById(R.id.createCount);
         mDescribe= v.findViewById(R.id.createDescribe);
-        mButton = v.findViewById(R.id.createBtn);
-        mChangeImageBtn = v.findViewById(R.id.changeImageBtn);
+        mButtonCreate = v.findViewById(R.id.createBtn);
+        mLoadImageBtn = v.findViewById(R.id.createLoadImageBtn);
+        mChangeImageBtn = v.findViewById(R.id.createChangeImageBtn);
         mImageEvent = v.findViewById(R.id.createImageEvent);
         mListImage = initializeData();
 
 
         mProgressDialog = new ProgressDialog(getActivity());
 
+        // Смена картинки
         mChangeImageBtn.setOnClickListener(v1 -> {
 
             Random random = new Random();
@@ -57,7 +70,15 @@ public class CreateFragment extends Fragment {
 
         });
 
-        mButton.setOnClickListener(v1 -> {
+        // Загрузка картинки
+        mChangeImageBtn.setOnClickListener(v1 -> {
+
+            //TODO: Добавить загрузку картинки из галереи
+
+        });
+
+        // Создание события
+        mButtonCreate.setOnClickListener(v1 -> {
 
             String name = mName.getText().toString();
             String count= mCount.getText().toString();
@@ -152,7 +173,10 @@ public class CreateFragment extends Fragment {
 
         }
 
+        //TODO: Сделать проверку на создание события
+        //TODO: Сделать переход на EventActivity
         mProgressDialog.dismiss();
+        Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
 
     }
 

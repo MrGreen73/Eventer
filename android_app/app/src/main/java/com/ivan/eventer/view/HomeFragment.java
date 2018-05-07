@@ -15,12 +15,11 @@ import com.ivan.eventer.model.Event;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeFragment extends Fragment {
 
+    // Список события
     private List<Event> mEventList;
+    // Адаптер для вывода списка событий
     private EventsListAdapter mEventsListAdapter;
 
     @Override
@@ -36,6 +35,7 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
 
+        // Загрузка событий из базы данных
         initializeData();
 
         mEventsListAdapter = new EventsListAdapter(mEventList);
@@ -45,51 +45,32 @@ public class HomeFragment extends Fragment {
 
     }
 
-
+    // Загрузка событий из баззы данных
     private void initializeData(){
-
-        //TODO: Сделать выгрузку событий из базы данных
-
-
 
         Thread thread = new Thread(){
 
             @Override
             public void run() {
-//                mEventList = Commands.getEvents();
+
             mEventList = Commands.getEvents();
-//                Toast.makeText(getActivity(), ""+(mEventList.size()), Toast.LENGTH_SHORT).show();
+
             }
+
         };
 
         thread.start();
+
         try {
+
             thread.join();
+
         } catch (InterruptedException e) {
+
             e.printStackTrace();
+
         }
 
-
-/*
-
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mEventList.add(new Event("Пикник", "Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-
-*/
-
     }
-
-
 
 }

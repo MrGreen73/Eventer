@@ -6,7 +6,6 @@ package com.ivan.eventer.model;
 
 public class Event {
 
-    //TODO: Сделать хранение ID
     private String mID;
     private String mTitle;
     private String mDescribe;

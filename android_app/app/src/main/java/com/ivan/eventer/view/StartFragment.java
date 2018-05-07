@@ -1,6 +1,5 @@
 package com.ivan.eventer.view;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,11 +11,13 @@ import android.widget.Button;
 
 import com.ivan.eventer.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StartFragment extends Fragment {
 
+    //Кнопки
+    private Button mButtonRegister; //Для регистрации
+    private Button mButtonLogin; //Для авторизации
+
+    private FragmentTransaction mFragmentTransaction;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,32 +25,34 @@ public class StartFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_start, container, false);
 
-        Button regBtn = v.findViewById(R.id.startRegBtn);
-        Button logBtn = v.findViewById(R.id.startLogBtn);
+        mButtonRegister = v.findViewById(R.id.startRegBtn);
+        mButtonLogin = v.findViewById(R.id.startLogBtn);
+        mFragmentTransaction = getFragmentManager().beginTransaction();
 
-        regBtn.setOnClickListener(view -> {
+        mButtonRegister.setOnClickListener(view -> {
 
-            Fragment newFragment = new RegisterFragment();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            transaction.replace(R.id.startContainer, newFragment)
-                    .addToBackStack(null)
-                    .commit();
+            //Отправление на фрагмент для регистрации
+            sendToFragment(new RegisterFragment());
 
         });
 
-        logBtn.setOnClickListener(view -> {
+        mButtonLogin.setOnClickListener(view -> {
 
-            Fragment newFragment = new LoginFragment();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            transaction.replace(R.id.startContainer, newFragment)
-                    .addToBackStack(null)
-                    .commit();
+            //Отправление на фрагмент для авторизации
+            sendToFragment(new LoginFragment());
 
         });
 
         return v;
+    }
+
+    private void sendToFragment(Fragment fragment) {
+
+        mFragmentTransaction
+                .replace(R.id.startContainer, fragment)
+                .addToBackStack(null)
+                .commit();
+
     }
 
 }

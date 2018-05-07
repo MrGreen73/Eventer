@@ -19,11 +19,16 @@ import com.ivan.eventer.controller.StartActivity;
 
 public class SettingsFragment extends Fragment {
 
-    private EditText mName;
-    private EditText mAge;
-    private EditText mCity;
-    private Button mSaveBtn;
-    private Button mOutBtn;
+    // Поля ввода
+    private EditText mName; // Имя
+    private EditText mAge; // Возраст
+    private EditText mCity; // Город
+
+    // Кнопки
+    private Button mSaveBtn; // Для сохранения данных
+    private Button mOutBtn; // Для выхода из аккаунта
+
+    // Для загрузки данных о пользователе
     private SharedPreferences mSharedPreferences;
 
     @Override
@@ -39,8 +44,10 @@ public class SettingsFragment extends Fragment {
         mOutBtn = view.findViewById(R.id.outBtn);
         mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
 
+        // Загрузка данных о пользователе
         loadOldDate();
 
+        // Сохранение новых данных о пользователе
         mSaveBtn.setOnClickListener(v -> {
 
             String name = mName.getText().toString();
@@ -50,6 +57,7 @@ public class SettingsFragment extends Fragment {
 
             if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(age) && !TextUtils.isEmpty(city)){
 
+                // Сохранение новых данных о пользователе
                 saveNewDate(name, age, city);
 
             } else {
@@ -91,6 +99,7 @@ public class SettingsFragment extends Fragment {
 
     }
 
+    // Выход из аккаунта
     private void logOut() {
 
         MainActivity.sPersonDate.deletePerson();
@@ -101,6 +110,7 @@ public class SettingsFragment extends Fragment {
 
     }
 
+    // Сохранение новых данных о пользователе
     private void saveNewDate(String name, String age, String city) {
 
         MainActivity.sPersonDate.updatePerson(name, age, city);
@@ -109,6 +119,7 @@ public class SettingsFragment extends Fragment {
 
     }
 
+    // Сохранение новых данных о пользователе локально
     private void updateSharedPreferences(String name, String age, String city) {
 
         mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
@@ -120,6 +131,7 @@ public class SettingsFragment extends Fragment {
 
     }
 
+    // Загрузка данных о пользователе
     private void loadOldDate() {
 
         mName.setText(MainActivity.sPersonDate.getName());

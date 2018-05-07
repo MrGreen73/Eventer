@@ -24,24 +24,34 @@ import com.ivan.eventer.view.ProfileFragment;
 import com.ivan.eventer.view.SearchFragment;
 import com.ivan.eventer.view.SettingsFragment;
 
-//import com.google.firebase.auth.FirebaseAuth;
-
 public class MainActivity extends AppCompatActivity {
 
+    // Для перехода по фрагментам
     private FragmentManager mFragmentManager;
     private Fragment mContainer;
     private Fragment mFragment;
+
+    // Название тулбара
     private TextView mToolbarTitle;
+
+    // Для просмотра данных пользователя
     private SharedPreferences mSharedPreferences;
+
+    // Класс для хранения настроек
     public static PersonDate sPersonDate;
 
+    // Кнопка для перехода к настройкам
     private ImageButton mSettingsBtn;
 
+    // Настройки нижнего меню
     private BottomNavigationViewEx.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
             switch (item.getItemId()) {
+
                 case R.id.navigation_home:
                     mFragment = new HomeFragment();
 
@@ -52,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     break;
+
                 case R.id.navigation_search:
                     mFragment = new SearchFragment();
 
@@ -62,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     break;
+
                 case R.id.navigation_create:
                     mFragment = new CreateFragment();
 
@@ -72,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     break;
+
                 case R.id.navigation_like:
                     mFragment = new LikeFragment();
 
@@ -82,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     break;
+
                 case R.id.navigation_profile:
                     mFragment = new ProfileFragment();
 
@@ -93,8 +107,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
             }
+
             return true;
+
         }
+
     };
 
     @Override
@@ -102,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Загружаем данные о пользователе
         loadDate();
 
         Toolbar mToolbar = findViewById(R.id.myToolbar);
@@ -115,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         mFragment = new HomeFragment();
         mSettingsBtn = findViewById(R.id.logOut);
 
+        // Переход к настройкам
         mSettingsBtn.setOnClickListener(v -> {
 
             mFragment = new SettingsFragment();
@@ -149,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Загрузка данных о пользователе
     private void loadDate() {
 
         mSharedPreferences = this.getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
@@ -177,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Установка названия тулбара
     private void changeTitle(String title){
 
         mToolbarTitle.setText(title);

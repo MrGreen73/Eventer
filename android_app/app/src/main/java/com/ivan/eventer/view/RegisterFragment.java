@@ -14,21 +14,38 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterFragment extends Fragment {
 
-    private EditText mName;
-    private EditText mEmail;
-    private EditText mAge;
-    private EditText mCity;
-    private EditText mPassword;
-    private Button mButton;
+    // Поля ввода
+    private EditText mName; // Имя
+    private EditText mEmail; // Почта
+    private EditText mAge; // Возраст
+    private EditText mCity; // Город
+    private EditText mPassword; // Пароль
+
+    // Кнопка для регистрации
+    private Button mButtonRegister;
+
+    // Диалог во время выполнения регистрации
     private ProgressDialog mProgressDialog;
+
+    // Для сохранения данных о пользователе
     private SharedPreferences mSharedPreferences;
+
+    // Для подсветки ошибки
+    private View mFocusView;
+
+    // Для проверки валидности почты
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,10 +58,10 @@ public class RegisterFragment extends Fragment {
         mAge= v.findViewById(R.id.registerAge);
         mCity= v.findViewById(R.id.registerCity);
         mPassword= v.findViewById(R.id.registerPassword);
-        mButton = v.findViewById(R.id.regBtn);
+        mButtonRegister = v.findViewById(R.id.regBtn);
         mProgressDialog = new ProgressDialog(getActivity());
 
-        mButton.setOnClickListener(v1 -> {
+        mButtonRegister.setOnClickListener(v1 -> {
 
             String name = mName.getText().toString();
             String email= mEmail.getText().toString();
@@ -52,9 +69,9 @@ public class RegisterFragment extends Fragment {
             String city= mCity.getText().toString();
             String password = mPassword.getText().toString();
 
-            View focusView = null;
+            mFocusView = null;
 
-            if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(age) && !TextUtils.isEmpty(city) && !TextUtils.isEmpty(password)) {
+            if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(age) && !TextUtils.isEmpty(city) && !TextUtils.isEmpty(password) && password.length() > 5 && validate(email)) {
 
                 mProgressDialog.setTitle(getString(R.string.progressDialogRegister));
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
@@ -68,42 +85,56 @@ public class RegisterFragment extends Fragment {
 
             } else {
 
+                if (password.length() < 6) {
+
+                    mPassword.setError("Пароль должен состоять минимум из 6 символов");
+                    mFocusView = mPassword;
+
+                }
+
                 if (TextUtils.isEmpty(password)){
 
                     mPassword.setError("Введите пароль");
-                    focusView = mPassword;
+                    mFocusView = mPassword;
 
                 }
 
                 if (TextUtils.isEmpty(city)) {
 
                     mCity.setError("Введите город");
-                    focusView = mCity;
+                    mFocusView = mCity;
 
                 }
 
                 if (TextUtils.isEmpty(age)) {
 
                     mAge.setError("Введите возраст");
-                    focusView = mAge;
+                    mFocusView = mAge;
+
+                }
+
+                if (!validate(email)){
+
+                    mEmail.setError("Введите почту корректно");
+                    mFocusView = mEmail;
 
                 }
 
                 if (TextUtils.isEmpty(email)) {
 
                     mEmail.setError("Введите почту");
-                    focusView = mEmail;
+                    mFocusView = mEmail;
 
                 }
 
                 if (TextUtils.isEmpty(name)) {
 
                     mName.setError("Введите имя");
-                    focusView = mName;
+                    mFocusView = mName;
 
                 }
 
-                focusView.requestFocus();
+                mFocusView.requestFocus();
 
             }
 
@@ -139,12 +170,17 @@ public class RegisterFragment extends Fragment {
 
         }
 
+        // TODO: Добавить проверку успеха регистрации
+        // Сохраняем данные о пользователе
         saveDate(name, email, age, city);
+        // Закрываем диалог
         mProgressDialog.dismiss();
+        // Переходим на главную активность
         sentToMain();
 
     }
 
+    // Сохранение данных о пользователе локально
     private void saveDate(String name, String email, String age, String city) {
 
         mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
@@ -163,6 +199,14 @@ public class RegisterFragment extends Fragment {
         Intent mainIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(mainIntent);
         getActivity().finish();
+
+    }
+
+    // Проверяет валидность почты
+    private boolean validate(String emailStr) {
+
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        return matcher.find();
 
     }
 

@@ -29,6 +29,7 @@
                 android:gravity="center">
 
                 <ImageButton
+                    android:id="@+id/createLoadImageBtn"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_heart"
@@ -36,7 +37,7 @@
                     android:scaleType="fitCenter"/>
 
                 <ImageButton
-                    android:id="@+id/changeImageBtn"
+                    android:id="@+id/createChangeImageBtn"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_home"

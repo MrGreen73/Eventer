@@ -24,12 +24,21 @@ import com.ivan.eventer.model.User;
 
 public class LoginFragment extends Fragment {
 
-    private EditText mEmail;
-    private EditText mPassword;
-    private Button mButton;
+    // Поля ввода
+    private EditText mEmail; // Почта
+    private EditText mPassword; // Пароль
+
+    // Кнопка для авторизации
+    private Button mButtonLogin;
+
+    // Диалог во время выполнения авторизации
     private ProgressDialog mProgressDialog;
+
+    // Для сохранения данных о пользоавтеле
     private SharedPreferences mSharedPreferences;
 
+    // Для подсветки ошибок
+    private View mFocusView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,14 +48,14 @@ public class LoginFragment extends Fragment {
 
         mEmail = v.findViewById(R.id.loginEmail);
         mPassword= v.findViewById(R.id.loginPassword);
-        mButton= v.findViewById(R.id.logBtn);
+        mButtonLogin = v.findViewById(R.id.logBtn);
         mProgressDialog = new ProgressDialog(getActivity());
 
-        mButton.setOnClickListener(v1 -> {
+        mButtonLogin.setOnClickListener(v1 -> {
 
             String email = mEmail.getText().toString();
             String password = mPassword.getText().toString();
-            View focusView = null;
+            mFocusView = null;
 
             if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
@@ -65,18 +74,18 @@ public class LoginFragment extends Fragment {
                 if (TextUtils.isEmpty(password)) {
 
                     mPassword.setError("Введите пароль");
-                    focusView = mPassword;
+                    mFocusView = mPassword;
 
                 }
 
                 if (TextUtils.isEmpty(email)) {
 
                     mEmail.setError("Введите почту");
-                    focusView = mEmail;
+                    mFocusView = mEmail;
 
                 }
 
-                    focusView.requestFocus();
+                    mFocusView.requestFocus();
 
             }
 
@@ -109,19 +118,39 @@ public class LoginFragment extends Fragment {
 
         if (user[0] != null){
 
+            // В случае успешной авторизации
+
+            // Сохраняем данные о пользователе
             saveDate(user[0].getName(), user[0].getEmail(), user[0].getAge(), user[0].getCity());
+            // Останавливаем диалог
             mProgressDialog.dismiss();
+
+            // Оповещаем пользователе об успешной авторизации
+            Toast.makeText(getActivity(), "Вы успешно авторизованы", Toast.LENGTH_SHORT).show();
+
+            // Отправление на главную активность
             sentToMain();
 
         } else {
 
+            // В случае проблемы с авторизацией
+
+            // Останавливаем диалог
             mProgressDialog.dismiss();
-            Toast.makeText(getActivity(), "NOPE", Toast.LENGTH_SHORT).show();
+            //Оповещаем пользователя о некорректности введенных данных
+            Toast.makeText(getActivity(), "Почта или пароль введены неверно", Toast.LENGTH_SHORT).show();
+            // Устанавливаем совет пользователю
+            mEmail.setError("Проверьте почту");
+            mPassword.setError("Проверьте пароль");
+            // Ставим курсор на ввод почты
+            mFocusView = mEmail;
+            mFocusView.requestFocus();
 
         }
 
     }
 
+    // Сохраняет данные о пользователе локально
     private void saveDate(String name, String email, String age, String city) {
 
         mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);

@@ -6,27 +6,41 @@
     android:layout_height="match_parent"
     tools:context="com.ivan.eventer.controller.MainActivity">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar" />
-
     <LinearLayout
-        android:id="@+id/mainContainer"
         android:layout_width="match_parent"
-        android:layout_height="526dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        android:weightSum="100">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_weight="0"/>
+
+        <LinearLayout
+            android:id="@+id/mainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            android:layout_weight="90">
+
+        </LinearLayout>
+
+        <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+            android:id="@+id/bnve"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorWhite"
+            app:itemIconTint="@drawable/bottom_menu_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/navigation" />
+
 
     </LinearLayout>
-
-    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
-        android:id="@+id/bnve"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorWhite"
-        app:itemIconTint="@drawable/bottom_menu_selector"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/navigation" />
 
 </android.support.constraint.ConstraintLayout>
