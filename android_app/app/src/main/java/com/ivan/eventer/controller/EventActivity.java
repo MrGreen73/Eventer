@@ -24,7 +24,6 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        //TODO: Заполнение информации о событие
         makeEvent(getID());
 
         FragmentManager fm = getSupportFragmentManager();
@@ -41,7 +40,7 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void makeEvent(String id) {
-
+//TODO: Исправить
         Event event = Commands.findEventById("145");
         EventActivity.sEventPreview = new EventPreview(event.getID(), event.getTitle(), "10", event.getDescribe(), "NaN", event.getAuthor());
 

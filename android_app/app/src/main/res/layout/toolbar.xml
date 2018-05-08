@@ -38,6 +38,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/account_settings"
                 android:scaleType="fitCenter"
+                android:background="@color/colorPrimary"
                 android:padding="13dp"/>
 
         </LinearLayout>

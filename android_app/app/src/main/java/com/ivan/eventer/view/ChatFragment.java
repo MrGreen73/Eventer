@@ -1,6 +1,5 @@
 package com.ivan.eventer.view;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +15,6 @@ import com.ivan.eventer.model.Message;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ChatFragment extends Fragment {
 
     private List<Message> mMessagesList;
@@ -52,6 +48,8 @@ public class ChatFragment extends Fragment {
         //TODO: Сделать выгрузку cообщений из базы данных
 
         mMessagesList = new ArrayList<>();
+        //Получение листа сообщений у данного события
+//        mMessagesList = Commands.getMessages(EventActivity.sEventPreview.getID());
 
         mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
         mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));

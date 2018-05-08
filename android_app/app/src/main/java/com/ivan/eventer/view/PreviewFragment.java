@@ -16,7 +16,6 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -66,7 +65,7 @@ public class PreviewFragment extends Fragment implements
 
 //        mPreview = (EventPreview) getArguments().getSerializable(EVENT_PREVIEW);
         // TODO передать позицию
-        mPosition = (LatLng) getArguments().getParcelable(PLACE);
+//        mPosition = (LatLng) getArguments().getParcelable(PLACE);
 //        mAddress = mPreview.getAddress();
 
     }
@@ -79,11 +78,11 @@ public class PreviewFragment extends Fragment implements
         View v = inflater.inflate(R.layout.fragment_preview, container, false);
 
 
-        mProgress = new ProgressDialog(getActivity());
+//        mProgress = new ProgressDialog(getActivity());
 
 //        mEvenId = mPreview.getEventId();
         //mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(mEvenId);
-
+/*
         mSaveButton = v.findViewById(R.id.saveEventSettings);
         mName = v.findViewById(R.id.nameSettingsEvent);
         mCount = v.findViewById(R.id.countSettingsEvent);
@@ -101,7 +100,7 @@ public class PreviewFragment extends Fragment implements
         getFragmentManager().beginTransaction()
                 .replace(R.id.mapPreview, mapFragment)
                 .commit();
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);*/
 
         return v;
 

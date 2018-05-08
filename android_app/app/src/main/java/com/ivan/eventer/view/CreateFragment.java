@@ -93,7 +93,6 @@ public class CreateFragment extends Fragment {
         // Загрузка картинки
         mLoadImageBtn.setOnClickListener(v1 -> {
 
-            //TODO: Добавить загрузку картинки из галереи
             loadImage();
 
         });
@@ -248,8 +247,6 @@ public class CreateFragment extends Fragment {
 
         }
 
-        //TODO: Сделать проверку на создание события
-        //TODO: Сделать переход на EventActivity
         EventActivity.sEventPreview = new EventPreview(id[0], name, count, describe, "NaN", MainActivity.sPersonDate.getEmail());
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
