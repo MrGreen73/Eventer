@@ -4,6 +4,7 @@ import com.ivan.eventer.model.Event;
 import com.ivan.eventer.model.ListEvents;
 import com.ivan.eventer.model.User;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -71,7 +72,7 @@ public class Commands {
 
 
     public static ArrayList<Event> allEventsOfUser(String email) {
-        ListEvents s = null;
+        final ListEvents[] s = {null};
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -79,7 +80,32 @@ public class Commands {
 
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                ListEvents s = restTemplate.getForObject(url, ListEvents.class);
+                s[0] = restTemplate.getForObject(url, ListEvents.class);
+
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (s[0] == null)
+            return null;
+        return s[0].getListEvent();
+    }
+
+
+    public static void addUserToEvent(String email, String id) {
+        ListEvents s = null;
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/addUserToEvent?email=" + email + "&id=" + id;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.getForObject(url, Void.class);
 
             }
         };
@@ -90,14 +116,11 @@ public class Commands {
             e.printStackTrace();
         }
 
-        if (s == null)
-            return null;
-        return s.getListEvent();
     }
 
 
     public static Event findEventById(String id) {
-        Event s = null;
+        final Event[] s = {null};
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -105,7 +128,7 @@ public class Commands {
 
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                Event s = restTemplate.getForObject(url, Event.class);
+                s[0] = restTemplate.getForObject(url, Event.class);
             }
         };
         thread.start();
@@ -114,20 +137,25 @@ public class Commands {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return s;
+        return s[0];
     }
 
 
-    public static String createEvent(Integer maxPeople, String name, String description, String place) {
-        String url = "http://" + IP + "/createEvent?maxPeople=" + maxPeople +
-                "&name=" + name +
-                "&description=" + description +
-                "&place=" + place;
+    public static String createEvent(String email, Integer maxPeople, String name, String description, String place, byte[] array) {
+        String url = "http://" + IP + "/post";
+
+        Event event = new Event(email, name, description, email);
+        event.setImage(array);
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-        String s = restTemplate.getForObject(url, String.class);
-        System.out.println(s);
-        return s;
+        try{
+            ResponseEntity<String> postResponse = restTemplate.postForEntity(url, event, String.class);
+            System.out.println("Response for Post Request: " + postResponse.getBody());
+        }
+
+catch (Exception ex){
+            return "145";
+}
+        return "145";
     }
 
     public static ArrayList<Event> getEvents() {

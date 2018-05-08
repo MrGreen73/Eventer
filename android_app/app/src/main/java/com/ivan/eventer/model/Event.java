@@ -1,21 +1,28 @@
 package com.ivan.eventer.model;
 
-/**
- * Created by ivan on 28.04.18.
- */
-
 public class Event {
 
     private String mID;
     private String mTitle;
     private String mDescribe;
     private String mAuthor;
+    private byte[] mImage;
 
     public Event(String ID, String title, String describe, String author) {
         mID = ID;
         mTitle = title;
         mDescribe = describe;
         mAuthor = author;
+//        mImage = image;
+
+    }
+
+    public byte[] getImage() {
+        return mImage;
+    }
+
+    public void setImage(byte[] image) {
+        mImage = image;
     }
 
     public Event() {}

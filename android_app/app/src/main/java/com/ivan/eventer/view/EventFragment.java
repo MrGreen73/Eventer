@@ -14,18 +14,16 @@ import com.ivan.eventer.adapters.EventMonitorAdapter;
 import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.controller.MainActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class EventFragment extends Fragment {
-
-    //TODO: Поставить заполнение информации о событии через базу
 
     // Для отображения табов
     private ViewPager mViewPager;
 
     // Область, в которой расположены табы
     private TabLayout mTabLayout;
+
+    //
+    private int mPageNumber;
 
 
     @Override
@@ -51,13 +49,12 @@ public class EventFragment extends Fragment {
 
         // Добавляем стандартного слушателя
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-//        mTabLayout.setupWithViewPager(viewPager);
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
-//                mPageNumber = tab.getPosition();
+                mPageNumber = tab.getPosition();
             }
 
             @Override
@@ -70,7 +67,7 @@ public class EventFragment extends Fragment {
             }
         });
 
-        mViewPager.setCurrentItem(/*mPageNumber*/1);
+        mViewPager.setCurrentItem(mPageNumber);
 
         return view;
 
@@ -78,7 +75,6 @@ public class EventFragment extends Fragment {
 
     private boolean isAuthor() {
 
-        //TODO: Добавить проверку на автора
         return EventActivity.sEventPreview.getAuthor().equals(MainActivity.sPersonDate.getEmail());
 
     }

@@ -19,6 +19,8 @@ import com.ivan.eventer.controller.StartActivity;
 
 public class SettingsFragment extends Fragment {
 
+    //TODO: Добавить кнопки для инструкции
+
     // Поля ввода
     private EditText mName; // Имя
     private EditText mAge; // Возраст
@@ -103,6 +105,7 @@ public class SettingsFragment extends Fragment {
     private void logOut() {
 
         MainActivity.sPersonDate.deletePerson();
+        updateSharedPreferences("","","");
 
         Intent startIntent = new Intent(getActivity(), StartActivity.class);
         startActivity(startIntent);

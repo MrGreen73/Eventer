@@ -2,11 +2,14 @@ package com.ivan.eventer.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ivan.eventer.R;
@@ -31,6 +34,8 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         TextView eventTitle;
         TextView eventDescribe;
         TextView eventAuthor;
+        ImageView eventImage;
+        String id;
 
         EventViewHolder(View itemView) {
             super(itemView);
@@ -39,6 +44,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
             eventDescribe = itemView.findViewById(R.id.itemEventDescribe);
             eventAuthor = itemView.findViewById(R.id.itemEventAuthor);
             mEventListener = new MyEventListener();
+            eventImage = itemView.findViewById(R.id.itemEventImage);
             itemView.setOnClickListener(mEventListener);
 
         }
@@ -79,7 +85,14 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         holder.eventTitle.setText(mEventList.get(position).getTitle());
         holder.eventDescribe.setText(mEventList.get(position).getDescribe());
         holder.eventAuthor.setText(mEventList.get(position).getAuthor());
-        holder.mEventListener.id = "100";//TODO:
+        holder.mEventListener.id = mEventList.get(position).getID();
+        holder.eventImage.setImageBitmap(getBitmap(mEventList.get(position).getImage()));
+
+    }
+
+    private Bitmap getBitmap(byte[] image) {
+
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
 
     }
 

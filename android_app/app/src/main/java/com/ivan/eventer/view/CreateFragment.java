@@ -28,6 +28,7 @@ import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.model.EventPreview;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -216,13 +217,19 @@ public class CreateFragment extends Fragment {
 
     private void makeEvent(String name, String count, String describe) {
 
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        Bitmap bitmap = ((BitmapDrawable)mImageEvent.getDrawable()).getBitmap();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // сохранять картинку в jpeg-формате с 85% сжатия.
+
+
         final String[] id = new String[1];
         Thread thread = new Thread() {
 
             @Override
             public void run() {
 
-                id[0] = Commands.createEvent(Integer.valueOf(count), describe, name, "NaN");
+                id[0] = Commands.createEvent(MainActivity.sPersonDate.getEmail(), Integer.valueOf(count), describe, name, "NaN", baos.toByteArray());
                 //TODO: Добавить сохранение картинки в базе данных
 
             }
@@ -248,7 +255,7 @@ public class CreateFragment extends Fragment {
         Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
 
         Intent eventIntent = new Intent(getActivity(), EventActivity.class);
-        eventIntent.putExtra("ID", id);
+        eventIntent.putExtra("ID", id[0]);
         startActivity(eventIntent);
         getActivity().finish();
 
