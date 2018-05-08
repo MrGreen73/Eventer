@@ -1,99 +1,63 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ivan.eventer.view.SearchFragment">
+    android:orientation="vertical"
+    tools:context="com.ivan.eventer.view.Main.Search.SearchFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginBottom="@dimen/margin_for_menu">
-
+        android:weightSum="100"
+        android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Search" />
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:text="Выберите подходящий вариант для поиска"
+            android:textSize="@dimen/size_text_profile_midle"
+            android:textColor="@color/textBlack"
+            android:layout_marginTop="30dp"/>
 
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/searchByTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="17"
+            android:textSize="@dimen/size_text_profile_midle"
+            android:background="@drawable/back_for_btn_login"
+            android:text="Поиск по названию"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="50dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="100"
-            android:padding="5dp">
+        <Button
+            android:id="@+id/searchByFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="17"
+            android:textSize="@dimen/size_text_profile_midle"
+            android:background="@drawable/back_for_btn_register"
+            android:text="Поиск по фильтрам"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="50dp"/>
 
-            <Button
-                android:id="@+id/btnSearchKind"
-                android:layout_weight="25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Вид"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"/>
-
-            <Button
-                android:id="@+id/btnSearchCity"
-                android:layout_weight="25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Город"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"/>
-
-            <Button
-                android:id="@+id/btnSearchTime"
-                android:layout_weight="25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Время"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"/>
-
-            <Button
-                android:id="@+id/btnSearchThings"
-                android:layout_weight="25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Мелочи"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/search_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:hint="Имя"/>
-
-            <Button
-                android:id="@+id/search_save_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/back_for_btn_login"
-                android:text="save"/>
-
-            <Button
-                android:id="@+id/search_load_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="250dp"
-                android:background="@drawable/back_for_btn_out"
-                android:text="load"/>
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/searchByQR"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="17"
+            android:textSize="@dimen/size_text_profile_midle"
+            android:background="@drawable/back_for_btn_out"
+            android:text="Поиск  по  QR  коду"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="50dp"/>
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

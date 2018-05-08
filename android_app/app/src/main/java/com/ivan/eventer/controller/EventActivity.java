@@ -9,7 +9,7 @@ import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.model.Event;
 import com.ivan.eventer.model.EventPreview;
-import com.ivan.eventer.view.EventFragment;
+import com.ivan.eventer.view.Event.EventFragment;
 
 public class EventActivity extends AppCompatActivity {
 

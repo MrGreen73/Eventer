@@ -3,32 +3,28 @@ package com.ivan.eventer.controller;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.ivan.eventer.R;
 import com.ivan.eventer.model.PersonDate;
-import com.ivan.eventer.view.CreateFragment;
-import com.ivan.eventer.view.HomeFragment;
-import com.ivan.eventer.view.LikeFragment;
-import com.ivan.eventer.view.ProfileFragment;
-import com.ivan.eventer.view.SearchFragment;
-import com.ivan.eventer.view.SettingsFragment;
+import com.ivan.eventer.view.Main.CreateFragment;
+import com.ivan.eventer.view.Main.HomeFragment;
+import com.ivan.eventer.view.Main.LikeFragment;
+import com.ivan.eventer.view.Main.ProfileFragment;
+import com.ivan.eventer.view.Main.Search.SearchFragment;
+import com.ivan.eventer.view.Main.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     // Для перехода по фрагментам
-    private FragmentManager mFragmentManager;
-    private Fragment mContainer;
+    private static FragmentManager mFragmentManager;
+    private static Fragment mContainer;
     private Fragment mFragment;
 
     // Название тулбара
@@ -45,74 +41,43 @@ public class MainActivity extends AppCompatActivity {
 
     // Настройки нижнего меню
     private BottomNavigationViewEx.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            = item -> {
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
 
-            switch (item.getItemId()) {
-
-                case R.id.navigation_home:
-                    mFragment = new HomeFragment();
-
-                    if (mContainer == null) {
-
-                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                    case R.id.navigation_home:
+                        changeFragment(new HomeFragment());
                         changeTitle("Главная");
+                        break;
 
-                    }
-                    break;
+                    case R.id.navigation_search:
 
-                case R.id.navigation_search:
-                    mFragment = new SearchFragment();
-
-                    if (mContainer == null) {
-
-                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeFragment(new SearchFragment());
                         changeTitle("Поиск");
+                        break;
 
-                    }
-                    break;
+                    case R.id.navigation_create:
 
-                case R.id.navigation_create:
-                    mFragment = new CreateFragment();
-
-                    if (mContainer == null) {
-
-                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeFragment(new CreateFragment());
                         changeTitle("Создание");
+                        break;
 
-                    }
-                    break;
+                    case R.id.navigation_like:
 
-                case R.id.navigation_like:
-                    mFragment = new LikeFragment();
-
-                    if (mContainer == null) {
-
-                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeFragment(new LikeFragment());
                         changeTitle("Оповещения");
+                        break;
 
-                    }
-                    break;
+                    case R.id.navigation_profile:
 
-                case R.id.navigation_profile:
-                    mFragment = new ProfileFragment();
-
-                    if (mContainer == null) {
-
-                        mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
+                        changeFragment(new ProfileFragment());
                         changeTitle("Профиль");
+                        break;
+                }
 
-                    }
-                    break;
-            }
+                return true;
 
-            return true;
-
-        }
-
-    };
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,14 +101,8 @@ public class MainActivity extends AppCompatActivity {
         // Переход к настройкам
         mSettingsBtn.setOnClickListener(v -> {
 
-            mFragment = new SettingsFragment();
-
-            if (mContainer == null) {
-
-                mFragmentManager.beginTransaction().replace(R.id.mainContainer, mFragment).commit();
-                changeTitle("Настройки");
-
-            }
+            changeFragment(new SettingsFragment());
+            changeTitle("Настройки");
 
         });
 
@@ -173,34 +132,39 @@ public class MainActivity extends AppCompatActivity {
 
         mSharedPreferences = this.getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
         sPersonDate = new PersonDate(
-                mSharedPreferences.getString(StartActivity.USER_NAME, "User"),
+                mSharedPreferences.getString(StartActivity.USER_NAME, "Пользователь"),
                 mSharedPreferences.getString(StartActivity.USER_EMAIL, "user@email.ru"),
                 mSharedPreferences.getString(StartActivity.USER_AGE, "18"),
-                mSharedPreferences.getString(StartActivity.USER_CITY, "Moscow")
+                mSharedPreferences.getString(StartActivity.USER_CITY, "Москва")
         );
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_help, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        if (id == R.id.logOut) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     // Установка названия тулбара
     private void changeTitle(String title){
 
         mToolbarTitle.setText(title);
+
+    }
+
+    //Смена фрагмента
+    public static void changeFragment(Fragment fragment){
+
+        if (mContainer == null) {
+
+            mFragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).commit();
+
+        }
+
+    }
+
+    public static void addFragment(Fragment fragment){
+
+        if (mContainer == null) {
+
+            mFragmentManager.beginTransaction().add(R.id.mainContainer, fragment).addToBackStack(null).commit();
+
+        }
 
     }
 

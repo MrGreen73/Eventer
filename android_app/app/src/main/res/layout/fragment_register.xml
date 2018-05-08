@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ivan.eventer.view.RegisterFragment">
+    tools:context="com.ivan.eventer.view.Start.RegisterFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

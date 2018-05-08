@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.FonActivity">
+        <activity android:name=".view.Fon.FonActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,12 +26,17 @@
         </activity>
         <activity
             android:name=".controller.MainActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation"
             android:hardwareAccelerated="false"
             android:label="@string/title_activity_main"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".controller.EventActivity" />
-        <activity android:name=".controller.StartActivity" />
+        <activity
+            android:name=".controller.EventActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".controller.StartActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

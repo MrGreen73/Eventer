@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
-import com.ivan.eventer.view.StartFragment;
+import com.ivan.eventer.view.Start.StartFragment;
 
 public class StartActivity extends AppCompatActivity {
 

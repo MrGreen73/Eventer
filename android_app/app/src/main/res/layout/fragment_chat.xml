@@ -6,7 +6,7 @@
     android:background="@color/colorMalibu"
     android:weightSum="100"
     android:orientation="vertical"
-    tools:context="com.ivan.eventer.view.ChatFragment">
+    tools:context="com.ivan.eventer.view.Event.ChatFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

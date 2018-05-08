@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ivan.eventer.view.ChatFragment;
-import com.ivan.eventer.view.PreviewFragment;
-import com.ivan.eventer.view.SettingsEventFragment;
-import com.ivan.eventer.view.ThingsFragment;
+import com.ivan.eventer.view.Event.ChatFragment;
+import com.ivan.eventer.view.Event.PreviewFragment;
+import com.ivan.eventer.view.Event.SettingsEventFragment;
+import com.ivan.eventer.view.Event.ThingsFragment;
 
 public class EventMonitorAdapter extends FragmentPagerAdapter {
 
