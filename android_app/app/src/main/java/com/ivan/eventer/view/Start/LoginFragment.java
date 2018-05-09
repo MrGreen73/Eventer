@@ -5,9 +5,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +21,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 import com.ivan.eventer.model.User;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 public class LoginFragment extends Fragment {
 
@@ -40,6 +49,10 @@ public class LoginFragment extends Fragment {
     // Для подсветки ошибок
     private View mFocusView;
 
+    // Путь папки
+    String mFolderToSave;
+    String mPath;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,6 +63,11 @@ public class LoginFragment extends Fragment {
         mPassword= v.findViewById(R.id.loginPassword);
         mButtonLogin = v.findViewById(R.id.logBtn);
         mProgressDialog = new ProgressDialog(getActivity());
+
+        Time time = new Time();
+        time.setToNow();
+        mFolderToSave = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        mPath = Integer.toString(time.year) + Integer.toString(time.month) + Integer.toString(time.monthDay) + Integer.toString(time.hour) + Integer.toString(time.minute) + Integer.toString(time.second) + ".jpg";
 
         mButtonLogin.setOnClickListener(v1 -> {
 
@@ -102,7 +120,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void run() {
 
-                mProgressDialog.show();
+//                mProgressDialog.show();
                 user[0] = Commands.loginUser(email, password);
 
             }
@@ -121,7 +139,7 @@ public class LoginFragment extends Fragment {
             // В случае успешной авторизации
 
             // Сохраняем данные о пользователе
-            saveDate(user[0].getName(), user[0].getEmail(), user[0].getAge(), user[0].getCity());
+            saveDate(user[0].getName(), user[0].getEmail(), user[0].getAge(), user[0].getCity(), user[0].getImage());
             // Останавливаем диалог
             mProgressDialog.dismiss();
 
@@ -151,7 +169,7 @@ public class LoginFragment extends Fragment {
     }
 
     // Сохраняет данные о пользователе локально
-    private void saveDate(String name, String email, String age, String city) {
+    private void saveDate(String name, String email, String age, String city, byte[] image) {
 
         mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
@@ -159,7 +177,15 @@ public class LoginFragment extends Fragment {
         editor.putString(StartActivity.USER_EMAIL, email);
         editor.putString(StartActivity.USER_AGE, age);
         editor.putString(StartActivity.USER_CITY, city);
+        editor.putString(StartActivity.USER_IMAGE_PATH, mPath);
+        saveImage(image);
         editor.apply();
+
+    }
+
+    private Bitmap getBitmap(byte[] image) {
+
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
 
     }
 
@@ -169,6 +195,36 @@ public class LoginFragment extends Fragment {
         Intent mainIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(mainIntent);
         getActivity().finish();
+
+    }
+
+    //Сохранение картинки на SD
+    private String saveImage(byte[] image) {
+
+        OutputStream fOut;
+
+        try {
+
+            File file = new File(mFolderToSave, mPath); // создать уникальное имя для файла основываясь на дате сохранения
+
+            fOut = new FileOutputStream(file);
+
+            Bitmap bitmap = getBitmap(image);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut); // сохранять картинку в jpeg-формате с 85% сжатия.
+
+            fOut.flush();
+            fOut.close();
+
+            // регистрация в фотоальбоме
+            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
+
+        } catch (Exception e) { // здесь необходим блок отслеживания реальных ошибок и исключений, общий Exception приведен в качестве примера
+
+            return e.getMessage();
+
+        }
+
+        return "";
 
     }
 

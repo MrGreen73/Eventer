@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -27,7 +28,10 @@ import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -58,6 +62,10 @@ public class SettingsFragment extends Fragment {
     // Список стандартных картинок
     private List<Integer> mListImage;
 
+    // Путь папки
+    String mFolderToSave;
+    String mPath;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +83,8 @@ public class SettingsFragment extends Fragment {
         mImageUser= view.findViewById(R.id.settingsImageUser);
         mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
 
+        mFolderToSave = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        mPath = mSharedPreferences.getString(StartActivity.USER_IMAGE_PATH, "0");
         // Загрузка данных о пользователе
         loadOldDate();
 
@@ -87,12 +97,20 @@ public class SettingsFragment extends Fragment {
             String name = mName.getText().toString();
             String age = mAge.getText().toString();
             String city = mCity.getText().toString();
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            Bitmap bitmap = ((BitmapDrawable)mImageUser.getDrawable()).getBitmap();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+            byte[] image = baos.toByteArray();
+
             View focusView = null;
 
             if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(age) && !TextUtils.isEmpty(city)){
 
                 // Сохранение новых данных о пользователе
-                saveNewDate(name, age, city);
+                saveNewDate(name, age, city, image);
 
             } else {
 
@@ -186,16 +204,10 @@ public class SettingsFragment extends Fragment {
     }
 
     // Сохранение новых данных о пользователе
-    private void saveNewDate(String name, String age, String city) {
+    private void saveNewDate(String name, String age, String city, byte[] image) {
 
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-        Bitmap bitmap = ((BitmapDrawable)mImageUser.getDrawable()).getBitmap();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // сохранять картинку в jpeg-формате с 85% сжатия.
-
-
-        MainActivity.sPersonDate.updatePerson(name, age, city, baos.toByteArray());
+        saveImage(image);
+        MainActivity.sPersonDate.updatePerson(name, age, city, image);
         updateSharedPreferences(name, age, city);
         Commands.updatePerson(MainActivity.sPersonDate.getEmail(),name, age, city);
 
@@ -216,10 +228,10 @@ public class SettingsFragment extends Fragment {
     // Загрузка данных о пользователе
     private void loadOldDate() {
 
-        //TODO:Сделать локальное сохранение картинки
         mName.setText(MainActivity.sPersonDate.getName());
         mAge.setText(MainActivity.sPersonDate.getAge());
         mCity.setText(MainActivity.sPersonDate.getCity());
+
         mImageUser.setImageBitmap(getBitmap(MainActivity.sPersonDate.getImage()));
 
     }
@@ -303,5 +315,35 @@ public class SettingsFragment extends Fragment {
 
     }
 
+    //Сохранение картинки на SD
+    private String saveImage(byte[] image) {
+
+        OutputStream fOut;
+
+        try {
+
+            File file = new File(mFolderToSave, mPath); // создать уникальное имя для файла основываясь на дате сохранения
+
+            fOut = new FileOutputStream(file);
+
+            Bitmap bitmap = getBitmap(image);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut); // сохранять картинку в jpeg-формате с 85% сжатия.
+
+
+            fOut.flush();
+            fOut.close();
+
+            // регистрация в фотоальбоме
+            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
+
+        } catch (Exception e) { // здесь необходим блок отслеживания реальных ошибок и исключений, общий Exception приведен в качестве примера
+
+            return e.getMessage();
+
+        }
+
+        return "";
+
+    }
 
 }

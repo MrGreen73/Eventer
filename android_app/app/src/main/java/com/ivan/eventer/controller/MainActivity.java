@@ -3,14 +3,14 @@ package com.ivan.eventer.controller;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -23,6 +23,7 @@ import com.ivan.eventer.view.Main.Search.SearchFragment;
 import com.ivan.eventer.view.Main.SettingsFragment;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -138,17 +139,19 @@ public class MainActivity extends AppCompatActivity {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-        ImageView imageView = new ImageView(MainActivity.this);
-        imageView.setImageResource(R.drawable.ic_profile);
-        Bitmap bitmap = ((BitmapDrawable)(imageView).getDrawable()).getBitmap();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
+        String folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        File file = new File(folder, mSharedPreferences.getString(StartActivity.USER_IMAGE_PATH, "sdcard/")); // создать уникальное имя для файла основываясь на дате сохранения
+
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
         sPersonDate = new PersonDate(
                 mSharedPreferences.getString(StartActivity.USER_NAME, "Пользователь"),
                 mSharedPreferences.getString(StartActivity.USER_EMAIL, "user@email.ru"),
                 mSharedPreferences.getString(StartActivity.USER_AGE, "18"),
                 mSharedPreferences.getString(StartActivity.USER_CITY, "Москва"),
+                mSharedPreferences.getString(StartActivity.USER_IMAGE_PATH, "sdcard/"),
                 baos.toByteArray()
         );
 

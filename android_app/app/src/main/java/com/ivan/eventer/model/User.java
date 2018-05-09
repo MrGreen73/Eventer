@@ -61,7 +61,6 @@ public class User {
         mName = name;
     }
 
-
     public String getId() {
         return mId;
     }

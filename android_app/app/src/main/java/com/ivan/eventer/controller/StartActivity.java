@@ -20,6 +20,8 @@ public class StartActivity extends AppCompatActivity {
     public static final String USER_EMAIL= "EMAIL";
     public static final String USER_AGE = "AGE";
     public static final String USER_CITY = "CITY";
+    public static final String USER_IMAGE = "IMAGE";
+    public static final String USER_IMAGE_PATH = "IMAGE_PATH";
 
     private SharedPreferences mSharedPreferences;
 

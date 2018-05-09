@@ -7,15 +7,17 @@ public class PersonDate {
     private String mEmail; // Почта
     private String mAge; // Возраст
     private String mCity; // Город
+    private String mPath; // Путь
     private byte[] mImage; // Картинка
 
 
-    public PersonDate(String name, String email, String age, String city, byte[] image) {
+    public PersonDate(String name, String email, String age, String city, String path, byte[] image) {
 
         mName = name;
         mEmail = email;
         mAge = age;
         mCity = city;
+        mPath = path;
         mImage = image;
 
     }
@@ -24,6 +26,14 @@ public class PersonDate {
 
         deletePerson();
 
+    }
+
+    public String getPath() {
+        return mPath;
+    }
+
+    public void setPath(String path) {
+        mPath = path;
     }
 
     public String getName() {

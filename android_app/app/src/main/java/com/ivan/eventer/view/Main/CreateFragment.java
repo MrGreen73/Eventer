@@ -330,7 +330,7 @@ public class CreateFragment extends Fragment {
             @Override
             public void run() {
 
-                mProgressDialog.show();
+//                mProgressDialog.show();
                 id[0] = Commands.createEvent(MainActivity.sPersonDate.getEmail(), name, describe, baos.toByteArray(), mChoiceKind, mChoiceTime, time);
 
             }

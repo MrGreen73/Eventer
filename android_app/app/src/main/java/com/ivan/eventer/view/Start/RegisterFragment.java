@@ -5,10 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +27,9 @@ import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,6 +51,10 @@ public class RegisterFragment extends Fragment {
     // Для сохранения данных о пользователе
     private SharedPreferences mSharedPreferences;
 
+    // Путь папки
+    String mFolderToSave;
+    String mPath;
+
     // Для подсветки ошибки
     private View mFocusView;
 
@@ -64,6 +75,13 @@ public class RegisterFragment extends Fragment {
         mPassword= v.findViewById(R.id.registerPassword);
         mButtonRegister = v.findViewById(R.id.regBtn);
         mProgressDialog = new ProgressDialog(getActivity());
+
+
+        Time time = new Time();
+        time.setToNow();
+        mFolderToSave = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        mPath = Integer.toString(time.year) + Integer.toString(time.month) + Integer.toString(time.monthDay) + Integer.toString(time.hour) + Integer.toString(time.minute) + Integer.toString(time.second) + ".jpg";
+
 
         mButtonRegister.setOnClickListener(v1 -> {
 
@@ -153,9 +171,11 @@ public class RegisterFragment extends Fragment {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         ImageView imageView = new ImageView(getContext());
-        imageView.setImageResource(R.drawable.ic_for_profile5);
+        imageView.setImageResource(R.drawable.ic_profile);
         Bitmap bitmap = ((BitmapDrawable)(imageView).getDrawable()).getBitmap();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+        byte[] image = baos.toByteArray();
 
         //Запустить новый тред
         Thread thread = new Thread() {
@@ -164,7 +184,7 @@ public class RegisterFragment extends Fragment {
             public void run() {
 
 //                mProgressDialog.show();
-                Commands.createUser(name, email, age, city, password, baos.toByteArray());
+                Commands.createUser(name, email, age, city, password, image);
 
             }
 
@@ -183,7 +203,7 @@ public class RegisterFragment extends Fragment {
         }
 
         // Сохраняем данные о пользователе
-        saveDate(name, email, age, city);
+        saveDate(name, email, age, city, image);
         // Закрываем диалог
         mProgressDialog.dismiss();
         // Переходим на главную активность
@@ -192,7 +212,7 @@ public class RegisterFragment extends Fragment {
     }
 
     // Сохранение данных о пользователе локально
-    private void saveDate(String name, String email, String age, String city) {
+    private void saveDate(String name, String email, String age, String city, byte[] image) {
 
         mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
@@ -200,6 +220,8 @@ public class RegisterFragment extends Fragment {
         editor.putString(StartActivity.USER_EMAIL, email);
         editor.putString(StartActivity.USER_AGE, age);
         editor.putString(StartActivity.USER_CITY, city);
+        editor.putString(StartActivity.USER_IMAGE_PATH, mPath);
+        saveImage(image);
         editor.apply();
 
     }
@@ -218,6 +240,44 @@ public class RegisterFragment extends Fragment {
 
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
         return matcher.find();
+
+    }
+
+
+    private Bitmap getBitmap(byte[] image) {
+
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+
+    }
+
+    //Сохранение картинки на SD
+    private String saveImage(byte[] image) {
+
+
+        OutputStream fOut;
+
+        try {
+
+            File file = new File(mFolderToSave, mPath); // создать уникальное имя для файла основываясь на дате сохранения
+
+            fOut = new FileOutputStream(file);
+
+            Bitmap bitmap = getBitmap(image);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+
+            fOut.flush();
+            fOut.close();
+
+            // регистрация в фотоальбоме
+            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
+
+        } catch (Exception e) { // здесь необходим блок отслеживания реальных ошибок и исключений, общий Exception приведен в качестве примера
+
+            return e.getMessage();
+
+        }
+
+        return "";
 
     }
 
