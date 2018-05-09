@@ -41,7 +41,7 @@ public class EventActivity extends AppCompatActivity {
 
     private void makeEvent(String id) {
 //TODO: Исправить
-        Event event = Commands.findEventById("145");
+        Event event = Commands.findEventById(id);
         EventActivity.sEventPreview = new EventPreview(event.getID(), event.getTitle(), "10", event.getDescribe(), "NaN", event.getAuthor());
 
     }

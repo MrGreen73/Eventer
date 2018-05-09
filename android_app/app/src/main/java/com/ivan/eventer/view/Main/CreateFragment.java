@@ -1,5 +1,6 @@
 package com.ivan.eventer.view.Main;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.ivan.eventer.R;
@@ -34,12 +36,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
 
 public class CreateFragment extends Fragment {
+
+
 
     //Поля ввода
     private EditText mName; // Название
@@ -63,6 +68,21 @@ public class CreateFragment extends Fragment {
     // Список стандартных картинок
     private List<Integer> mListImage;
 
+    // Для даты
+    private Button mDateBtn;
+    private EditText mDateText;
+    private int mYear;
+    private int mMonth;
+    private int mDay;
+
+    //Для выбора времени дня
+    private RadioGroup mRadioGroupTime;
+    private String mChoiceTime;
+
+    //Для выбора вида
+    private RadioGroup mRadioGroupKind;
+    private String mChoiceKind;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,12 +90,17 @@ public class CreateFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_create, container, false);
 
         mName = v.findViewById(R.id.createName);
-        mCount= v.findViewById(R.id.createCount);
         mDescribe= v.findViewById(R.id.createDescribe);
         mButtonCreate = v.findViewById(R.id.createBtn);
         mLoadImageBtn = v.findViewById(R.id.createLoadImageBtn);
         mChangeImageBtn = v.findViewById(R.id.createChangeImageBtn);
         mImageEvent = v.findViewById(R.id.createImageEvent);
+        mRadioGroupKind= v.findViewById(R.id.radioGroupKind);
+        mRadioGroupTime = v.findViewById(R.id.radioGroupTime);
+        mDateText = v.findViewById(R.id.picked_date);
+        mDateBtn = v.findViewById(R.id.btn_date);
+        mChoiceTime = "Утро";
+        mChoiceKind= "Прогулка";
         mListImage = initializeData();
 
 
@@ -101,22 +126,21 @@ public class CreateFragment extends Fragment {
         mButtonCreate.setOnClickListener(v1 -> {
 
             String name = mName.getText().toString();
-            String count= mCount.getText().toString();
+            String time= mDateText.getText().toString();
             String describe = mDescribe.getText().toString();
 
             View focusView = null;
 
-            if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(count) && !TextUtils.isEmpty(describe)) {
+            if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(time) && !TextUtils.isEmpty(describe)) {
 
                 mProgressDialog.setTitle("Создание события");
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
                 mProgressDialog.setCanceledOnTouchOutside(false);
-                mProgressDialog.show();
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                makeEvent(name, count, describe);
+                makeEvent(name, time, describe);
 
             } else {
 
@@ -128,10 +152,10 @@ public class CreateFragment extends Fragment {
 
                 }
 
-                if (TextUtils.isEmpty(count)) {
+                if (TextUtils.isEmpty(time)) {
 
-                    mCount.setError("Введите количество человек");
-                    focusView = mCount;
+                    mDateText.setError("Выберите время");
+                    focusView = mDateText;
 
                 }
 
@@ -145,6 +169,56 @@ public class CreateFragment extends Fragment {
                 focusView.requestFocus();
 
             }
+
+        });
+
+
+        mRadioGroupTime.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.radioButtonMorning:
+                    mChoiceTime = "Утро";
+                    break;
+                case R.id.radioButtonDay:
+                    mChoiceTime = "День";
+                    break;
+                case R.id.radioButtonEvening:
+                    mChoiceTime = "Вечер";
+                    break;
+                default:
+                    mChoiceTime = "Утро";
+                    break;
+            }
+        });
+
+        mRadioGroupKind.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.radioButtonWalk:
+                    mChoiceTime = "Прогулка";
+                    break;
+                case R.id.radioButtonSport:
+                    mChoiceTime = "Спорт";
+                    break;
+                case R.id.radioButtonCinema:
+                    mChoiceTime = "Кино";
+                    break;
+                case R.id.radioButtonActive:
+                    mChoiceTime = "Активный отдых";
+                    break;
+                case R.id.radioButtonParty:
+                    mChoiceTime = "Вечеринка";
+                    break;
+                case R.id.radioButtonArt:
+                    mChoiceTime = "Искусство";
+                    break;
+                default:
+                    mChoiceTime = "Прогулка";
+                    break;
+            }
+        });
+
+        mDateBtn.setOnClickListener(v1 -> {
+
+            callDatePicker();
 
         });
 
@@ -202,19 +276,47 @@ public class CreateFragment extends Fragment {
 
         List<Integer> date = new ArrayList<>();
 
-        date.add(R.drawable.item1);
-        date.add(R.drawable.item2);
-        date.add(R.drawable.item3);
-        date.add(R.drawable.item4);
-        date.add(R.drawable.item5);
-        date.add(R.drawable.item6);
-        date.add(R.drawable.item7);
+        date.add(R.drawable.natural_item1);
+        date.add(R.drawable.image_1);
+        date.add(R.drawable.image_2);
+        date.add(R.drawable.image_3);
+        date.add(R.drawable.image_4);
+        date.add(R.drawable.image_5);
+        date.add(R.drawable.image_6);
+        date.add(R.drawable.event_1);
+        date.add(R.drawable.event_2);
+        date.add(R.drawable.event_3);
+        date.add(R.drawable.event_4);
+        date.add(R.drawable.event_5);
+        date.add(R.drawable.event_6);
+        date.add(R.drawable.event_7);
+        date.add(R.drawable.event_8);
+        date.add(R.drawable.event_9);
+        date.add(R.drawable.event_10);
+        date.add(R.drawable.event_11);
+        date.add(R.drawable.event_12);
 
         return date;
 
     }
 
-    private void makeEvent(String name, String count, String describe) {
+    private void callDatePicker() {
+        // получаем текущую дату
+        final Calendar cal = Calendar.getInstance();
+        mYear = cal.get(Calendar.YEAR);
+        mMonth = cal.get(Calendar.MONTH);
+        mDay = cal.get(Calendar.DAY_OF_MONTH);
+
+        // инициализируем диалог выбора даты текущими значениями
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                (view, year, monthOfYear, dayOfMonth) -> {
+                    String editTextDateParam = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
+                    mDateText.setText(editTextDateParam);
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+    }
+
+    private void makeEvent(String name, String time, String describe) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -228,8 +330,8 @@ public class CreateFragment extends Fragment {
             @Override
             public void run() {
 
-                id[0] = Commands.createEvent(MainActivity.sPersonDate.getEmail(), Integer.valueOf(count), describe, name, "NaN", baos.toByteArray());
-                //TODO: Добавить сохранение картинки в базе данных
+                mProgressDialog.show();
+                id[0] = Commands.createEvent(MainActivity.sPersonDate.getEmail(), name, describe, baos.toByteArray(), mChoiceKind, mChoiceTime, time);
 
             }
 
@@ -247,14 +349,14 @@ public class CreateFragment extends Fragment {
 
         }
 
-        EventActivity.sEventPreview = new EventPreview(id[0], name, count, describe, "NaN", MainActivity.sPersonDate.getEmail());
+        EventActivity.sEventPreview = new EventPreview(id[0], name, time, describe, "NaN", MainActivity.sPersonDate.getEmail());
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
 
         Intent eventIntent = new Intent(getActivity(), EventActivity.class);
         eventIntent.putExtra("ID", id[0]);
         startActivity(eventIntent);
-        getActivity().finish();
+
 
     }
 

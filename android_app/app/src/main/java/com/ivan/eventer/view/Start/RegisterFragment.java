@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -13,12 +15,14 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -76,7 +80,6 @@ public class RegisterFragment extends Fragment {
                 mProgressDialog.setTitle(getString(R.string.progressDialogRegister));
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
                 mProgressDialog.setCanceledOnTouchOutside(false);
-                mProgressDialog.show();
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -146,13 +149,22 @@ public class RegisterFragment extends Fragment {
 
     private void registerUser(String name, String email, String age, String city, String password) {
 
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        ImageView imageView = new ImageView(getContext());
+        imageView.setImageResource(R.drawable.ic_for_profile5);
+        Bitmap bitmap = ((BitmapDrawable)(imageView).getDrawable()).getBitmap();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
         //Запустить новый тред
         Thread thread = new Thread() {
 
             @Override
             public void run() {
 
-                Commands.createUser(name, email, age, city, password);
+//                mProgressDialog.show();
+                Commands.createUser(name, email, age, city, password, baos.toByteArray());
 
             }
 
@@ -170,7 +182,6 @@ public class RegisterFragment extends Fragment {
 
         }
 
-        // TODO: Добавить проверку успеха регистрации
         // Сохраняем данные о пользователе
         saveDate(name, email, age, city);
         // Закрываем диалог

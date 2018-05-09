@@ -62,7 +62,6 @@ public class LoginFragment extends Fragment {
                 mProgressDialog.setTitle(getString(R.string.progressDialogLogin));
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
                 mProgressDialog.setCanceledOnTouchOutside(false);
-                mProgressDialog.show();
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -103,6 +102,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void run() {
 
+                mProgressDialog.show();
                 user[0] = Commands.loginUser(email, password);
 
             }

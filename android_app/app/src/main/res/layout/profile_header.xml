@@ -38,48 +38,15 @@
                     android:layout_marginTop="5dp"
                     android:text="Иван"
                     android:textColor="@color/textBlack"
-                    android:textSize="@dimen/size_text_profile_large"
+                    android:textSize="24sp"
                     android:layout_gravity="center"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/profileAge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/textBlack"
-                        android:textSize="@dimen/size_text_profile_midle"
-                        android:text="19" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/textBlack"
-                        android:textSize="@dimen/size_text_profile_midle"
-                        android:text=", " />
-
-                    <TextView
-                        android:id="@+id/profileCity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/textBlack"
-                        android:textSize="@dimen/size_text_profile_midle"
-                        android:text="Москва" />
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:gravity="center|bottom"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="18dp"
                     android:weightSum="100">
 
                     <View
@@ -90,7 +57,7 @@
 
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
@@ -121,7 +88,7 @@
                         android:background="@color/separator"/>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
@@ -129,19 +96,19 @@
                         android:layout_weight="@dimen/profile_weight">
 
                         <TextView
-                            android:id="@+id/profileRang"
+                            android:id="@+id/profileAge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="4.9/5"
                             android:textColor="@color/textBlack"
-                            android:textSize="@dimen/size_text_profile_large"/>
+                            android:textSize="@dimen/size_text_profile_large"
+                            android:text="19" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/textBlack"
                             android:textSize="@dimen/size_text_profile_midle"
-                            android:text="Рейтинг" />
+                            android:text="Возраст" />
 
                     </LinearLayout>
 
@@ -152,7 +119,7 @@
                         android:background="@color/separator"/>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
@@ -160,17 +127,17 @@
                         android:layout_weight="@dimen/profile_weight">
 
                         <TextView
-                            android:id="@+id/profileLike"
+                            android:id="@+id/profileCity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="162"
                             android:textColor="@color/textBlack"
-                            android:textSize="@dimen/size_text_profile_large"/>
+                            android:textSize="@dimen/size_text_profile_large"
+                            android:text="Москва" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Друзья"
+                            android:text="Город"
                             android:textSize="@dimen/size_text_profile_midle"
                             android:textColor="@color/textBlack"/>
 

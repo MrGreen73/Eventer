@@ -4,9 +4,298 @@
     android:layout_height="match_parent"
     tools:context="com.ivan.eventer.view.Main.Search.SearchFilterFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_margin="13dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="Фильтры"
+            android:textColor="@color/textBlack"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Вид"
+                android:textSize="@dimen/size_text_profile_large"
+                android:textColor="@color/textBlack"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Прогулка"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterKindWalk"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Спорт"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterKindSport"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Кино"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterKindCulture"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Активный отдых"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterKindActive"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Вечеринка"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterKindParty"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Искусство"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterKindArt"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Время"
+                android:textSize="@dimen/size_text_profile_large"
+                android:textColor="@color/textBlack"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Утро"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterTimeMorning"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="День"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterTimeDay"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Вечер"
+                    android:layout_weight="80"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+                <CheckBox
+                    android:id="@+id/filterTimeEvening"
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_for_btn_login"
+            android:textSize="@dimen/size_text_profile_midle"
+            android:paddingHorizontal="25dp"
+            android:text="Поиск"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
 
 </FrameLayout>

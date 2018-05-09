@@ -2,12 +2,15 @@ package com.ivan.eventer.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -15,10 +18,11 @@ import com.ivan.eventer.R;
 import com.ivan.eventer.model.PersonDate;
 import com.ivan.eventer.view.Main.CreateFragment;
 import com.ivan.eventer.view.Main.HomeFragment;
-import com.ivan.eventer.view.Main.LikeFragment;
 import com.ivan.eventer.view.Main.ProfileFragment;
 import com.ivan.eventer.view.Main.Search.SearchFragment;
 import com.ivan.eventer.view.Main.SettingsFragment;
+
+import java.io.ByteArrayOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
                         changeFragment(new CreateFragment());
                         changeTitle("Создание");
                         break;
-
+/*
                     case R.id.navigation_like:
 
                         changeFragment(new LikeFragment());
                         changeTitle("Оповещения");
-                        break;
+                        break;*/
 
                     case R.id.navigation_profile:
 
@@ -118,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
         bnve.enableShiftingMode(false);
         bnve.enableItemShiftingMode(false);
 
-        int widthDp = 36;
-        int heightDp = 36;
+        int widthDp = 33;
+        int heightDp = 33;
         int sp = 0;
 
         bnve.setIconSize(widthDp, heightDp);
@@ -131,11 +135,21 @@ public class MainActivity extends AppCompatActivity {
     private void loadDate() {
 
         mSharedPreferences = this.getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        ImageView imageView = new ImageView(MainActivity.this);
+        imageView.setImageResource(R.drawable.ic_profile);
+        Bitmap bitmap = ((BitmapDrawable)(imageView).getDrawable()).getBitmap();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+
         sPersonDate = new PersonDate(
                 mSharedPreferences.getString(StartActivity.USER_NAME, "Пользователь"),
                 mSharedPreferences.getString(StartActivity.USER_EMAIL, "user@email.ru"),
                 mSharedPreferences.getString(StartActivity.USER_AGE, "18"),
-                mSharedPreferences.getString(StartActivity.USER_CITY, "Москва")
+                mSharedPreferences.getString(StartActivity.USER_CITY, "Москва"),
+                baos.toByteArray()
         );
 
     }

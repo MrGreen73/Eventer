@@ -1,31 +1,69 @@
 package com.ivan.eventer.model;
 
+/**
+ * Created by user on 05.05.2018.
+ */
 public class Event {
-
     private String mID;
     private String mTitle;
     private String mDescribe;
     private String mAuthor;
     private byte[] mImage;
+    private String mKind;
+    private String mTime;
+    private String mPlace;
+    private String mDate;
+
+    public Event() {
+    }
 
     public Event(String ID, String title, String describe, String author) {
         mID = ID;
         mTitle = title;
         mDescribe = describe;
         mAuthor = author;
-//        mImage = image;
-
     }
+
+    public void setTime(String time) {
+        mTime = time;
+    }
+
+    public void setDate(String date) {
+       mDate=date;
+    }
+
+    public String getDate() {
+        return mDate;
+    }
+
+    public String getTime() {
+        return mTime;
+    }
+
+    public void setKind(String Kind) {
+        mKind = Kind;
+    }
+
+    public String getKind() {
+        return mKind;
+    }
+
+    public void setPlace(String place) {
+        mPlace = place;
+    }
+
+    public String getPlace() {
+        return mPlace;
+    }
+
 
     public byte[] getImage() {
         return mImage;
     }
 
-    public void setImage(byte[] image) {
-        mImage = image;
+    public void setImage(byte[] mImage) {
+        this.mImage = mImage;
     }
-
-    public Event() {}
 
     public String getID() {
         return mID;

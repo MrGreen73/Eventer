@@ -7,14 +7,16 @@ public class PersonDate {
     private String mEmail; // Почта
     private String mAge; // Возраст
     private String mCity; // Город
+    private byte[] mImage; // Картинка
 
 
-    public PersonDate(String name, String email, String age, String city) {
+    public PersonDate(String name, String email, String age, String city, byte[] image) {
 
         mName = name;
         mEmail = email;
         mAge = age;
         mCity = city;
+        mImage = image;
 
     }
 
@@ -56,6 +58,14 @@ public class PersonDate {
         mCity = city;
     }
 
+    public byte[] getImage() {
+        return mImage;
+    }
+
+    public void setImage(byte[] image) {
+        mImage = image;
+    }
+
     public void deletePerson(){
 
         mName = "";
@@ -65,11 +75,12 @@ public class PersonDate {
 
     }
 
-    public void updatePerson(String name, String age, String city){
+    public void updatePerson(String name, String age, String city, byte[] image){
 
         mName = name;
         mAge = age;
         mCity = city;
+        mImage = image;
 
     }
 

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,9 +22,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +36,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class SettingsFragment extends Fragment {
 
-    //TODO: Добавить кнопки для инструкции
 
     // Поля ввода
     private EditText mName; // Имя
@@ -185,9 +188,16 @@ public class SettingsFragment extends Fragment {
     // Сохранение новых данных о пользователе
     private void saveNewDate(String name, String age, String city) {
 
-        MainActivity.sPersonDate.updatePerson(name, age, city);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        Bitmap bitmap = ((BitmapDrawable)mImageUser.getDrawable()).getBitmap();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // сохранять картинку в jpeg-формате с 85% сжатия.
+
+
+        MainActivity.sPersonDate.updatePerson(name, age, city, baos.toByteArray());
         updateSharedPreferences(name, age, city);
-//        Commands.updatePerson(name, age, city);
+        Commands.updatePerson(MainActivity.sPersonDate.getEmail(),name, age, city);
 
     }
 
@@ -206,9 +216,11 @@ public class SettingsFragment extends Fragment {
     // Загрузка данных о пользователе
     private void loadOldDate() {
 
+        //TODO:Сделать локальное сохранение картинки
         mName.setText(MainActivity.sPersonDate.getName());
         mAge.setText(MainActivity.sPersonDate.getAge());
         mCity.setText(MainActivity.sPersonDate.getCity());
+        mImageUser.setImageBitmap(getBitmap(MainActivity.sPersonDate.getImage()));
 
     }
 
@@ -282,6 +294,12 @@ public class SettingsFragment extends Fragment {
         date.add(R.drawable.ic_for_profile16);
 
         return date;
+
+    }
+
+    private Bitmap getBitmap(byte[] image) {
+
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
 
     }
 

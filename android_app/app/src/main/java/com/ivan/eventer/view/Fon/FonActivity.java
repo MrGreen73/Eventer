@@ -21,7 +21,7 @@ public class FonActivity extends AppCompatActivity {
             startActivity(startApp);
             finish();
 
-        }, 2 * 750);
+        }, 2 * 550);
 
     }
 

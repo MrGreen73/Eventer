@@ -26,11 +26,11 @@
             android:id="@+id/searchByTitle"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="17"
+            android:layout_weight="20"
             android:textSize="@dimen/size_text_profile_midle"
             android:background="@drawable/back_for_btn_login"
             android:text="Поиск по названию"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="30dp"
             android:paddingVertical="15dp"
             android:layout_marginTop="50dp"/>
 
@@ -38,11 +38,11 @@
             android:id="@+id/searchByFilter"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="17"
+            android:layout_weight="20"
             android:textSize="@dimen/size_text_profile_midle"
             android:background="@drawable/back_for_btn_register"
             android:text="Поиск по фильтрам"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="30dp"
             android:paddingVertical="15dp"
             android:layout_marginTop="50dp"/>
 
@@ -50,11 +50,11 @@
             android:id="@+id/searchByQR"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="17"
+            android:layout_weight="20"
             android:textSize="@dimen/size_text_profile_midle"
             android:background="@drawable/back_for_btn_out"
             android:text="Поиск  по  QR  коду"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="30dp"
             android:paddingVertical="15dp"
             android:layout_marginTop="50dp"/>
 

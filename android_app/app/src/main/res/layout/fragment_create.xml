@@ -68,28 +68,167 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginTop="10dp">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/createCount"
-                    android:layout_width="match_parent"
+                <EditText
+                    android:id="@+id/picked_date"
+                    android:hint="Дата"
+                    android:enabled="false"
+                    android:layout_width="0dp"
+                    android:layout_weight="70"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:inputType="date" />
+
+                <Button
+                    android:id="@+id/btn_date"
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:paddingHorizontal="15dp"
+                    android:background="@drawable/back_for_btn_login"
+                    android:text="Выбрать"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:hint="Количество человек"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    android:minLines="1"
-                    android:singleLine="true"
-                    android:textColorHint="@color/colorAccent" />
+                    android:orientation="vertical"
+                    android:layout_weight="50"
+                    android:gravity="left">
 
-            </android.support.design.widget.TextInputLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Вид"
+                        android:textSize="18sp"
+                        android:textColor="@color/textBlack" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupKind"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp"
+                        android:gravity="left"
+                        android:weightSum="100">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonWalk"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="16"
+                            android:layout_height="0dp"
+                            android:checked="true"
+                            android:text="Прогулка"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtonSport"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="16"
+                            android:layout_height="0dp"
+                            android:text="Спорт"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtonCinema"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="16"
+                            android:layout_height="0dp"
+                            android:text="Кино"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtonActive"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="16"
+                            android:layout_height="0dp"
+                            android:text="Активный отдых"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtonParty"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="16"
+                            android:layout_height="0dp"
+                            android:text="Вечеринка"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtonArt"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="16"
+                            android:layout_height="0dp"
+                            android:text="Искусство"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="45"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Время"
+                        android:textSize="18sp"
+                        android:textColor="@color/textBlack" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp"
+                        android:gravity="left"
+                        android:weightSum="100">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonMorning"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="33"
+                            android:layout_height="0dp"
+                            android:checked="true"
+                            android:text="Утро"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtonDay"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="33"
+                            android:layout_height="0dp"
+                            android:text="День" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonEvening"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="33"
+                            android:layout_height="0dp"
+                            android:text="Вечер" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/createDescribe"
@@ -104,11 +243,12 @@
 
             <Button
                 android:id="@+id/createBtn"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
+                android:paddingHorizontal="25dp"
+                android:layout_marginBottom="30dp"
                 android:text="Создать"
                 android:background="@drawable/back_for_btn_out"/>
 

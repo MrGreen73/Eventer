@@ -29,19 +29,19 @@ public class SearchFragment extends Fragment {
 
         mSearchByTitle.setOnClickListener(v1 -> {
 
-            MainActivity.addFragment(new SearchTitleFragment());
+            MainActivity.changeFragment(new SearchTitleFragment());
 
         });
 
         mSearchByFilter.setOnClickListener(v1 -> {
 
-            MainActivity.addFragment(new SearchFilterFragment());
+            MainActivity.changeFragment(new SearchFilterFragment());
 
         });
 
         mSearchByQR.setOnClickListener(v1 -> {
 
-            MainActivity.addFragment(new SearchQRFragment());
+            MainActivity.changeFragment(new SearchQRFragment());
 
         });
 

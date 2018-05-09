@@ -17,10 +17,10 @@
         android:icon="@drawable/ic_create"
         tools:ignore="MenuTitle" />
 
-    <item
+<!--    <item
         android:id="@+id/navigation_like"
         android:icon="@drawable/ic_heart"
-        tools:ignore="MenuTitle" />
+        tools:ignore="MenuTitle" />-->
 
     <item
         android:id="@+id/navigation_profile"
