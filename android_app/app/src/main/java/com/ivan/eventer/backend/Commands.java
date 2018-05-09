@@ -26,7 +26,7 @@ public class Commands {
     // Create a new RestTemplate instance
     public static String IP = "192.168.1.61:8008";
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
-    static String address = "192.168.180.58"; // это IP-адрес компьютера, где исполняется наша серверная программа.
+    static String address = "192.168.1.61"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
 
     public static User loginUser(String email, String password) {
@@ -40,19 +40,28 @@ public class Commands {
     }
 
 
-    public static void updatePerson(String email, String name, String age, String city) {
+    public static void updatePerson(String name, String email, String age, String city, String password, byte[] arr) {
 
-        Thread thread = new Thread() {
+        final String[] s = new String[1];
+        Thread t = new Thread() {
             @Override
             public void run() {
-                String url = "http://" + IP + "/updatePerson?name=" + name +
-                        "&age=" + age + "&city=" + city + "&email=" + email;
+                String url = "http://" + IP + "/postUserUpdate";
+
+                User user = new User(name, email, age, city, password, arr);
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                restTemplate.getForObject(url, Void.class);
+                restTemplate.postForEntity(url, user, Void.class);
+
             }
         };
-        thread.start();
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -242,10 +251,10 @@ public class Commands {
 
             // Создаем поток для чтения с клавиатуры.
             BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-            String line = null;
+
             System.out.println("Type in something and press enter. Will send it to the server and tell ya what it thinks.");
             System.out.println();
-            new Thread(() -> {
+            Thread t1 = new Thread(() -> {
                 while (true) {
                     String line2 = null; // ждем пока сервер отошлет строку текста.
                     try {
@@ -256,15 +265,43 @@ public class Commands {
                     System.out.println("The server was very polite. It sent me this : " + line2);
 
                 }
-            }).start();
-            while (true) {
-                line = keyboard.readLine(); // ждем пока пользователь введет что-то и нажмет кнопку Enter.
-                System.out.println("Sending this line to the server...");
-                out.writeUTF(line); // отсылаем введенную строку текста серверу.
-                //   out.wr
-                out.flush(); // заставляем поток закончить передачу данных.
+            });
+            t1.start();
 
+            Thread t2 = new Thread(() -> {
+                String line = null;
+                try {
+                    line = keyboard.readLine(); // ждем пока пользователь введет что-то и нажмет кнопку Enter.
+                    out.writeUTF(line); // отсылаем введенную строку текста серверу.
+                    //   out.wr
+                    out.flush(); // заставляем поток закончить передачу данных.
+                    while (true) {
+                        line = keyboard.readLine(); // ждем пока пользователь введет что-то и нажмет кнопку Enter.
+                        System.out.println("Sending this line to the server...");
+                        out.writeUTF("email" + " " + line); // отсылаем введенную строку текста серверу.
+                        //   out.wr
+                        out.flush(); // заставляем поток закончить передачу данных.
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            });
+            t2.start();
+
+            Thread.sleep(60000);
+            try {
+                t1.stop();
+            } catch (Exception e) {
             }
+
+            try {
+                t2.stop();
+            } catch (Exception e) {
+            }
+            System.out.println("Завершено");
         } catch (Exception x) {
             x.printStackTrace();
         }

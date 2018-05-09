@@ -83,6 +83,7 @@ public class SettingsFragment extends Fragment {
         mImageUser= view.findViewById(R.id.settingsImageUser);
         mSharedPreferences = getActivity().getSharedPreferences(StartActivity.PATH_TO_DATA_ABOUT_USER, Context.MODE_PRIVATE);
 
+
         mFolderToSave = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         mPath = mSharedPreferences.getString(StartActivity.USER_IMAGE_PATH, "0");
         // Загрузка данных о пользователе
@@ -209,7 +210,7 @@ public class SettingsFragment extends Fragment {
         saveImage(image);
         MainActivity.sPersonDate.updatePerson(name, age, city, image);
         updateSharedPreferences(name, age, city);
-        Commands.updatePerson(MainActivity.sPersonDate.getEmail(),name, age, city);
+        Commands.updatePerson(name, MainActivity.sPersonDate.getEmail(), age, city, "0000", image);
 
     }
 
