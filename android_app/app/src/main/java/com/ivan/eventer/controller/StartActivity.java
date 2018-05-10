@@ -12,7 +12,11 @@ import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.view.Start.StartFragment;
 
+import org.apache.log4j.Logger;
+
 public class StartActivity extends AppCompatActivity {
+
+    Logger mLogger = Logger.getLogger(StartActivity.class);
 
     //Ключи для сохранения информации о пользователе
     public static final String PATH_TO_DATA_ABOUT_USER = "dataAboutUser";

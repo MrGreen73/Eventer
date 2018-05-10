@@ -1,13 +1,17 @@
 package com.ivan.eventer.controller;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageButton;
@@ -27,6 +31,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int PERMISSION_REQUEST_CODE = 1;
     // Для перехода по фрагментам
     private static FragmentManager mFragmentManager;
     private static Fragment mContainer;
@@ -48,24 +53,24 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationViewEx.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
 
-                switch (item.getItemId()) {
+        switch (item.getItemId()) {
 
-                    case R.id.navigation_home:
-                        changeFragment(new HomeFragment());
-                        changeTitle("Главная");
-                        break;
+            case R.id.navigation_home:
+                changeFragment(new HomeFragment());
+                changeTitle("Главная");
+                break;
 
-                    case R.id.navigation_search:
+            case R.id.navigation_search:
 
-                        changeFragment(new SearchFragment());
-                        changeTitle("Поиск");
-                        break;
+                changeFragment(new SearchFragment());
+                changeTitle("Поиск");
+                break;
 
-                    case R.id.navigation_create:
+            case R.id.navigation_create:
 
-                        changeFragment(new CreateFragment());
-                        changeTitle("Создание");
-                        break;
+                changeFragment(new CreateFragment());
+                changeTitle("Создание");
+                break;
 /*
                     case R.id.navigation_like:
 
@@ -73,16 +78,16 @@ public class MainActivity extends AppCompatActivity {
                         changeTitle("Оповещения");
                         break;*/
 
-                    case R.id.navigation_profile:
+            case R.id.navigation_profile:
 
-                        changeFragment(new ProfileFragment());
-                        changeTitle("Профиль");
-                        break;
-                }
+                changeFragment(new ProfileFragment());
+                changeTitle("Профиль");
+                break;
+        }
 
-                return true;
+        return true;
 
-            };
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +95,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Загружаем данные о пользователе
-        loadDate();
+        ActivityCompat.requestPermissions(this,
+                new String[]{
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                },
+                PERMISSION_REQUEST_CODE);
 
         Toolbar mToolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(mToolbar);
@@ -141,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         String folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+//                == PackageManager.PERMISSION_GRANTED) {
         File file = new File(folder, mSharedPreferences.getString(StartActivity.USER_IMAGE_PATH, "sdcard/")); // создать уникальное имя для файла основываясь на дате сохранения
 
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
@@ -154,18 +166,20 @@ public class MainActivity extends AppCompatActivity {
                 mSharedPreferences.getString(StartActivity.USER_IMAGE_PATH, "sdcard/"),
                 baos.toByteArray()
         );
-
+//        } else {
+//            finishAffinity();
+//        }
     }
 
     // Установка названия тулбара
-    private void changeTitle(String title){
+    private void changeTitle(String title) {
 
         mToolbarTitle.setText(title);
 
     }
 
     //Смена фрагмента
-    public static void changeFragment(Fragment fragment){
+    public static void changeFragment(Fragment fragment) {
 
         if (mContainer == null) {
 
@@ -175,14 +189,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static void addFragment(Fragment fragment){
+    public static void addFragment(Fragment fragment) {
 
         if (mContainer == null) {
 
             mFragmentManager.beginTransaction().add(R.id.mainContainer, fragment).addToBackStack(null).commit();
-
         }
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == PERMISSION_REQUEST_CODE && grantResults.length == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                loadDate();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 }
