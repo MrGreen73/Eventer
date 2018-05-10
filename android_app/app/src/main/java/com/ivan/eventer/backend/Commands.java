@@ -2,6 +2,7 @@ package com.ivan.eventer.backend;
 
 import com.ivan.eventer.model.Event;
 import com.ivan.eventer.model.ListEvents;
+import com.ivan.eventer.model.MessageArray;
 import com.ivan.eventer.model.User;
 
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,13 @@ public class Commands {
         return user;
     }
 
+    public static MessageArray getMessages(String Id){
+        String url = "http://" + IP + "/getMessages?Id=" + Id;
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        MessageArray messages = restTemplate.getForObject(url, MessageArray.class);
+        return messages;
+    }
 
     public static void updatePerson(String name, String email, String age, String city, String password, byte[] arr) {
 

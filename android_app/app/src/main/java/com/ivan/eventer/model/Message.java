@@ -1,48 +1,39 @@
 package com.ivan.eventer.model;
 
-import java.util.Date;
+/**
+ * Created by user on 27.04.2018.
+ */
 
 public class Message {
 
-    String textMessage; // Текст сообщения
-    String authorMessage; // Автор сообщения
-    long timeMessage; // Время сообщения
+    private Long id;
+    private String from;
+    private String message;
 
-    // Конструктор сообщения
-    public Message(String textMessage, String authorMessage) {
-
-        this.textMessage = textMessage;
-        this.authorMessage = authorMessage;
-        timeMessage = new Date().getTime();
-
+    public Message() {
     }
 
-
-    // Пустой конструктор
-    public Message() { }
-
-    // Геттеры и сеттеры
-    public String getTextMessage() {
-        return textMessage;
+    public Long getId() {
+        return id;
     }
 
-    public void setTextMessage(String textMessage) {
-        this.textMessage = textMessage;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getAuthorMessage() {
-        return authorMessage;
+    public String getFrom() {
+        return from;
     }
 
-    public void setAuthorMessage(String authorMessage) {
-        this.authorMessage = authorMessage;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    public long getTimeMessage() {
-        return timeMessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setTimeMessage(long timeMessage) {
-        this.timeMessage = timeMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

@@ -1,18 +1,13 @@
 package com.ivan.eventer.adapters;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ivan.eventer.R;
-import com.ivan.eventer.controller.EventActivity;
-import com.ivan.eventer.model.Event;
 import com.ivan.eventer.model.Message;
 
 import java.util.List;
@@ -78,9 +73,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public void onBindViewHolder(MessageViewHolder holder, int position) {
 
 
-        holder.messageText.setText(mMessagesList.get(position).getTextMessage());
-        holder.messageAuthor.setText(mMessagesList.get(position).getAuthorMessage());
-        holder.messageDate.setText(DateFormat.format("dd-MM-yyyy (hh:mm:ss)", mMessagesList.get(position).getTimeMessage()));
+        holder.messageText.setText(mMessagesList.get(position).getMessage());
+        holder.messageAuthor.setText(mMessagesList.get(position).getFrom());
+//        holder.messageDate.setText(DateFormat.format("dd-MM-yyyy (hh:mm:ss)", mMessagesList.get(position).getFrom()));
 
 
 

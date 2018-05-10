@@ -13,7 +13,6 @@ import com.ivan.eventer.view.Event.EventFragment;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -30,9 +29,10 @@ public class EventActivity extends AppCompatActivity {
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
     static String address = "192.168.1.61"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
-    private Thread t1;
+    public static Thread mThreadFrom;
 
     public static DataOutputStream out;
+    public static DataInputStream in;
 
 
 
@@ -43,20 +43,27 @@ public class EventActivity extends AppCompatActivity {
 
         makeEvent(getID());
 
-        System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + sEventPreview.getID());
-
         Thread thread = new Thread() {
 
             @Override
             public void run() {
+
                 makeConnection();
+
             }
+
         };
+
         thread.start();
+
         try {
+
             thread.join();
+
         } catch (InterruptedException e) {
+
             e.printStackTrace();
+
         }
 
         FragmentManager fm = getSupportFragmentManager();
@@ -73,9 +80,19 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void makeEvent(String id) {
-//TODO: Исправить
+
         Event event = Commands.findEventById(id);
-        EventActivity.sEventPreview = new EventPreview(event.getID(), event.getTitle(), "10", event.getDescribe(), "NaN", event.getAuthor());
+        EventActivity.sEventPreview = new EventPreview(
+                event.getID(),
+                event.getTitle(),
+                event.getDescribe(),
+                event.getAuthor(),
+                event.getImage(),
+                event.getKind(),
+                event.getTime(),
+                event.getPlace(),
+                event.getDate()
+        );
 
     }
 
@@ -83,7 +100,16 @@ public class EventActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        t1.stop();
+        try{
+
+            mThreadFrom.stop();
+
+        } catch (Exception ex) {
+
+            finish();
+
+        }
+
         finish();
 
     }
@@ -94,7 +120,9 @@ public class EventActivity extends AppCompatActivity {
 
     }
     public void makeConnection() {
+
         try {
+
             InetAddress ipAddress = InetAddress.getByName(address); // создаем объект который отображает вышеописанный IP-адрес.
             System.out.println("Any of you heard of a socket with IP address " + address + " and port " + serverPort + "?");
             Socket socket = new Socket(ipAddress, serverPort); // создаем сокет используя IP-адрес и порт сервера.
@@ -105,32 +133,25 @@ public class EventActivity extends AppCompatActivity {
             OutputStream sout = socket.getOutputStream();
 
             // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
-            DataInputStream in = new DataInputStream(sin);
+            in = new DataInputStream(sin);
             out = new DataOutputStream(sout);
+
             out.writeUTF(getID());
+
             System.err.println(getID());
+
             out.flush();
 
             System.out.println("Type in something and press enter. Will send it to the server and tell ya what it thinks.");
             System.out.println();
-            t1 = new Thread(() -> {
-                while (true) {
-                    String line2 = null; // ждем пока сервер отошлет строку текста.
-                    try {
-                        line2 = in.readUTF();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("The server was very polite. It sent me this : " + line2);
 
-                }
-            });
-            t1.start();
 
         } catch (Exception x) {
-            x.printStackTrace();
-        }
-    }
 
+            x.printStackTrace();
+
+        }
+
+    }
 
 }

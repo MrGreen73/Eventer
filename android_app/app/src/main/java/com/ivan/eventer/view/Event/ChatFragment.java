@@ -12,11 +12,11 @@ import android.widget.ImageButton;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.MessageAdapter;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.model.Message;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChatFragment extends Fragment {
@@ -70,26 +70,106 @@ public class ChatFragment extends Fragment {
 
         initializeData();
 
-        mMessageAdapter = new MessageAdapter(mMessagesList);
-        mRecyclerView.setAdapter(mMessageAdapter);
+
 
     }
 
     private void addMessage(String message) {
 
         try {
+
             EventActivity.out.writeUTF("email" + " " + message); // отсылаем введенную строку текста серверу.
             EventActivity.out.flush(); // заставляем поток закончить передачу данных.
+
         } catch (IOException e) {
+
             e.printStackTrace();
+
         }
+
         //   out.wr
 
     }
 
     private void initializeData(){
 
-        mMessagesList = new ArrayList<>();
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                mMessagesList = (Commands.getMessages(EventActivity.sEventPreview.getID())).getMessages();
+
+                getActivity().runOnUiThread(() -> {
+
+                    mMessageAdapter = new MessageAdapter(mMessagesList);
+                    mRecyclerView.setAdapter(mMessageAdapter);
+
+                    if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
+
+                        mRecyclerView.scrollToPosition(mMessagesList.size() - 1);
+
+                    }
+
+
+                });
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        EventActivity.mThreadFrom = new Thread(() -> {
+
+            while (true) {
+
+                String messageString = null; // ждем пока сервер отошлет строку текста.
+
+                try {
+
+                    messageString = EventActivity.in.readUTF();
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+
+                }
+
+                if (messageString != null && !messageString.equals("success")){
+
+                    String email = messageString.split(" ")[0];
+                    String mes = messageString.substring(email.length() + 1);
+                    Message message = new Message();
+                    message.setFrom(email);
+                    message.setMessage(mes);
+
+                    getActivity().runOnUiThread(() -> {
+
+                        mMessagesList.add(message);
+                        mMessageAdapter = new MessageAdapter(mMessagesList);
+                        mRecyclerView.setAdapter(mMessageAdapter);
+                        mMessage.setText("");
+
+                        if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
+
+                            mRecyclerView.scrollToPosition(mMessagesList.size() - 1);
+
+                        }
+
+
+                    });
+
+
+                }
+
+                System.out.println("The server was very polite. It sent me this : " + messageString);
+
+            }
+
+        });
+
+        EventActivity.mThreadFrom.start();
 
         //Получение листа сообщений у данного события
 //        mMessagesList = Commands.getMessages(EventActivity.sEventPreview.getID());

@@ -28,7 +28,6 @@ import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.controller.MainActivity;
-import com.ivan.eventer.model.EventPreview;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -349,7 +348,7 @@ public class CreateFragment extends Fragment {
 
         }
 
-        EventActivity.sEventPreview = new EventPreview(id[0], name, time, describe, "NaN", MainActivity.sPersonDate.getEmail());
+//        EventActivity.sEventPreview = new EventPreview(id[0], name, time, describe, "NaN", MainActivity.sPersonDate.getEmail());
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
 

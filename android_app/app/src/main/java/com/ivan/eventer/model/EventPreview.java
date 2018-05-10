@@ -4,22 +4,28 @@ public class EventPreview {
 
     private String mID;
     private String mTitle;
-    private String mCount;
     private String mDescribe;
-    private String mPlace;
     private String mAuthor;
+    private byte[] mImage;
+    private String mKind;
+    private String mTime;
+    private String mPlace;
+    private String mDate;
 
     public EventPreview() {
 
     }
 
-    public EventPreview(String ID, String title, String count, String describe, String place, String author) {
+    public EventPreview(String ID, String title, String describe, String author, byte[] image, String kind, String time, String place, String date) {
         mID = ID;
         mTitle = title;
-        mCount = count;
         mDescribe = describe;
-        mPlace = place;
         mAuthor = author;
+        mImage = image;
+        mKind = kind;
+        mTime = time;
+        mPlace = place;
+        mDate = date;
     }
 
     public String getID() {
@@ -38,20 +44,44 @@ public class EventPreview {
         mTitle = title;
     }
 
-    public String getCount() {
-        return mCount;
-    }
-
-    public void setCount(String count) {
-        mCount = count;
-    }
-
     public String getDescribe() {
         return mDescribe;
     }
 
     public void setDescribe(String describe) {
         mDescribe = describe;
+    }
+
+    public String getAuthor() {
+        return mAuthor;
+    }
+
+    public void setAuthor(String author) {
+        mAuthor = author;
+    }
+
+    public byte[] getImage() {
+        return mImage;
+    }
+
+    public void setImage(byte[] image) {
+        mImage = image;
+    }
+
+    public String getKind() {
+        return mKind;
+    }
+
+    public void setKind(String kind) {
+        mKind = kind;
+    }
+
+    public String getTime() {
+        return mTime;
+    }
+
+    public void setTime(String time) {
+        mTime = time;
     }
 
     public String getPlace() {
@@ -62,11 +92,11 @@ public class EventPreview {
         mPlace = place;
     }
 
-    public String getAuthor() {
-        return mAuthor;
+    public String getDate() {
+        return mDate;
     }
 
-    public void setAuthor(String author) {
-        mAuthor = author;
+    public void setDate(String date) {
+        mDate = date;
     }
 }
