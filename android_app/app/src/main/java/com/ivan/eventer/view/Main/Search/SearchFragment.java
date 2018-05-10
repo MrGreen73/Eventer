@@ -1,5 +1,7 @@
 package com.ivan.eventer.view.Main.Search;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ public class SearchFragment extends Fragment {
     private Button mSearchByTitle;
     private Button mSearchByFilter;
     private Button mSearchByQR;
+    private Button mSearchByAfisha;
 
 
     @Override
@@ -26,6 +29,7 @@ public class SearchFragment extends Fragment {
         mSearchByTitle = v.findViewById(R.id.searchByTitle);
         mSearchByFilter = v.findViewById(R.id.searchByFilter);
         mSearchByQR = v.findViewById(R.id.searchByQR);
+        mSearchByAfisha = v.findViewById(R.id.searchByAfisha);
 
         mSearchByTitle.setOnClickListener(v1 -> {
 
@@ -42,6 +46,13 @@ public class SearchFragment extends Fragment {
         mSearchByQR.setOnClickListener(v1 -> {
 
             MainActivity.changeFragment(new SearchQRFragment());
+
+        });
+
+        mSearchByAfisha.setOnClickListener(v1 -> {
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.afisha.ru"));
+            startActivity(browserIntent);
 
         });
 

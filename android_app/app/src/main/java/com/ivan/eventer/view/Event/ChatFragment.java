@@ -77,8 +77,8 @@ public class ChatFragment extends Fragment {
     private void addMessage(String message) {
 
         try {
-
-            EventActivity.out.writeUTF("email" + " " + message); // отсылаем введенную строку текста серверу.
+//email time text
+//            EventActivity.out.writeUTF(MainActivity.sPersonDate.getEmail() + " " + message); // отсылаем введенную строку текста серверу.
             EventActivity.out.flush(); // заставляем поток закончить передачу данных.
 
         } catch (IOException e) {
@@ -135,31 +135,38 @@ public class ChatFragment extends Fragment {
                     e.printStackTrace();
 
                 }
-
+//1 <email> <text>
                 if (messageString != null && !messageString.equals("success")){
 
-                    String email = messageString.split(" ")[0];
-                    String mes = messageString.substring(email.length() + 1);
-                    Message message = new Message();
-                    message.setFrom(email);
-                    message.setMessage(mes);
+                    if (messageString.charAt(0) == '1'){
 
-                    getActivity().runOnUiThread(() -> {
+                        String email = messageString.split(" ")[1];
+                        String mes = messageString.substring(email.length() + 3);
 
-                        mMessagesList.add(message);
-                        mMessageAdapter = new MessageAdapter(mMessagesList);
-                        mRecyclerView.setAdapter(mMessageAdapter);
-                        mMessage.setText("");
+                        if (!mes.isEmpty()){
 
-                        if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
+                            Message message = new Message();
+                            message.setFrom(email);
+                            message.setMessage(mes);
 
-                            mRecyclerView.scrollToPosition(mMessagesList.size() - 1);
+                            getActivity().runOnUiThread(() -> {
+
+                                mMessagesList.add(message);
+                                mMessageAdapter = new MessageAdapter(mMessagesList);
+                                mRecyclerView.setAdapter(mMessageAdapter);
+                                mMessage.setText("");
+
+                                if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
+
+                                    mRecyclerView.scrollToPosition(mMessagesList.size() - 1);
+
+                                }
+
+                            });
 
                         }
 
-
-                    });
-
+                    }
 
                 }
 

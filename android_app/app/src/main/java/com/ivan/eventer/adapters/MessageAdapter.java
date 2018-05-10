@@ -2,12 +2,15 @@ package com.ivan.eventer.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.model.Message;
 
 import java.util.List;
@@ -36,8 +39,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     private boolean isAuthor(int position) {
 
-        //TODO: Добавить проверку на авторство
-        return (position % 3 == 0);
+        return mMessagesList.get(position).getFrom().equals(EventActivity.sEventPreview.getAuthor());
 
     }
 
@@ -75,7 +77,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         holder.messageText.setText(mMessagesList.get(position).getMessage());
         holder.messageAuthor.setText(mMessagesList.get(position).getFrom());
-//        holder.messageDate.setText(DateFormat.format("dd-MM-yyyy (hh:mm:ss)", mMessagesList.get(position).getFrom()));
+        holder.messageDate.setText(DateFormat.format("dd-MM-yyyy (hh:mm:ss)", mMessagesList.get(position).getDate()));
 
 
 
@@ -86,6 +88,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         TextView messageText;
         TextView messageAuthor;
         TextView messageDate;
+        ImageView messageImage;
 
         public MessageViewHolder(View itemView) {
             super(itemView);
@@ -93,6 +96,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             messageText = itemView.findViewById(R.id.chat_message);
             messageAuthor = itemView.findViewById(R.id.chat_author);
             messageDate = itemView.findViewById(R.id.chat_date);
+            messageImage = itemView.findViewById(R.id.chat_image);
 
         }
 

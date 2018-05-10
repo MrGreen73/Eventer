@@ -10,53 +10,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100"
         android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="10"
+            android:layout_height="wrap_content"
             android:text="Выберите подходящий вариант для поиска"
             android:textSize="@dimen/size_text_profile_midle"
             android:textColor="@color/textBlack"
             android:layout_marginTop="30dp"/>
 
-        <Button
-            android:id="@+id/searchByTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="20"
-            android:textSize="@dimen/size_text_profile_midle"
-            android:background="@drawable/back_for_btn_login"
-            android:text="Поиск по названию"
-            android:paddingHorizontal="30dp"
-            android:paddingVertical="15dp"
-            android:layout_marginTop="50dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
 
-        <Button
-            android:id="@+id/searchByFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="20"
-            android:textSize="@dimen/size_text_profile_midle"
-            android:background="@drawable/back_for_btn_register"
-            android:text="Поиск по фильтрам"
-            android:paddingHorizontal="30dp"
-            android:paddingVertical="15dp"
-            android:layout_marginTop="50dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="50dp">
 
-        <Button
-            android:id="@+id/searchByQR"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="20"
-            android:textSize="@dimen/size_text_profile_midle"
-            android:background="@drawable/back_for_btn_out"
-            android:text="Поиск  по  QR  коду"
-            android:paddingHorizontal="30dp"
-            android:paddingVertical="15dp"
-            android:layout_marginTop="50dp"/>
+                <Button
+                    android:id="@+id/searchByTitle"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:textSize="@dimen/size_text_profile_large"
+                    android:background="@drawable/back_for_btn_login"
+                    android:text="Название" />
+
+                <Button
+                    android:id="@+id/searchByFilter"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="20dp"
+                    android:textSize="@dimen/size_text_profile_large"
+                    android:background="@drawable/back_for_btn_out"
+                    android:text="Фильтры"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="50dp">
+
+                <Button
+                    android:id="@+id/searchByQR"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:textSize="@dimen/size_text_profile_large"
+                    android:background="@drawable/back_for_btn_out"
+                    android:text="QR"/>
+
+                <Button
+                    android:id="@+id/searchByAfisha"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="20dp"
+                    android:textSize="@dimen/size_text_profile_large"
+                    android:background="@drawable/back_for_btn_login"
+                    android:text="Афиша"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

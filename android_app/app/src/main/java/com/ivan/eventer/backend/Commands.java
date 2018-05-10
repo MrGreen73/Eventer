@@ -25,9 +25,9 @@ import java.util.ArrayList;
  */
 public class Commands {
     // Create a new RestTemplate instance
-    public static String IP = "192.168.1.61:8008";
+    public static String IP = "192.168.180.58:8008";
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
-    static String address = "192.168.1.61"; // это IP-адрес компьютера, где исполняется наша серверная программа.
+    static String address = "192.168.180.58"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
 
     public static User loginUser(String email, String password) {
@@ -40,7 +40,7 @@ public class Commands {
         return user;
     }
 
-    public static MessageArray getMessages(String Id){
+    public static MessageArray getMessages(String Id) {
         String url = "http://" + IP + "/getMessages?Id=" + Id;
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -118,6 +118,28 @@ public class Commands {
             e.printStackTrace();
         }
 
+    }
+
+    public static User userByEmail(String email) {
+        final User[] s = {null};
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/userByEmail?email=" + email;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                s[0] = restTemplate.getForObject(url, User.class);
+
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return s[0];
     }
 
 
