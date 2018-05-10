@@ -7,18 +7,34 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.MessageAdapter;
+import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.model.Message;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatFragment extends Fragment {
 
+    //Лист сообщений
     private List<Message> mMessagesList;
+
+    // Адаптер сообщений
     private MessageAdapter mMessageAdapter;
+
+    // Сообщение
+    private EditText mMessage;
+
+    // Кнопка для отправки сообщения
+    private ImageButton mSendBtn;
+
+    // Список сообщений
+    private RecyclerView mRecyclerView;
 
 
     @Override
@@ -27,43 +43,56 @@ public class ChatFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_chat, container, false);
 
-        RecyclerView rv = v.findViewById(R.id.recyclerChat);
+        mSendBtn = v.findViewById(R.id.chat_send_btn);
+        mMessage = v.findViewById(R.id.chat_edit_text_message);
 
-        rv.setHasFixedSize(true);
+        mSendBtn.setOnClickListener(v1 -> {
 
+            String message = mMessage.getText().toString();
+            addMessage(message);
+
+        });
+
+
+        mRecyclerView = v.findViewById(R.id.recyclerChat);
+
+        mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
+        mRecyclerView.setLayoutManager(llm);
 
-        initializeData();
-
-        mMessageAdapter = new MessageAdapter(mMessagesList);
-        rv.setAdapter(mMessageAdapter);
+        showMessages();
 
         return v;
 
     }
 
+    private void showMessages() {
+
+        initializeData();
+
+        mMessageAdapter = new MessageAdapter(mMessagesList);
+        mRecyclerView.setAdapter(mMessageAdapter);
+
+    }
+
+    private void addMessage(String message) {
+
+        try {
+            EventActivity.out.writeUTF("email" + " " + message); // отсылаем введенную строку текста серверу.
+            EventActivity.out.flush(); // заставляем поток закончить передачу данных.
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //   out.wr
+
+    }
+
     private void initializeData(){
 
-        //TODO: Сделать выгрузку cообщений из базы данных
-
         mMessagesList = new ArrayList<>();
+
         //Получение листа сообщений у данного события
 //        mMessagesList = Commands.getMessages(EventActivity.sEventPreview.getID());
-
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
-        mMessagesList.add(new Message("Прекрасно проведем время на природе, возможно стоит взять мяч", "ivan666@gmail.com"));
 
     }
 
