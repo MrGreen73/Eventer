@@ -12,6 +12,8 @@ public class FonActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fon);
 
@@ -21,8 +23,6 @@ public class FonActivity extends AppCompatActivity {
             startActivity(startApp);
             finish();
 
-        }, 2 * 500);
-
+        }, 2 * 550);
     }
-
 }
