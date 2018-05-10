@@ -1,5 +1,7 @@
 package com.ivan.eventer.adapters;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
@@ -10,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.model.Message;
+import com.ivan.eventer.model.User;
 
 import java.util.List;
 
@@ -74,10 +78,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
 
-
         holder.messageText.setText(mMessagesList.get(position).getMessage());
         holder.messageAuthor.setText(mMessagesList.get(position).getFrom());
         holder.messageDate.setText(DateFormat.format("dd-MM-yyyy (hh:mm:ss)", mMessagesList.get(position).getDate()));
+        User user = Commands.userByEmail(mMessagesList.get(position).getFrom());
+
+        holder.messageImage.setImageBitmap(getBitmap(user.getImage()));
 
 
 
@@ -112,6 +118,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+    private Bitmap getBitmap(byte[] image) {
 
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+
+    }
 
 }

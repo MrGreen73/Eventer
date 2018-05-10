@@ -14,9 +14,11 @@ import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.MessageAdapter;
 import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
+import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.model.Message;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public class ChatFragment extends Fragment {
@@ -78,7 +80,7 @@ public class ChatFragment extends Fragment {
 
         try {
 //email time text
-//            EventActivity.out.writeUTF(MainActivity.sPersonDate.getEmail() + " " + message); // отсылаем введенную строку текста серверу.
+            EventActivity.out.writeUTF(MainActivity.sPersonDate.getEmail() + " " + new Date().getTime() + " " + message); // отсылаем введенную строку текста серверу.
             EventActivity.out.flush(); // заставляем поток закончить передачу данных.
 
         } catch (IOException e) {
@@ -135,19 +137,22 @@ public class ChatFragment extends Fragment {
                     e.printStackTrace();
 
                 }
-//1 <email> <text>
+//1 <email> <time> <text>
                 if (messageString != null && !messageString.equals("success")){
-
+System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + messageString);
                     if (messageString.charAt(0) == '1'){
 
                         String email = messageString.split(" ")[1];
-                        String mes = messageString.substring(email.length() + 3);
+                        String timeString = messageString.split(" ")[2];
+                        Long time = Long.parseLong(timeString);
+                        String mes = messageString.substring(email.length() + timeString.length() + 4);
 
                         if (!mes.isEmpty()){
 
                             Message message = new Message();
                             message.setFrom(email);
                             message.setMessage(mes);
+                            message.setDate(time);
 
                             getActivity().runOnUiThread(() -> {
 
