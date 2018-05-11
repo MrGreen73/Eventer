@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
@@ -18,6 +19,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -30,13 +32,15 @@ public class EventActivity extends AppCompatActivity {
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
     static String address = "192.168.43.69"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
-    public static Thread mThreadFrom;
-    private static Thread mThreadTo;
+    private Thread mThreadFrom;
+    private Thread mThreadTo;
+
     private static Socket mSocket;
 
-    public static DataOutputStream out;
-    public static DataInputStream in;
+    private DataOutputStream out;
+    private DataInputStream in;
 
+    private ArrayList<ConnectionListener> mConnectionListeners;
 
 
     @Override
@@ -50,7 +54,6 @@ public class EventActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-
                 makeConnection();
 
             }
@@ -81,6 +84,8 @@ public class EventActivity extends AppCompatActivity {
 
         }
 
+        mConnectionListeners = new ArrayList<>();
+
     }
 
     private void makeEvent(String id) {
@@ -108,11 +113,12 @@ public class EventActivity extends AppCompatActivity {
 
     }
 
-    private String getID(){
+    private String getID() {
 
         return getIntent().getStringExtra("ID");
 
     }
+
     public void makeConnection() {
 
         try {
@@ -139,13 +145,51 @@ public class EventActivity extends AppCompatActivity {
             System.out.println("Type in something and press enter. Will send it to the server and tell ya what it thinks.");
             System.out.println();
 
+            mThreadFrom = new Thread(() -> {
 
+                while (true) {
+
+                    String messageString = "0 "; // ждем пока сервер отошлет строку текста.
+                    try {
+                        messageString = in.readUTF();
+                    } catch (IOException e) {
+                        break;
+                    }
+
+                    Log.d("DEBUG", messageString);
+                    char commandType = messageString.charAt(0);
+
+                    String data = "";
+                    if (messageString.length() >= 2){
+                        data = messageString.substring(2, messageString.length() - 1);
+                    }
+
+                    for (ConnectionListener listener : mConnectionListeners) {
+                        if (listener.getCommandType() == commandType) {
+                            listener.getData(data);
+                        }
+                    }
+                }
+
+            });
+            mThreadFrom.start();
         } catch (Exception x) {
 
             x.printStackTrace();
-
         }
+    }
 
+    public void addConnectionListener(ConnectionListener listener) {
+        mConnectionListeners.add(listener);
+    }
+
+    public void sendData(String data) {
+        try {
+            out.writeUTF(data); // отсылаем введенную строку текста серверу.
+            out.flush(); // заставляем поток закончить передачу данных.
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -153,15 +197,21 @@ public class EventActivity extends AppCompatActivity {
         super.onDestroy();
         try {
             mSocket.close();
-            try{
+            try {
                 mThreadFrom.stop();
 
-            } catch (Exception ex){
+            } catch (Exception ex) {
 
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 //    mThreadTo.stop();
+    }
+
+    public interface ConnectionListener {
+        char getCommandType();
+
+        void getData(String data);
     }
 }

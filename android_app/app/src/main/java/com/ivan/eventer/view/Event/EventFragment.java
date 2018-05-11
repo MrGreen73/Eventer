@@ -45,7 +45,7 @@ public class EventFragment extends Fragment {
         mViewPager = view.findViewById(R.id.viewPager);
         mTabLayout = view.findViewById(R.id.tabLayout);
 
-        mViewPager.setAdapter(new EventMonitorAdapter(getFragmentManager(),  4, isAuthor()));
+        mViewPager.setAdapter(new EventMonitorAdapter((EventActivity) getActivity(), getFragmentManager(),  4, isAuthor()));
 
         // Добавляем стандартного слушателя
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
@@ -53,10 +53,8 @@ public class EventFragment extends Fragment {
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
                 mViewPager.setCurrentItem(tab.getPosition());
                 mPageNumber = tab.getPosition();
-
             }
 
             @Override
@@ -76,7 +74,6 @@ public class EventFragment extends Fragment {
     }
 
     private boolean isAuthor() {
-
         return EventActivity.sEventPreview.getAuthor().equals(MainActivity.sPersonDate.getEmail());
 
     }

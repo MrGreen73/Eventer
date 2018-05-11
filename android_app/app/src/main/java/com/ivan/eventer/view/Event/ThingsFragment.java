@@ -3,6 +3,7 @@ package com.ivan.eventer.view.Event;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,16 @@ import android.widget.ListView;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.EventThingAdapter;
+import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.model.Thing;
 
 import java.util.ArrayList;
 
 
-public class ThingsFragment extends Fragment {
+public class ThingsFragment extends Fragment implements EventActivity.ConnectionListener {
     public static final String EVENT_PREVIEW = "thingsfragment.event_preview";
+
+    private EventActivity mEventActivity;
 
     private ArrayList<Thing> names;
     private ImageButton mCreateThing;
@@ -27,10 +31,13 @@ public class ThingsFragment extends Fragment {
 //    private EventPreview mPreview;
     private String mEvenId;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        mPreview = (EventPreview) getArguments().getSerializable(EVENT_PREVIEW);
+        mEventActivity = (EventActivity) getActivity();
+
+        //        mPreview = (EventPreview) getArguments().getSerializable(EVENT_PREVIEW);
     }
 
     @Nullable
@@ -125,4 +132,13 @@ public class ThingsFragment extends Fragment {
 
     }
 
+    @Override
+    public char getCommandType() {
+        return '2';
+    }
+
+    @Override
+    public void getData(String data) {
+        Log.d("DEBUG", "things get data");
+    }
 }

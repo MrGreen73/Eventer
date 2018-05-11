@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.view.Event.ChatFragment;
 import com.ivan.eventer.view.Event.PreviewFragment;
 import com.ivan.eventer.view.Event.SettingsEventFragment;
@@ -14,10 +15,19 @@ public class EventMonitorAdapter extends FragmentPagerAdapter {
     private int mNumOfTabs;
     private boolean mIsAuthor;
 
-    public EventMonitorAdapter(FragmentManager fm, int numOfTabs, boolean isAuthor) {
+    private Fragment[] mFragments;
+
+    public EventMonitorAdapter(EventActivity sourceActivity, FragmentManager fm, int numOfTabs, boolean isAuthor) {
         super(fm);
         mNumOfTabs = numOfTabs;
         mIsAuthor = isAuthor;
+        mFragments = new Fragment[]{new SettingsEventFragment(), new PreviewFragment(), new ChatFragment(), new ThingsFragment()};
+
+        for (Fragment fragment : mFragments){
+            if (fragment instanceof EventActivity.ConnectionListener){
+                sourceActivity.addConnectionListener((EventActivity.ConnectionListener)fragment);
+            }
+        }
     }
 
     @Override
@@ -29,13 +39,13 @@ public class EventMonitorAdapter extends FragmentPagerAdapter {
         }
         switch (position) {
             case 0:
-                return (new SettingsEventFragment());
+                return (mFragments[0]);
             case 1:
-                return (new PreviewFragment());
+                return (mFragments[1]);
             case 2:
-                return (new ChatFragment());
+                return (mFragments[2]);
             case 3:
-                return (new ThingsFragment());
+                return (mFragments[3]);
             default:
                 return null;
         }

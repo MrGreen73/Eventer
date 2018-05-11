@@ -85,9 +85,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         User user = Commands.userByEmail(mMessagesList.get(position).getFrom());
 
         holder.messageImage.setImageBitmap(getBitmap(user.getImage()));
-
-
-
     }
 
     public class MessageViewHolder extends RecyclerView.ViewHolder {

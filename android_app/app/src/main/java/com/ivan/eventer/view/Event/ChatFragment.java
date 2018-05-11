@@ -1,10 +1,12 @@
 package com.ivan.eventer.view.Event;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +20,12 @@ import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.model.Message;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ChatFragment extends Fragment {
+public class ChatFragment extends Fragment implements EventActivity.ConnectionListener {
 
+    private EventActivity mEventActivity;
     //Лист сообщений
     private List<Message> mMessagesList;
 
@@ -63,13 +64,18 @@ public class ChatFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(llm);
-        mMessageAdapter = new MessageAdapter(mMessagesList = new ArrayList<>());
-        mRecyclerView.setAdapter(mMessageAdapter);
+//        mMessageAdapter = new MessageAdapter(mMessagesList = new ArrayList<>());
+//        mRecyclerView.setAdapter(mMessageAdapter);
 
         showMessages();
 
         return v;
+    }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mEventActivity = (EventActivity) getActivity();
     }
 
     private void showMessages() {
@@ -80,46 +86,31 @@ public class ChatFragment extends Fragment {
 
     private void addMessage(String message) {
 
-        try {
-
-            if (!TextUtils.isEmpty(message)){
-
-                EventActivity.out.writeUTF(MainActivity.sPersonDate.getEmail() + " " + new Date().getTime() + " " + message); // отсылаем введенную строку текста серверу.
-                EventActivity.out.flush(); // заставляем поток закончить передачу данных.
-
+            if (!TextUtils.isEmpty(message)) {
+                String data = MainActivity.sPersonDate.getEmail() + " " + new Date().getTime() + " " + message;
+                mEventActivity.sendData(data);
             }
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        }
-
     }
 
-    private void initializeData(){
+    private void initializeData() {
 
-        Thread thread = new Thread(){
+        Thread thread = new Thread() {
             @Override
             public void run() {
 
-                mMessagesList.clear();
-                mMessagesList.addAll((Commands.getMessages(EventActivity.sEventPreview.getID())).getMessages());
-
+//                mMessagesList.clear();
+//                mMessagesList.addAll((Commands.getMessages(EventActivity.sEventPreview.getID())).getMessages());
+                mMessagesList = Commands.getMessages(EventActivity.sEventPreview.getID()).getMessages();
                 getActivity().runOnUiThread(() -> {
 
-//                    mMessageAdapter = new MessageAdapter(mMessagesList);
-//                    mRecyclerView.setAdapter(mMessageAdapter);
+                    mMessageAdapter = new MessageAdapter(mMessagesList);
+                    mRecyclerView.setAdapter(mMessageAdapter);
 
-                    mMessageAdapter.notifyDataSetChanged();
+//                    mMessageAdapter.notifyDataSetChanged();
 
                     if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
-
                         mRecyclerView.scrollToPosition(mMessagesList.size() - 1);
-
                     }
-
-
                 });
             }
         };
@@ -130,75 +121,41 @@ public class ChatFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        EventActivity.mThreadFrom = new Thread(() -> {
-
-            while (true) {
-
-                String messageString = null; // ждем пока сервер отошлет строку текста.
-
-                try {
-
-                    messageString = EventActivity.in.readUTF();
-
-
-/*
-                    String finalMessageString = messageString;
-                    getActivity().runOnUiThread(()->{
-                        Toast.makeText(getActivity(), finalMessageString, Toast.LENGTH_LONG).show();
-
-                    });
-*/
-                } catch (IOException e) {
-
-//                        EventActivity.mThreadFrom.stop();
-                        break;
-
-                }
-
-                if (messageString != null && !messageString.equals("success")){
-
-                    if (messageString.charAt(0) == '1'){
-
-                        String email = messageString.split(" ")[1];
-                        String timeString = messageString.split(" ")[2];
-                        Long time = Long.parseLong(timeString);
-                        String mes = messageString.substring(email.length() + timeString.length() + 4);
-
-                        if (!mes.isEmpty()){
-
-                            Message message = new Message();
-                            message.setFrom(email);
-                            message.setMessage(mes);
-                            message.setDate(time);
-
-                            getActivity().runOnUiThread(() -> {
-
-                                mMessagesList.add(message);
-//                                mMessageAdapter = new MessageAdapter(mMessagesList);
-                                mMessageAdapter.notifyDataSetChanged();
-                                mRecyclerView.setAdapter(mMessageAdapter);
-                                mMessage.setText("");
-
-                                if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
-
-                                    mRecyclerView.scrollToPosition(mMessagesList.size() - 1);
-
-                                }
-
-                            });
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        });
-
-        EventActivity.mThreadFrom.start();
-
     }
 
+    @Override
+    public char getCommandType() {
+        return '1';
+    }
+
+    @Override
+    public void getData(String data) {
+        Log.d("DEBUG", "chat get data");
+
+        String email = data.split(" ")[0];
+        String timeString = data.split(" ")[1];
+        Long time = Long.parseLong(timeString);
+        String mes = data.substring(email.length() + timeString.length() + 2);
+        Log.d("DEBUG", "Get " + data);
+        if (!mes.isEmpty()) {
+            Message message = new Message();
+            message.setFrom(email);
+            message.setMessage(mes);
+            message.setDate(time);
+
+            getActivity().runOnUiThread(() -> {
+
+                mMessagesList.add(message);
+//                                mMessageAdapter = new MessageAdapter(mMessagesList);
+//                mMessageAdapter.notifyDataSetChanged();
+                mRecyclerView.setAdapter(mMessageAdapter);
+                mMessage.setText("");
+
+                if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
+                    mRecyclerView.scrollToPosition(mMessagesList.size() - 1);
+                }
+
+            });
+        }
+    }
 }
