@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
@@ -81,7 +80,7 @@ public class RegisterFragment extends Fragment {
         Time time = new Time();
         time.setToNow();
         mFolderToSave = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        mPath = Integer.toString(time.year) + Integer.toString(time.month) + Integer.toString(time.monthDay) + Integer.toString(time.hour) + Integer.toString(time.minute) + Integer.toString(time.second) + ".jpg";
+        mPath = Integer.toString(time.year) + Integer.toString(time.month) + Integer.toString(time.monthDay) + Integer.toString(time.hour) + Integer.toString(time.minute) + Integer.toString(time.second) + ".png";
 
 
         mButtonRegister.setOnClickListener(v1 -> {
@@ -174,7 +173,7 @@ public class RegisterFragment extends Fragment {
         ImageView imageView = new ImageView(getContext());
         imageView.setImageResource(R.drawable.ic_profile);
         Bitmap bitmap = ((BitmapDrawable)(imageView).getDrawable()).getBitmap();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
         byte[] image = baos.toByteArray();
 
@@ -264,7 +263,7 @@ public class RegisterFragment extends Fragment {
             fOut = new FileOutputStream(file);
 
             Bitmap bitmap = getBitmap(image);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
 
             fOut.flush();
             fOut.close();

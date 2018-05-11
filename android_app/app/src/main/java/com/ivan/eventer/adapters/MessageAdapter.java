@@ -78,6 +78,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
 
+        System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!" + mMessagesList.get(position).getMessage() + "    " + mMessagesList.get(position).getFrom() + "!!!" + (mMessagesList.get(position).getDate()==null?"NOO":"NORM"));
         holder.messageText.setText(mMessagesList.get(position).getMessage());
         holder.messageAuthor.setText(mMessagesList.get(position).getFrom());
         holder.messageDate.setText(DateFormat.format("dd-MM-yyyy (hh:mm:ss)", mMessagesList.get(position).getDate()));

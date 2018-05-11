@@ -35,7 +35,6 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         TextView eventDescribe;
         TextView eventAuthor;
         ImageView eventImage;
-        String id;
 
         EventViewHolder(View itemView) {
             super(itemView);
@@ -61,7 +60,6 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
 
                 Context context = v.getContext();
                 context.startActivity(eventIntent);
-
 
             }
 

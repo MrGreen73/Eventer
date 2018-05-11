@@ -102,7 +102,7 @@ public class SettingsFragment extends Fragment {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             Bitmap bitmap = ((BitmapDrawable)mImageUser.getDrawable()).getBitmap();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
             byte[] image = baos.toByteArray();
 
@@ -328,7 +328,7 @@ public class SettingsFragment extends Fragment {
             fOut = new FileOutputStream(file);
 
             Bitmap bitmap = getBitmap(image);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut); // сохранять картинку в jpeg-формате с 85% сжатия.
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut); // сохранять картинку в jpeg-формате с 85% сжатия.
 
 
             fOut.flush();

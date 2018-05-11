@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         File file = new File(folder, mSharedPreferences.getString(StartActivity.USER_IMAGE_PATH, "sdcard/")); // создать уникальное имя для файла основываясь на дате сохранения
 
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
         sPersonDate = new PersonDate(
                 mSharedPreferences.getString(StartActivity.USER_NAME, "Пользователь"),
@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 mSharedPreferences.getString(StartActivity.USER_CITY, "Москва"),
                 mSharedPreferences.getString(StartActivity.USER_IMAGE_PATH, "sdcard/"),
                 baos.toByteArray()
+
         );
 
     }

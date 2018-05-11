@@ -27,7 +27,7 @@ public class EventActivity extends AppCompatActivity {
     private Fragment mFragment;
 
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
-    static String address = "192.168.180.58"; // это IP-адрес компьютера, где исполняется наша серверная программа.
+    static String address = "192.168.43.69"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
     public static Thread mThreadFrom;
 

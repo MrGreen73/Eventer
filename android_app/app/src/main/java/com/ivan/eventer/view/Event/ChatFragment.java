@@ -78,7 +78,7 @@ public class ChatFragment extends Fragment {
 
     private void addMessage(String message) {
 
-        try {
+        try {//TODO:Сделать проверку на пустые сообщения
 //email time text
             EventActivity.out.writeUTF(MainActivity.sPersonDate.getEmail() + " " + new Date().getTime() + " " + message); // отсылаем введенную строку текста серверу.
             EventActivity.out.flush(); // заставляем поток закончить передачу данных.

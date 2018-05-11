@@ -67,7 +67,7 @@ public class LoginFragment extends Fragment {
         Time time = new Time();
         time.setToNow();
         mFolderToSave = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        mPath = Integer.toString(time.year) + Integer.toString(time.month) + Integer.toString(time.monthDay) + Integer.toString(time.hour) + Integer.toString(time.minute) + Integer.toString(time.second) + ".jpg";
+        mPath = Integer.toString(time.year) + Integer.toString(time.month) + Integer.toString(time.monthDay) + Integer.toString(time.hour) + Integer.toString(time.minute) + Integer.toString(time.second) + ".png";
 
         mButtonLogin.setOnClickListener(v1 -> {
 
@@ -210,7 +210,7 @@ public class LoginFragment extends Fragment {
             fOut = new FileOutputStream(file);
 
             Bitmap bitmap = getBitmap(image);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut); // сохранять картинку в jpeg-формате с 85% сжатия.
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut); // сохранять картинку в jpeg-формате с 85% сжатия
 
             fOut.flush();
             fOut.close();
