@@ -154,4 +154,12 @@ public class EventActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mThreadFrom.stop();
+
+    }
+
 }

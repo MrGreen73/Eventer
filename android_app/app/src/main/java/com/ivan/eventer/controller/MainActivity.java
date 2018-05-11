@@ -31,6 +31,11 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Для поиска
+    public static final Integer TYPE_SEARCH_TITLE = 0;
+    public static final Integer TYPE_SEARCH_FILTER = 1;
+
+    // Для разрешения
     private static final int PERMISSION_REQUEST_CODE = 1;
     // Для перехода по фрагментам
     private static FragmentManager mFragmentManager;
@@ -95,11 +100,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Загружаем данные о пользователе
-        ActivityCompat.requestPermissions(this,
-                new String[]{
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                },
-                PERMISSION_REQUEST_CODE);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+
+            loadDate();
+
+        } else {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+
+                    },
+                    PERMISSION_REQUEST_CODE);
+
+        }
 
         Toolbar mToolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(mToolbar);
@@ -200,14 +216,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
         if (requestCode == PERMISSION_REQUEST_CODE && grantResults.length == 1) {
+
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
                 loadDate();
+
             }
+
+        } else {
+
+            finish();
+
         }
+
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
     }
 
 }

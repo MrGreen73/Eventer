@@ -1,12 +1,57 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ivan.eventer.view.Main.Search.SearchTitleFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_margin="15dp">
 
-</FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/size_text_profile_midle"
+            android:text="Введите название события" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textColorHint="@color/textBlack">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/searchTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Название"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
+                android:textColor="@color/textBlack"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/titleBtnSearch"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:background="@drawable/back_for_btn_login"
+            android:textSize="@dimen/size_text_profile_midle"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:text="Поиск"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

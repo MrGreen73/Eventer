@@ -120,8 +120,13 @@ public class LoginFragment extends Fragment {
             @Override
             public void run() {
 
-//                mProgressDialog.show();
-                user[0] = Commands.loginUser(email, password);
+            getActivity().runOnUiThread(() -> {
+
+                mProgressDialog.show();
+
+            });
+
+            user[0] = Commands.loginUser(email, password);
 
             }
         };
@@ -210,7 +215,7 @@ public class LoginFragment extends Fragment {
             fOut = new FileOutputStream(file);
 
             Bitmap bitmap = getBitmap(image);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut); // сохранять картинку в jpeg-формате с 85% сжатия
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
 
             fOut.flush();
             fOut.close();

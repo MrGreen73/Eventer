@@ -12,7 +12,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +29,7 @@ import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.controller.MainActivity;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -201,7 +197,7 @@ public class CreateFragment extends Fragment {
                     mChoiceTime = "Кино";
                     break;
                 case R.id.radioButtonActive:
-                    mChoiceTime = "Активный отдых";
+                    mChoiceTime = "Активный";
                     break;
                 case R.id.radioButtonParty:
                     mChoiceTime = "Вечеринка";
@@ -320,8 +316,7 @@ public class CreateFragment extends Fragment {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         Bitmap bitmap = ((BitmapDrawable)mImageEvent.getDrawable()).getBitmap();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // сохранять картинку в jpeg-формате с 85% сжатия.
-
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
         final String[] id = new String[1];
         Thread thread = new Thread() {
@@ -329,7 +324,12 @@ public class CreateFragment extends Fragment {
             @Override
             public void run() {
 
-//                mProgressDialog.show();
+                getActivity().runOnUiThread(() -> {
+
+                    mProgressDialog.show();
+
+                });
+
                 id[0] = Commands.createEvent(MainActivity.sPersonDate.getEmail(), name, describe, baos.toByteArray(), mChoiceKind, mChoiceTime, time);
 
             }
@@ -348,48 +348,12 @@ public class CreateFragment extends Fragment {
 
         }
 
-//        EventActivity.sEventPreview = new EventPreview(id[0], name, time, describe, "NaN", MainActivity.sPersonDate.getEmail());
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
 
         Intent eventIntent = new Intent(getActivity(), EventActivity.class);
         eventIntent.putExtra("ID", id[0]);
         startActivity(eventIntent);
-
-
-    }
-
-    //Сохранение картинки на SD
-    private String saveImage() {
-
-        //TODO: Выполинть проверку работы метода
-        //TODO: Добавить сохранение картинки в базе по ID(Integer.toString(time.year) + Integer.toString(time.month) + Integer.toString(time.monthDay) + Integer.toString(time.hour) + Integer.toString(time.minute) + Integer.toString(time.second) + ".jpg")
-
-        OutputStream fOut = null;
-        Time time = new Time();
-        time.setToNow();
-
-        try {
-
-            File file = new File(folderToSave, Integer.toString(time.year) + Integer.toString(time.month) + Integer.toString(time.monthDay) + Integer.toString(time.hour) + Integer.toString(time.minute) + Integer.toString(time.second) + ".jpg"); // создать уникальное имя для файла основываясь на дате сохранения
-            fOut = new FileOutputStream(file);
-
-            Bitmap bitmap = ((BitmapDrawable)mImageEvent.getDrawable()).getBitmap();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // сохранять картинку в jpeg-формате с 85% сжатия.
-
-            fOut.flush();
-            fOut.close();
-
-            // регистрация в фотоальбоме
-            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
-
-        } catch (Exception e) { // здесь необходим блок отслеживания реальных ошибок и исключений, общий Exception приведен в качестве примера
-
-            return e.getMessage();
-
-        }
-
-        return "";
 
     }
 

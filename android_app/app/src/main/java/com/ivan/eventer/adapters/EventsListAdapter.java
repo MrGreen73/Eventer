@@ -22,7 +22,7 @@ import java.util.List;
 public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.EventViewHolder> {
 
 
-    List<Event> mEventList;
+    private List<Event> mEventList;
 
     public EventsListAdapter(List<Event> eventList) {
         mEventList = eventList;

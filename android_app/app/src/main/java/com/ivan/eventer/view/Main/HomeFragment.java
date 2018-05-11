@@ -13,6 +13,7 @@ import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.EventsListAdapter;
 import com.ivan.eventer.model.Event;
 
+import java.util.Collections;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -38,6 +39,7 @@ public class HomeFragment extends Fragment {
         // Загрузка событий из базы данных
         initializeData();
 
+        Collections.reverse(mEventList);
         mEventsListAdapter = new EventsListAdapter(mEventList);
         rv.setAdapter(mEventsListAdapter);
 
