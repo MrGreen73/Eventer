@@ -34,13 +34,15 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        mProgressDialog = new ProgressDialog(getActivity());
+
         mProgressDialog.setTitle("Загрузка событий");
         mProgressDialog.setMessage(getString(R.string.progressDialogWait));
         mProgressDialog.setCanceledOnTouchOutside(false);
         mProgressDialog.setIndeterminate(false);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-        mRecyclerView = v.findViewById(R.id.recyclerHome);
+        mRecyclerView = v.findViewById(R.id.recyclerProfile);
 
         mRecyclerView.setHasFixedSize(true);
 

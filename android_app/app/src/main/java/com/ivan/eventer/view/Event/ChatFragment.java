@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.MessageAdapter;
@@ -74,20 +73,19 @@ public class ChatFragment extends Fragment {
 
         initializeData();
 
-
-
     }
 
     private void addMessage(String message) {
 
-        try {//TODO:Сделать проверку на пустые сообщения
-//email time text
+        try {
+
             if (!TextUtils.isEmpty(message)){
 
                 EventActivity.out.writeUTF(MainActivity.sPersonDate.getEmail() + " " + new Date().getTime() + " " + message); // отсылаем введенную строку текста серверу.
                 EventActivity.out.flush(); // заставляем поток закончить передачу данных.
 
             }
+
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -137,11 +135,13 @@ public class ChatFragment extends Fragment {
                     messageString = EventActivity.in.readUTF();
 
 
+/*
                     String finalMessageString = messageString;
                     getActivity().runOnUiThread(()->{
                         Toast.makeText(getActivity(), finalMessageString, Toast.LENGTH_LONG).show();
 
                     });
+*/
                 } catch (IOException e) {
 
 //                        EventActivity.mThreadFrom.stop();

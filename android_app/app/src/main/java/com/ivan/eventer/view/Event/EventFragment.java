@@ -53,8 +53,10 @@ public class EventFragment extends Fragment {
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
                 mViewPager.setCurrentItem(tab.getPosition());
                 mPageNumber = tab.getPosition();
+
             }
 
             @Override

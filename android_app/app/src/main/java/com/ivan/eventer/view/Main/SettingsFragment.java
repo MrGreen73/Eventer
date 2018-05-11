@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
@@ -218,6 +219,8 @@ public class SettingsFragment extends Fragment {
         MainActivity.sPersonDate.updatePerson(name, age, city, image);
         updateSharedPreferences(name, age, city);
         Commands.updatePerson(name, MainActivity.sPersonDate.getEmail(), age, city, "0000", image);
+
+        Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
 
     }
 

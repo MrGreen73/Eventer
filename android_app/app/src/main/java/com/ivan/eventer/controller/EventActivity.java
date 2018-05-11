@@ -78,6 +78,7 @@ public class EventActivity extends AppCompatActivity {
             fm.beginTransaction()
                     .add(R.id.eventFragmentContainer, fragment)
                     .commit();
+
         }
 
     }
@@ -95,6 +96,7 @@ public class EventActivity extends AppCompatActivity {
                 event.getTime(),
                 event.getPlace(),
                 event.getDate()
+
         );
 
     }
