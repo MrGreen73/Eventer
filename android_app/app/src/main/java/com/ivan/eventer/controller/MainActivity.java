@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (mContainer == null) {
 
-            mFragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).commit();
+            mFragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).addToBackStack(null).commit();
 
         }
 
@@ -238,4 +238,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
+        }
+    }
 }
