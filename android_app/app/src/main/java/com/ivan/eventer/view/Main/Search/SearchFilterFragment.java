@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.controller.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,38 @@ public class SearchFilterFragment extends Fragment {
     }
 
     private void searchByFilter() {
+
+        String filter = "";
+
+        for (String i : mListKind){
+
+            filter += (i + " ");
+
+        }
+
+        if (filter.length() > 1){
+
+            filter = filter.substring(0, filter.length() - 2);
+
+        }
+
+        filter += ";";
+
+        for (String i : mListTime){
+
+            filter += (i + " ");
+
+        }
+
+        if (filter.charAt(filter.length() - 1) != ';'){
+
+            filter = filter.substring(0, filter.length() - 2);
+
+        }
+
+        MainActivity.FILTER_OR_TITLE = filter;
+        MainActivity.TYPE_SEARCH_ACTIVE = MainActivity.TYPE_SEARCH_FILTER;
+        MainActivity.changeFragment(new SearchResultFragment());
 
         //TODO: Выполнить поиск
 

@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     // Для поиска
     public static final Integer TYPE_SEARCH_TITLE = 0;
     public static final Integer TYPE_SEARCH_FILTER = 1;
+    public static Integer TYPE_SEARCH_ACTIVE = TYPE_SEARCH_TITLE;
+    public static String FILTER_OR_TITLE;
 
     // Для разрешения
     private static final int PERMISSION_REQUEST_CODE = 1;
