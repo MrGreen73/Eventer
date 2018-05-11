@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -20,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
@@ -47,9 +49,11 @@ public class RegisterFragment extends Fragment {
 
     // Диалог во время выполнения регистрации
     private ProgressDialog mProgressDialog;
+    private AsyncTask mMyTask;
 
     // Для сохранения данных о пользователе
     private SharedPreferences mSharedPreferences;
+    private byte[] mBaos;
 
     // Путь папки
     String mFolderToSave;
@@ -57,6 +61,7 @@ public class RegisterFragment extends Fragment {
 
     // Для подсветки ошибки
     private View mFocusView;
+
 
     // Для проверки валидности почты
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -98,6 +103,8 @@ public class RegisterFragment extends Fragment {
                 mProgressDialog.setTitle(getString(R.string.progressDialogRegister));
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
                 mProgressDialog.setCanceledOnTouchOutside(false);
+                mProgressDialog.setIndeterminate(false);
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -167,7 +174,6 @@ public class RegisterFragment extends Fragment {
 
     private void registerUser(String name, String email, String age, String city, String password) {
 
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         ImageView imageView = new ImageView(getContext());
@@ -175,43 +181,58 @@ public class RegisterFragment extends Fragment {
         Bitmap bitmap = ((BitmapDrawable)(imageView).getDrawable()).getBitmap();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
-        byte[] image = baos.toByteArray();
+        mBaos = baos.toByteArray();
 
-        //Запустить новый тред
-        Thread thread = new Thread() {
+        mMyTask = new DownloadTask()
+                .execute(
+                        name,
+                        email,
+                        age,
+                        city,
+                        password
+                );
 
-            @Override
-            public void run() {
+    }
 
-                Commands.createUser(name, email, age, city, password, image);
+    private class DownloadTask extends AsyncTask<String,Integer,Void> {
 
-/*                getActivity().runOnUiThread(() -> {
+        // Before the tasks execution
+        protected void onPreExecute(){
 
-                    mProgressDialog.show();
-
-                });*/
-            }
-
-        };
-
-        thread.start();
-
-        try {
-
-            thread.join();
-
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
+            // Display the progress dialog on async task start
+            mProgressDialog.show();
 
         }
 
-        // Сохраняем данные о пользователе
-        saveDate(name, email, age, city, image);
-        // Закрываем диалог
-        mProgressDialog.dismiss();
-        // Переходим на главную активность
-        sentToMain();
+        // Do the task in background/non UI thread
+        protected Void doInBackground(String...tasks){
+
+            Commands.createUser(tasks[0], tasks[1], tasks[2], tasks[3], tasks[4], mBaos);
+            // Сохраняем данные о пользователе
+            saveDate(tasks[0], tasks[1], tasks[2], tasks[3], mBaos);
+
+            return null;
+
+        }
+
+        // After each task done
+        protected void onProgressUpdate(Integer... progress){
+
+            // Update the progress bar on dialog
+            mProgressDialog.setProgress(progress[0]);
+
+        }
+
+        // When all async task done
+        protected void onPostExecute(Void result){
+
+            // Hide the progress dialog
+            mProgressDialog.dismiss();
+
+            Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
+            sentToMain();
+
+        }
 
     }
 

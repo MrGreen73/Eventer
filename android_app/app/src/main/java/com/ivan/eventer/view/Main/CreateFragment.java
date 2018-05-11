@@ -137,7 +137,6 @@ public class CreateFragment extends Fragment {
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
                 mProgressDialog.setCanceledOnTouchOutside(false);
                 mProgressDialog.setIndeterminate(false);
-                // Progress dialog horizontal style
                 mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -196,25 +195,25 @@ public class CreateFragment extends Fragment {
         mRadioGroupKind.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.radioButtonWalk:
-                    mChoiceTime = "Прогулка";
+                    mChoiceKind = "Прогулка";
                     break;
                 case R.id.radioButtonSport:
-                    mChoiceTime = "Спорт";
+                    mChoiceKind = "Спорт";
                     break;
                 case R.id.radioButtonCinema:
-                    mChoiceTime = "Кино";
+                    mChoiceKind = "Кино";
                     break;
                 case R.id.radioButtonActive:
-                    mChoiceTime = "Активный";
+                    mChoiceKind = "Активный";
                     break;
                 case R.id.radioButtonParty:
-                    mChoiceTime = "Вечеринка";
+                    mChoiceKind = "Вечеринка";
                     break;
                 case R.id.radioButtonArt:
-                    mChoiceTime = "Искусство";
+                    mChoiceKind = "Искусство";
                     break;
                 default:
-                    mChoiceTime = "Прогулка";
+                    mChoiceKind = "Прогулка";
                     break;
             }
         });
@@ -279,7 +278,6 @@ public class CreateFragment extends Fragment {
 
         List<Integer> date = new ArrayList<>();
 
-//        date.add(R.drawable.natural_item1);
         date.add(R.drawable.image_1);
         date.add(R.drawable.image_2);
         date.add(R.drawable.image_3);
@@ -327,19 +325,6 @@ public class CreateFragment extends Fragment {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
         mBaos = baos.toByteArray();
-/*
-        CatTask catTask = new CatTask();
-        catTask.execute(name, describe, time);
-        try {
-            id = catTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-*/
-
 
         mMyTask = new DownloadTask()
                 .execute(
@@ -348,69 +333,40 @@ public class CreateFragment extends Fragment {
                         time
                 );
 
-
-        /*
-        Thread thread = new Thread() {
-
-            @Override
-            public void run() {
-
-
-            }
-
-        };
-
-        thread.start();
-*/
-
-//        mProgressDialog.show();
-/*
-
-        while (id[0] == null){
-
-
-        }
-*/
-
-//        getActivity().runOnUiThread(()->{
-
-//         mProgressDialog.dismiss();
-
-//        });
-/*
-        Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
-        Intent eventIntent = new Intent(getActivity(), EventActivity.class);
-        eventIntent.putExtra("ID", id);
-        startActivity(eventIntent);*/
-
     }
 
-
-
     private class DownloadTask extends AsyncTask<String,Integer,String>{
+
         // Before the tasks execution
         protected void onPreExecute(){
+
             // Display the progress dialog on async task start
             mProgressDialog.show();
+
         }
 
         // Do the task in background/non UI thread
         protected String doInBackground(String...tasks){
+
                 String id;
                 id = Commands.createEvent(MainActivity.sPersonDate.getEmail(), tasks[0], tasks[1], mBaos, mChoiceKind, mChoiceTime, tasks[2]);
                 // If the AsyncTask cancelled
             // Return the task list for post execute
             return id;
+
         }
 
         // After each task done
         protected void onProgressUpdate(Integer... progress){
+
             // Update the progress bar on dialog
             mProgressDialog.setProgress(progress[0]);
+
         }
 
         // When all async task done
         protected void onPostExecute(String result){
+
             // Hide the progress dialog
             mProgressDialog.dismiss();
             Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();

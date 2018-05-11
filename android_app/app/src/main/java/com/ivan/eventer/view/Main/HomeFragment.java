@@ -1,5 +1,7 @@
 package com.ivan.eventer.view.Main;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,9 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.EventsListAdapter;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.model.Event;
 
 import java.util.Collections;
@@ -21,7 +23,12 @@ public class HomeFragment extends Fragment {
     // Список события
     private List<Event> mEventList;
     // Адаптер для вывода списка событий
+    private RecyclerView mRecyclerView;
     private EventsListAdapter mEventsListAdapter;
+
+    // Диалог во время выполнения авторизации
+    private ProgressDialog mProgressDialog;
+    private AsyncTask mMyTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,19 +36,21 @@ public class HomeFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView rv = v.findViewById(R.id.recyclerHome);
+        mProgressDialog.setTitle("Загрузка событий");
+        mProgressDialog.setMessage(getString(R.string.progressDialogWait));
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.setIndeterminate(false);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-        rv.setHasFixedSize(true);
+        mRecyclerView = v.findViewById(R.id.recyclerHome);
+
+        mRecyclerView.setHasFixedSize(true);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
+        mRecyclerView.setLayoutManager(llm);
 
         // Загрузка событий из базы данных
         initializeData();
-
-        Collections.reverse(mEventList);
-        mEventsListAdapter = new EventsListAdapter(mEventList);
-        rv.setAdapter(mEventsListAdapter);
 
         return v;
 
@@ -50,26 +59,49 @@ public class HomeFragment extends Fragment {
     // Загрузка событий из баззы данных
     private void initializeData(){
 
-        Thread thread = new Thread(){
+        mMyTask = new DownloadTask()
+                .execute();
 
-            @Override
-            public void run() {
+    }
+
+    private class DownloadTask extends AsyncTask<Void,Integer,Void> {
+
+        // Before the tasks execution
+        protected void onPreExecute(){
+
+            // Display the progress dialog on async task start
+            mProgressDialog.show();
+
+        }
+
+        // Do the task in background/non UI thread
+        protected Void doInBackground(Void...tasks){
 
             mEventList = Commands.getEvents();
 
-            }
+            return null;
 
-        };
+        }
 
-        thread.start();
+        // After each task done
+        protected void onProgressUpdate(Integer... progress){
 
-        try {
+            // Update the progress bar on dialog
+            mProgressDialog.setProgress(progress[0]);
 
-            thread.join();
+        }
 
-        } catch (InterruptedException e) {
+        // When all async task done
+        protected void onPostExecute(Void result){
 
-            e.printStackTrace();
+            Collections.reverse(mEventList);
+
+            // Hide the progress dialog
+            mProgressDialog.dismiss();
+
+            mEventsListAdapter = new EventsListAdapter(mEventList);
+            mRecyclerView.setAdapter(mEventsListAdapter);
+
 
         }
 

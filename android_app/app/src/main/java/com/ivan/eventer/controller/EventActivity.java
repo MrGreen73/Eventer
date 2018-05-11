@@ -103,17 +103,6 @@ public class EventActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        try{
-
-//            mThreadFrom.stop();
-
-        } catch (Exception ex) {
-
-//            finish();
-
-        }
-
-//        finish();
 
     }
 

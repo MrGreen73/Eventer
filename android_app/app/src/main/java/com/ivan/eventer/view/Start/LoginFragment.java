@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -42,6 +43,7 @@ public class LoginFragment extends Fragment {
 
     // Диалог во время выполнения авторизации
     private ProgressDialog mProgressDialog;
+    private AsyncTask mMyTask;
 
     // Для сохранения данных о пользоавтеле
     private SharedPreferences mSharedPreferences;
@@ -80,6 +82,8 @@ public class LoginFragment extends Fragment {
                 mProgressDialog.setTitle(getString(R.string.progressDialogLogin));
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
                 mProgressDialog.setCanceledOnTouchOutside(false);
+                mProgressDialog.setIndeterminate(false);
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -114,38 +118,66 @@ public class LoginFragment extends Fragment {
 
     private void loginUser(String email, String password) {
 
-        final User[] user = new User[1];
-        Thread thread = new Thread(){
+        mMyTask = new DownloadTask()
+                .execute(
+                        email,
+                        password
+                );
 
-            @Override
-            public void run() {
+        // В случае проблемы с авторизацией
+        // Останавливаем диалог
+        mProgressDialog.dismiss();
+        //Оповещаем пользователя о некорректности введенных данных
+        Toast.makeText(getActivity(), "Почта или пароль введены неверно", Toast.LENGTH_SHORT).show();
+        // Устанавливаем совет пользователю
+        mEmail.setError("Проверьте почту");
+        mPassword.setError("Проверьте пароль");
+        // Ставим курсор на ввод почты
+        mFocusView = mEmail;
+        mFocusView.requestFocus();
 
-            getActivity().runOnUiThread(() -> {
+    }
 
-                mProgressDialog.show();
+    private class DownloadTask extends AsyncTask<String,Integer,Void> {
 
-            });
+        // Before the tasks execution
+        protected void onPreExecute(){
 
-            user[0] = Commands.loginUser(email, password);
+            // Display the progress dialog on async task start
+            mProgressDialog.show();
 
-            }
-        };
-
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
+        // Do the task in background/non UI thread
+        protected Void doInBackground(String...tasks){
 
-        if (user[0] != null){
+            User user;
 
-            // В случае успешной авторизации
+            user = Commands.loginUser(tasks[0], tasks[1]);
 
-            // Сохраняем данные о пользователе
-            saveDate(user[0].getName(), user[0].getEmail(), user[0].getAge(), user[0].getCity(), user[0].getImage());
-            // Останавливаем диалог
+            if (user != null) {
+
+                // Сохраняем данные о пользователе
+                saveDate(user.getName(), user.getEmail(), user.getAge(), user.getCity(), user.getImage());
+
+            }
+
+            return null;
+
+        }
+
+        // After each task done
+        protected void onProgressUpdate(Integer... progress){
+
+            // Update the progress bar on dialog
+            mProgressDialog.setProgress(progress[0]);
+
+        }
+
+        // When all async task done
+        protected void onPostExecute(Void result){
+
+            // Hide the progress dialog
             mProgressDialog.dismiss();
 
             // Оповещаем пользователе об успешной авторизации
@@ -154,24 +186,10 @@ public class LoginFragment extends Fragment {
             // Отправление на главную активность
             sentToMain();
 
-        } else {
-
-            // В случае проблемы с авторизацией
-
-            // Останавливаем диалог
-            mProgressDialog.dismiss();
-            //Оповещаем пользователя о некорректности введенных данных
-            Toast.makeText(getActivity(), "Почта или пароль введены неверно", Toast.LENGTH_SHORT).show();
-            // Устанавливаем совет пользователю
-            mEmail.setError("Проверьте почту");
-            mPassword.setError("Проверьте пароль");
-            // Ставим курсор на ввод почты
-            mFocusView = mEmail;
-            mFocusView.requestFocus();
-
         }
 
     }
+
 
     // Сохраняет данные о пользователе локально
     private void saveDate(String name, String email, String age, String city, byte[] image) {

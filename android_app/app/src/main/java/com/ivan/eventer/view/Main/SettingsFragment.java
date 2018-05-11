@@ -162,9 +162,16 @@ public class SettingsFragment extends Fragment {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Информация!")
-                    .setMessage("Используй это приложение и будешь счастлив!")
+                    .setMessage("Найдите событие себе по душе или создайте своё!")
                     .setIcon(R.drawable.ic_information)
                     .setCancelable(false)
+                    .setPositiveButton("Погода",
+                            (dialog, id) -> {
+
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://yandex.ru/pogoda/"));
+                                startActivity(browserIntent);
+
+                            })
                     .setNegativeButton("Хорошо",
                             (dialog, id) -> dialog.cancel());
             AlertDialog alert = builder.create();
