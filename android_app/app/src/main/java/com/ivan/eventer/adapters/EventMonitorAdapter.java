@@ -2,14 +2,14 @@ package com.ivan.eventer.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ivan.eventer.view.Event.ChatFragment;
 import com.ivan.eventer.view.Event.PreviewFragment;
 import com.ivan.eventer.view.Event.SettingsEventFragment;
 import com.ivan.eventer.view.Event.ThingsFragment;
 
-public class EventMonitorAdapter extends FragmentStatePagerAdapter {
+public class EventMonitorAdapter extends FragmentPagerAdapter {
 
     private int mNumOfTabs;
     private boolean mIsAuthor;
