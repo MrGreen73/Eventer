@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -78,6 +79,10 @@ public class CreateFragment extends Fragment {
     private RadioGroup mRadioGroupKind;
     private String mChoiceKind;
 
+    //
+    private byte[] mBaos;
+    private AsyncTask mMyTask;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -131,6 +136,9 @@ public class CreateFragment extends Fragment {
                 mProgressDialog.setTitle("Создание события");
                 mProgressDialog.setMessage(getString(R.string.progressDialogWait));
                 mProgressDialog.setCanceledOnTouchOutside(false);
+                mProgressDialog.setIndeterminate(false);
+                // Progress dialog horizontal style
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -271,7 +279,7 @@ public class CreateFragment extends Fragment {
 
         List<Integer> date = new ArrayList<>();
 
-        date.add(R.drawable.natural_item1);
+//        date.add(R.drawable.natural_item1);
         date.add(R.drawable.image_1);
         date.add(R.drawable.image_2);
         date.add(R.drawable.image_3);
@@ -318,42 +326,99 @@ public class CreateFragment extends Fragment {
         Bitmap bitmap = ((BitmapDrawable)mImageEvent.getDrawable()).getBitmap();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
-        final String[] id = new String[1];
+        mBaos = baos.toByteArray();
+/*
+        CatTask catTask = new CatTask();
+        catTask.execute(name, describe, time);
+        try {
+            id = catTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+*/
+
+
+        mMyTask = new DownloadTask()
+                .execute(
+                        name,
+                        describe,
+                        time
+                );
+
+
+        /*
         Thread thread = new Thread() {
 
             @Override
             public void run() {
 
-                getActivity().runOnUiThread(() -> {
-
-                    mProgressDialog.show();
-
-                });
-
-                id[0] = Commands.createEvent(MainActivity.sPersonDate.getEmail(), name, describe, baos.toByteArray(), mChoiceKind, mChoiceTime, time);
 
             }
 
         };
 
         thread.start();
+*/
 
-        try {
+//        mProgressDialog.show();
+/*
 
-            thread.join();
+        while (id[0] == null){
 
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
 
         }
+*/
 
-        mProgressDialog.dismiss();
+//        getActivity().runOnUiThread(()->{
+
+//         mProgressDialog.dismiss();
+
+//        });
+/*
         Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
-
         Intent eventIntent = new Intent(getActivity(), EventActivity.class);
-        eventIntent.putExtra("ID", id[0]);
-        startActivity(eventIntent);
+        eventIntent.putExtra("ID", id);
+        startActivity(eventIntent);*/
+
+    }
+
+
+
+    private class DownloadTask extends AsyncTask<String,Integer,String>{
+        // Before the tasks execution
+        protected void onPreExecute(){
+            // Display the progress dialog on async task start
+            mProgressDialog.show();
+        }
+
+        // Do the task in background/non UI thread
+        protected String doInBackground(String...tasks){
+                String id;
+                id = Commands.createEvent(MainActivity.sPersonDate.getEmail(), tasks[0], tasks[1], mBaos, mChoiceKind, mChoiceTime, tasks[2]);
+                // If the AsyncTask cancelled
+            // Return the task list for post execute
+            return id;
+        }
+
+        // After each task done
+        protected void onProgressUpdate(Integer... progress){
+            // Update the progress bar on dialog
+            mProgressDialog.setProgress(progress[0]);
+        }
+
+        // When all async task done
+        protected void onPostExecute(String result){
+            // Hide the progress dialog
+            mProgressDialog.dismiss();
+            Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
+            Intent eventIntent = new Intent(getActivity(), EventActivity.class);
+            eventIntent.putExtra("ID", result);
+            startActivity(eventIntent);
+
+        }
 
     }
 

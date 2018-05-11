@@ -183,14 +183,13 @@ public class RegisterFragment extends Fragment {
             @Override
             public void run() {
 
-                getActivity().runOnUiThread(() -> {
+                Commands.createUser(name, email, age, city, password, image);
+
+/*                getActivity().runOnUiThread(() -> {
 
                     mProgressDialog.show();
 
-                });
-
-                Commands.createUser(name, email, age, city, password, image);
-
+                });*/
             }
 
         };

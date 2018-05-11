@@ -20,7 +20,7 @@
                 android:layout_height="150dp"
                 android:scaleType="fitCenter"
                 android:layout_gravity="center"
-                android:src="@drawable/natural_item1"/>
+                android:src="@drawable/event_1"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

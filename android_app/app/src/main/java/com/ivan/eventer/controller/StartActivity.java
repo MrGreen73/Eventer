@@ -1,15 +1,18 @@
 package com.ivan.eventer.controller;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.ivan.eventer.R;
-import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.view.Start.StartFragment;
 
 import org.apache.log4j.Logger;
@@ -27,6 +30,9 @@ public class StartActivity extends AppCompatActivity {
     public static final String USER_IMAGE = "IMAGE";
     public static final String USER_IMAGE_PATH = "IMAGE_PATH";
 
+    // Для разрешения
+    private static final int PERMISSION_REQUEST_CODE = 1;
+
     private SharedPreferences mSharedPreferences;
 
     @Override
@@ -42,7 +48,19 @@ public class StartActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        Commands.makeConnection();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+
+                    },
+                    PERMISSION_REQUEST_CODE);
+
+        }
+
         // Необходима проверка: авторизован ли пользователь
         if (mSharedPreferences.getString("NAME", "").equals("")) {
 
@@ -80,4 +98,18 @@ public class StartActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+        if (requestCode != PERMISSION_REQUEST_CODE || grantResults.length != 1) {
+
+            finish();
+
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+    }
+
 }

@@ -49,6 +49,10 @@ public class SearchFilterFragment extends Fragment {
         mFilterKindParty = view.findViewById(R.id.filterKindParty);
         mFilterKindArt = view.findViewById(R.id.filterKindArt);
 
+        mFilterTimeMorning = view.findViewById(R.id.filterTimeMorning);
+        mFilterTimeDay = view.findViewById(R.id.filterTimeDay);
+        mFilterTimeEvening = view.findViewById(R.id.filterTimeEvening);
+
         mSearchBtn = view.findViewById(R.id.filterBtnSearch);
 
         mSearchBtn.setOnClickListener(v -> {

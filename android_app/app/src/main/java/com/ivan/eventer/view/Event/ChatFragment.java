@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.MessageAdapter;
@@ -80,16 +82,17 @@ public class ChatFragment extends Fragment {
 
         try {//TODO:Сделать проверку на пустые сообщения
 //email time text
-            EventActivity.out.writeUTF(MainActivity.sPersonDate.getEmail() + " " + new Date().getTime() + " " + message); // отсылаем введенную строку текста серверу.
-            EventActivity.out.flush(); // заставляем поток закончить передачу данных.
+            if (!TextUtils.isEmpty(message)){
 
+                EventActivity.out.writeUTF(MainActivity.sPersonDate.getEmail() + " " + new Date().getTime() + " " + message); // отсылаем введенную строку текста серверу.
+                EventActivity.out.flush(); // заставляем поток закончить передачу данных.
+
+            }
         } catch (IOException e) {
 
             e.printStackTrace();
 
         }
-
-        //   out.wr
 
     }
 
@@ -98,6 +101,7 @@ public class ChatFragment extends Fragment {
         Thread thread = new Thread(){
             @Override
             public void run() {
+
                 mMessagesList = (Commands.getMessages(EventActivity.sEventPreview.getID())).getMessages();
 
                 getActivity().runOnUiThread(() -> {
@@ -132,14 +136,21 @@ public class ChatFragment extends Fragment {
 
                     messageString = EventActivity.in.readUTF();
 
+
+                    String finalMessageString = messageString;
+                    getActivity().runOnUiThread(()->{
+                        Toast.makeText(getActivity(), finalMessageString, Toast.LENGTH_LONG).show();
+
+                    });
                 } catch (IOException e) {
 
-                    e.printStackTrace();
+//                        EventActivity.mThreadFrom.stop();
+                        break;
 
                 }
-//1 <email> <time> <text>
+
                 if (messageString != null && !messageString.equals("success")){
-System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + messageString);
+
                     if (messageString.charAt(0) == '1'){
 
                         String email = messageString.split(" ")[1];
@@ -175,18 +186,12 @@ System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + messageString);
 
                 }
 
-                System.out.println("The server was very polite. It sent me this : " + messageString);
-
             }
 
         });
 
         EventActivity.mThreadFrom.start();
 
-        //Получение листа сообщений у данного события
-//        mMessagesList = Commands.getMessages(EventActivity.sEventPreview.getID());
-
     }
-
 
 }

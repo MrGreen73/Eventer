@@ -13,6 +13,7 @@ import com.ivan.eventer.view.Event.EventFragment;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -30,6 +31,8 @@ public class EventActivity extends AppCompatActivity {
     static String address = "192.168.43.69"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
     public static Thread mThreadFrom;
+    private static Thread mThreadTo;
+    private static Socket mSocket;
 
     public static DataOutputStream out;
     public static DataInputStream in;
@@ -43,7 +46,7 @@ public class EventActivity extends AppCompatActivity {
 
         makeEvent(getID());
 
-        Thread thread = new Thread() {
+        mThreadTo = new Thread() {
 
             @Override
             public void run() {
@@ -54,11 +57,11 @@ public class EventActivity extends AppCompatActivity {
 
         };
 
-        thread.start();
+        mThreadTo.start();
 
         try {
 
-            thread.join();
+            mThreadTo.join();
 
         } catch (InterruptedException e) {
 
@@ -102,15 +105,15 @@ public class EventActivity extends AppCompatActivity {
 
         try{
 
-            mThreadFrom.stop();
+//            mThreadFrom.stop();
 
         } catch (Exception ex) {
 
-            finish();
+//            finish();
 
         }
 
-        finish();
+//        finish();
 
     }
 
@@ -125,12 +128,12 @@ public class EventActivity extends AppCompatActivity {
 
             InetAddress ipAddress = InetAddress.getByName(address); // создаем объект который отображает вышеописанный IP-адрес.
             System.out.println("Any of you heard of a socket with IP address " + address + " and port " + serverPort + "?");
-            Socket socket = new Socket(ipAddress, serverPort); // создаем сокет используя IP-адрес и порт сервера.
+            mSocket = new Socket(ipAddress, serverPort); // создаем сокет используя IP-адрес и порт сервера.
             System.out.println("Yes! I just got hold of the program.");
 
             // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиентом.
-            InputStream sin = socket.getInputStream();
-            OutputStream sout = socket.getOutputStream();
+            InputStream sin = mSocket.getInputStream();
+            OutputStream sout = mSocket.getOutputStream();
 
             // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
             in = new DataInputStream(sin);
@@ -157,9 +160,17 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        try {
+            mSocket.close();
+            try{
+                mThreadFrom.stop();
 
-        mThreadFrom.stop();
+            } catch (Exception ex){
 
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//    mThreadTo.stop();
     }
-
 }

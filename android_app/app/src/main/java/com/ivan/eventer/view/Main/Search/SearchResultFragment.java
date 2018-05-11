@@ -34,7 +34,7 @@ public class SearchResultFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_search_result, container, false);
 
-        RecyclerView rv = view.findViewById(R.id.recyclerHome);
+        RecyclerView rv = view.findViewById(R.id.recyclerResultSearch);
 
         rv.setHasFixedSize(true);
 
