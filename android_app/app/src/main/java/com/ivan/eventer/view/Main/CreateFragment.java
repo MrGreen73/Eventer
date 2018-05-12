@@ -322,7 +322,7 @@ public class CreateFragment extends Fragment {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         Bitmap bitmap = ((BitmapDrawable)mImageEvent.getDrawable()).getBitmap();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, baos);
 
         mBaos = baos.toByteArray();
 

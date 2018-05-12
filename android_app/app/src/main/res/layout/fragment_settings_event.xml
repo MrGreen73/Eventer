@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorMalibu"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,26 +15,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/activity_vertical_margin">
+            android:layout_margin="@dimen/activity_vertical_margin">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/size_text_profile_large"
+                android:textColor="@color/textBlack"
+                android:gravity="center"
+                android:text="Настройки активности"/>
 
             <EditText
                 android:id="@+id/nameSettingsEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:hint="Название события"
                 android:textColor="@color/textBlack"
-                android:textColorHint="@color/textBlack"
-                />
+                android:textColorHint="@color/textBlack"/>
 
             <EditText
-                android:id="@+id/countSettingsEvent"
+                android:id="@+id/describeSettingsEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Количество людей"
+                android:layout_marginTop="20dp"
+                android:hint="Описание"
                 android:textColor="@color/textBlack"
-                android:textColorHint="@color/textBlack"
-                android:inputType="numberDecimal"/>
+                android:textColorHint="@color/textBlack" />
+
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                           android:id="@+id/mapSettingsEvent"
@@ -52,31 +59,34 @@
                 android:textColor="@color/textBlack"
                 android:hint="Неизвестно"/>
 
-            <Button
-                android:id="@+id/chooseBtnSettingsEvent"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Выбрать место"/>
+                android:layout_height="200dp"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-            <EditText
-                android:id="@+id/describeSettingsEvent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Описание"
-                android:textColor="@color/textBlack"
-                android:textColorHint="@color/textBlack"
-                />
+                <Button
+                    android:id="@+id/chooseBtnSettingsEvent"
+                    android:layout_width="170dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:background="@drawable/back_for_btn_login"
+                    android:text="Выбрать место"/>
 
-            <Button
-                android:id="@+id/saveEventSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/back_for_btn_out"
-                android:padding="10dp"
-                android:text="Сохранить"/>
+
+                <Button
+                    android:id="@+id/saveEventSettings"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/back_for_btn_out"
+                    android:padding="10dp"
+                    android:text="Сохранить"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
+
 </LinearLayout>

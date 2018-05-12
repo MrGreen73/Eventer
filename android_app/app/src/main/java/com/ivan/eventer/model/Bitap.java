@@ -21,7 +21,7 @@ public class Bitap {
 
         // Range of the alphabet
         // 128 is enough if we stay in the ASCII range (0-127)
-        int alphabetRange = 128;
+        int alphabetRange = 1256;
         int firstMatchedText = -1;
         // Indexes where the pattern was found
         ArrayList<Integer> indexes = new ArrayList<Integer>();

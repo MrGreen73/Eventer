@@ -166,13 +166,13 @@ public class SettingsFragment extends Fragment {
                     .setMessage("Найдите событие себе по душе или создайте своё!")
                     .setIcon(R.drawable.ic_information)
                     .setCancelable(false)
-                    .setPositiveButton("Погода",
+/*                    .setPositiveButton("Погода",
                             (dialog, id) -> {
 
                                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://yandex.ru/pogoda/"));
                                 startActivity(browserIntent);
 
-                            })
+                            })*/
                     .setNegativeButton("Хорошо",
                             (dialog, id) -> dialog.cancel());
             AlertDialog alert = builder.create();

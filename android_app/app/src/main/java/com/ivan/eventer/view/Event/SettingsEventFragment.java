@@ -11,16 +11,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.ivan.eventer.R;
+import com.ivan.eventer.controller.EventActivity;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -28,17 +33,11 @@ import static android.app.Activity.RESULT_OK;
 public class SettingsEventFragment extends Fragment implements
         OnMapReadyCallback {
 
-
-    public static final String EVENT_PREVIEW = "gchatfragment.preview";
-    public static final String PLACE = "gchatfragment.place";
-    public static final String ADDRESS = "gchatfragment.address";
-
     private static final int PLACE_PICKER_REQUEST = 1;
     private static final float DEFAULT_ZOOM = 18f;
 
     //Text
-    private EditText mName;
-    private EditText mCount;
+    private EditText mTitle;
     private EditText mDescribe;
 
     private TextView mAddressView;
@@ -48,9 +47,8 @@ public class SettingsEventFragment extends Fragment implements
 
 
     //Progress
-    private ProgressDialog mProgress;
+    private ProgressDialog mProgressDialog;
 
-    private String mEvenId;
     private Place mPlace;
 
 //    private EventPreview mPreview;
@@ -65,11 +63,6 @@ public class SettingsEventFragment extends Fragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        mPreview = (EventPreview) getArguments().getSerializable(EVENT_PREVIEW);
-        // TODO передать позицию
-//        mPosition = (LatLng) getArguments().getParcelable(PLACE);
-//        mAddress = mPreview.getAddress();
-
     }
 
     @Nullable
@@ -78,80 +71,57 @@ public class SettingsEventFragment extends Fragment implements
         super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.fragment_settings_event, container, false);
-/*
 
-        mProgress = new ProgressDialog(getActivity());
-
-//        mEvenId = mPreview.getEventId();
+        mProgressDialog = new ProgressDialog(getActivity());
 
         mSaveButton = v.findViewById(R.id.saveEventSettings);
-        mName = v.findViewById(R.id.nameSettingsEvent);
-        mCount = v.findViewById(R.id.countSettingsEvent);
+        mChooseButton = v.findViewById(R.id.chooseBtnSettingsEvent);
+
+        mTitle = v.findViewById(R.id.nameSettingsEvent);
+        mTitle.setText(EventActivity.sEventPreview.getTitle());
+
         mDescribe = v.findViewById(R.id.describeSettingsEvent);
-//        mDescribe.setText(mPreview.getDescribe());
+        mDescribe.setText(EventActivity.sEventPreview.getDescribe());
+
         mAddressView = v.findViewById(R.id.seAddress);
         mAddressView.setText(mAddress);
-        mChooseButton = (Button) v.findViewById(R.id.chooseBtnSettingsEvent);
+
+        mPosition = new LatLng(0, 0);
 
         mChooseButton.setOnClickListener(view -> {
+
             PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
             try {
+
                 startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
+
             } catch (GooglePlayServicesRepairableException e) {
+
                 e.printStackTrace();
                 Toast.makeText(getActivity(), "Гугл места недоступна!", Toast.LENGTH_LONG).show();
+
             } catch (GooglePlayServicesNotAvailableException e) {
+
                 Toast.makeText(getActivity(), "Возможность выбора недоступна!", Toast.LENGTH_LONG).show();
                 e.printStackTrace();
+
             }
 
         });
 
-//        mName.setText(mPreview.getTitle());
-//        mCount.setText(String.valueOf(mPreview.getCount()));
-        //mPlace.setText(mPreview.getPlace());
+        mSaveButton.setOnClickListener(view -> {
 
-        mSaveButton.setOnClickListener(v1 -> {
 
-            //Progress
-            mProgress = new ProgressDialog(getActivity());
-            mProgress.setTitle("Сохраняем данные");
-            mProgress.setMessage("Пожалуйста подождите, пока мы сохраним изменения");
-            mProgress.show();
-
-            String name = mName.getText().toString();
-            String count = mCount.getText().toString();
-            String describe = mDescribe.getText().toString();
-
-            if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(count)) {
-
-                // Мап для события
-                HashMap<String, String> userMap = new HashMap<>();
-                userMap.put("Name", name);
-                userMap.put("Count", count);
-                if (mPlace == null){
-                    userMap.put("Place", "0 0");
-                    userMap.put("Address", "Неизвестность");
-                }
-                else{
-                    userMap.put("Place", mPlace.getLatLng().latitude + " " + mPlace.getLatLng().longitude);
-                    userMap.put("Address", mPlace.getAddress().toString());
-
-                }
-            }
-            else{
-                mProgress.cancel();
-                Toast.makeText(getActivity(), "Название и количество людей должны быть заполнены!", Toast.LENGTH_LONG);
-            }
 
         });
+
 
         SupportMapFragment mapFragment = new SupportMapFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.mapSettingsEvent, mapFragment)
                 .commit();
         mapFragment.getMapAsync(this);
-*/
 
         return v;
 

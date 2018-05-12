@@ -80,7 +80,7 @@ public class SearchFilterFragment extends Fragment {
 
         if (filter.length() > 1){
 
-            filter = filter.substring(0, filter.length() - 2);
+            filter = filter.substring(0, filter.length() - 1);
 
         }
 
@@ -94,15 +94,13 @@ public class SearchFilterFragment extends Fragment {
 
         if (filter.charAt(filter.length() - 1) != ';'){
 
-            filter = filter.substring(0, filter.length() - 2);
+            filter = filter.substring(0, filter.length() - 1);
 
         }
 
         MainActivity.FILTER_OR_TITLE = filter;
         MainActivity.TYPE_SEARCH_ACTIVE = MainActivity.TYPE_SEARCH_FILTER;
         MainActivity.changeFragment(new SearchResultFragment());
-
-        //TODO: Выполнить поиск
 
     }
 
