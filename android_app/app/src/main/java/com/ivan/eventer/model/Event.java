@@ -11,8 +11,10 @@ public class Event {
     private byte[] mImage;
     private String mKind;
     private String mTime;
-    private String mPlace;
+    private String mPosition;
     private String mDate;
+    private String mAddress;
+    private ArrayThings mArrayThings;
 
     public Event() {
     }
@@ -24,12 +26,28 @@ public class Event {
         mAuthor = author;
     }
 
+    public void setArrayThings(ArrayThings arrayThings) {
+        mArrayThings = arrayThings;
+    }
+
+    public ArrayThings getArrayThings() {
+        return mArrayThings;
+    }
+
+    public void setAddress(String address) {
+        mAddress = address;
+    }
+
+    public String getAddress() {
+        return mAddress;
+    }
+
     public void setTime(String time) {
         mTime = time;
     }
 
     public void setDate(String date) {
-       mDate=date;
+        mDate = date;
     }
 
     public String getDate() {
@@ -48,12 +66,12 @@ public class Event {
         return mKind;
     }
 
-    public void setPlace(String place) {
-        mPlace = place;
+    public void setPosition(String position) {
+        mPosition = position;
     }
 
-    public String getPlace() {
-        return mPlace;
+    public String getPosition() {
+        return mPosition;
     }
 
 

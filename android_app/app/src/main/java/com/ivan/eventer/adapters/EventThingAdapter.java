@@ -26,7 +26,7 @@ public class EventThingAdapter extends BaseAdapter {
         this.data = items;
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-public boolean isChecked(int i){return data.get(i).isCheckbox();}
+public boolean isChecked(int i){return data.get(i).getValue();}
     @Override
     public int getCount() {
         return data.size();
@@ -56,8 +56,8 @@ public boolean isChecked(int i){return data.get(i).isCheckbox();}
             vi.setTag(viewHolder);
         } else
             viewHolder = (ViewHolder) view.getTag();
-        viewHolder.name.setText(items.getName());
-        if (items.isCheckbox()) {
+        viewHolder.name.setText(items.getTitle());
+        if (items.getValue()) {
             viewHolder.checkBox.setChecked(true);
         } else {
             viewHolder.checkBox.setChecked(false);
@@ -72,7 +72,7 @@ public boolean isChecked(int i){return data.get(i).isCheckbox();}
     public void setCheckBox(int position) {
         //Update status of checkbox
         Thing items = data.get(position);
-        items.setCheckbox(!items.isCheckbox());
+        items.setValue(!items.getValue());
         notifyDataSetChanged();
     }
 

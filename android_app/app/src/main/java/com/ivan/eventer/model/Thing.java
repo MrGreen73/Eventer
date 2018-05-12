@@ -1,44 +1,41 @@
 package com.ivan.eventer.model;
 
+import java.io.Serializable;
 
-public class Thing {
-    String name;
-    boolean checkbox;
-    String id;
+/**
+ * Created by user on 11.05.2018.
+ */
+public class Thing implements Serializable {
+    /*   ArrayList<String> things = new ArrayList<>();
+
+       public void setThings(ArrayList<String> things) {
+           this.things = things;
+       }*/
+    private String mTitle;
+
+    private boolean mValue;
 
     public Thing() {
-         /*Empty Constructor*/
     }
 
-    public Thing(String country, boolean status, String id) {
-        this.id = id;
-
-        this.name = country;
-        this.checkbox = status;
+    public Thing(String title) {
+        mTitle = title;
+        mValue = false;
     }
 
-    //Getter and Setter
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
-    public boolean isCheckbox() {
-        return checkbox;
+    public boolean getValue() {
+        return mValue;
     }
 
-    public void setCheckbox(boolean checkbox) {
-        this.checkbox = checkbox;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setValue(boolean value) {
+        mValue = value;
     }
 }

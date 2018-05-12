@@ -14,7 +14,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="925afebd-a1fa-4f62-a442-8304f1e395d6" name="Default" comment="">
+    <list default="true" id="925afebd-a1fa-4f62-a442-8304f1e395d6" name="Default" comment="Отредактирован чат&#10;Сделан поиск по фильтрам&#10;Сделан умный поиск по названию(до 3 ошибок)">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/ArrayThings.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/google_maps_api.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" />
@@ -24,14 +26,15 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventThingAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventThingAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/backend/Commands.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/backend/Commands.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/EventActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/EventActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Bitap.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Bitap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Event.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Event.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Thing.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Thing.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/SettingsEventFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/SettingsEventFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/CreateFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/CreateFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchFilterFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchFilterFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchResultFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchResultFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchTitleFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchTitleFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/SettingsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/SettingsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_filter.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_filter.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings_event.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings_event.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,77 +65,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SearchResultFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchResultFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1800">
-              <caret line="219" column="0" lean-forward="false" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-              <folding>
-                <element signature="e#1545#1583#0" expanded="true" />
-                <element signature="method#makeSelectionByFilter#0;class#SearchResultFragment#0" expanded="false" />
-                <element signature="method#makeSelectionByTitle#0;class#SearchResultFragment#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/StartActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SettingsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/SettingsFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="215" column="17" lean-forward="false" selection-start-line="215" selection-start-column="17" selection-end-line="215" selection-end-column="17" />
-              <folding>
-                <element signature="method#initializeData#0;class#SettingsFragment#0" expanded="false" />
-                <element signature="method#getBitmap#0;class#SettingsFragment#0" expanded="false" />
-                <element signature="method#saveImage#0;class#SettingsFragment#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="957">
-              <caret line="219" column="13" lean-forward="false" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
-              <folding>
-                <element signature="e#2092#3008#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_preview.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml">
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="fragment_settings_event.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_settings_event.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="63" column="41" lean-forward="false" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+            <state relative-caret-position="380">
+              <caret line="70" column="25" lean-forward="false" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
               <folding>
                 <element signature="e#582#615#0" expanded="true" />
                 <element signature="e#778#810#0" expanded="true" />
@@ -141,48 +81,100 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="42" column="19" lean-forward="false" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
-              <folding>
-                <element signature="e#1127#1152#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest">
+      <file leaf-file-name="fragment_preview.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml">
+          <provider editor-type-id="android-designer2">
             <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThingsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/ThingsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SettingsEventFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/SettingsEventFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+            <state relative-caret-position="1551">
+              <caret line="78" column="23" lean-forward="false" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <file leaf-file-name="Commands.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/backend/Commands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+            <state relative-caret-position="382">
+              <caret line="354" column="0" lean-forward="false" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bitap.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Bitap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Event.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/EventActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="215">
+              <caret line="93" column="47" lean-forward="false" selection-start-line="93" selection-start-column="47" selection-end-line="93" selection-end-column="47" />
+              <folding>
+                <element signature="e#1543#1672#0" expanded="true" />
+                <element signature="e#1671#1672#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventPreview.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/EventPreview.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventThingAdapter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventThingAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="84" column="31" lean-forward="false" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
+              <folding>
+                <element signature="e#2339#2340#0" expanded="true" />
+                <element signature="e#2377#2378#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Thing.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Thing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SettingsEventFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/SettingsEventFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="431">
+              <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -2003,12 +1995,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchQRFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_qr.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/profile_header1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/navigation.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Event.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/PersonDate.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" />
@@ -2024,13 +2011,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_message_author.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_message_guest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Message.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/backend/Commands.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/MessageAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/profile_header.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/ProfileAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventsListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_filter.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_title.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_result.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/MainActivity.java" />
@@ -2041,19 +2026,26 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Start/LoginFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/ProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/EventFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/EventActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventMonitorAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Bitap.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/CreateFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/ChatFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchTitleFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchFilterFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/HomeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchResultFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings_event.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/SettingsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_filter.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings_event.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Thing.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Event.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/ArrayThings.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/backend/Commands.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Bitap.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/SettingsEventFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/EventActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventThingAdapter.java" />
       </list>
     </option>
   </component>
@@ -2089,6 +2081,24 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Gradle Scripts" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android_app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2158,36 +2168,6 @@
               <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Start" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eventer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2232,6 +2212,10 @@
               <option name="myItemId" value="eventer" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2252,6 +2236,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android_app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eventer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2559,7 +2565,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1526083846825" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1526085858749" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2607,7 +2613,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1526083846825" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1526085858749" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2790,7 +2796,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1526083846827" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1526085858750" />
       </method>
     </configuration>
     <list size="1">
@@ -2828,13 +2834,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523791661564</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Некоторые изменения">
-      <created>1523968827093</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1523968827093</updated>
     </task>
     <task id="LOCAL-00011" summary="Добавлен Firebase&#10;Сделана регистрация пользователя">
       <created>1524235986254</created>
@@ -3172,7 +3171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526072239705</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Отредактирован чат&#10;Сделан поиск по фильтрам&#10;Сделан умный поиск по названию(до 3 ошибок)">
+      <created>1526083906416</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1526083906429</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3190,79 +3196,43 @@
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.50417536" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43632567" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43632567" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17191818" sideWeight="0.49376947" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39979124" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.50623053" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.50623053" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Assistant" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Assistant" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="165" y="96" width="1655" height="884" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="165" y="96" width="1655" height="884" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.50417536" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43736953" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Assistant" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39979124" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="165" y="96" width="1655" height="884" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19237147" sideWeight="0.49376947" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.50623053" order="7" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Небольшие изменения" />
     <MESSAGE value="Сделано создание события" />
     <MESSAGE value="Фикс сохранения настроек&#10;Фикс вывода событий в профиле" />
     <MESSAGE value="Рефакторинг кода" />
@@ -3287,7 +3257,8 @@
     <MESSAGE value="Сделан ProgressDialog в некоторых местах" />
     <MESSAGE value="коммит" />
     <MESSAGE value="коммит c адаптером" />
-    <option name="LAST_COMMIT_MESSAGE" value="коммит c адаптером" />
+    <MESSAGE value="Отредактирован чат&#10;Сделан поиск по фильтрам&#10;Сделан умный поиск по названию(до 3 ошибок)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Отредактирован чат&#10;Сделан поиск по фильтрам&#10;Сделан умный поиск по названию(до 3 ошибок)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3296,46 +3267,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/back_for_btn_login.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/back_for_btn_search_title.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/back_for_btn_search_filter.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="53" lean-forward="false" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_message_author.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3441,26 +3372,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_search_filter.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5560">
-          <caret line="302" column="0" lean-forward="false" selection-start-line="302" selection-start-column="0" selection-end-line="302" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_search_title.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="44" column="34" lean-forward="false" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3500,22 +3411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/backend/Commands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3440">
-          <caret line="190" column="25" lean-forward="false" selection-start-line="190" selection-start-column="25" selection-end-line="190" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="22" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="13" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -3587,34 +3482,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventMonitorAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/EventActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1822">
-          <caret line="120" column="23" lean-forward="false" selection-start-line="120" selection-start-column="23" selection-end-line="120" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Main/Search/SearchQRFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Bitap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -3691,17 +3562,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -3733,17 +3593,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_settings_event.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventMonitorAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="63" column="41" lean-forward="false" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
-          <folding>
-            <element signature="e#582#615#0" expanded="true" />
-            <element signature="e#778#810#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3759,11 +3613,135 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_search_title.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="44" column="34" lean-forward="false" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
+          <folding>
+            <element signature="e#704#736#0" expanded="false" />
+            <element signature="e#1028#1063#0" expanded="false" />
+            <element signature="e#1103#1138#0" expanded="false" />
+            <element signature="e#1961#1993#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_search_filter.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="305" column="40" lean-forward="false" selection-start-line="305" selection-start-column="40" selection-end-line="305" selection-end-column="40" />
+          <folding>
+            <element signature="e#12499#12531#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/ArrayThings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/backend/Commands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="354" column="0" lean-forward="false" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Bitap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_settings_event.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="70" column="25" lean-forward="false" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
+          <folding>
+            <element signature="e#582#615#0" expanded="true" />
+            <element signature="e#778#810#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_preview.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1551">
+          <caret line="78" column="23" lean-forward="false" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/view/Event/SettingsEventFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        <state relative-caret-position="431">
+          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/EventPreview.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/model/Thing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/controller/EventActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="93" column="47" lean-forward="false" selection-start-line="93" selection-start-column="47" selection-end-line="93" selection-end-column="47" />
+          <folding>
+            <element signature="e#1543#1672#0" expanded="true" />
+            <element signature="e#1671#1672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ivan/eventer/adapters/EventThingAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="84" column="31" lean-forward="false" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
+          <folding>
+            <element signature="e#2339#2340#0" expanded="true" />
+            <element signature="e#2377#2378#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

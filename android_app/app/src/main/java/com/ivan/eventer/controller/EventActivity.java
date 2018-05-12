@@ -99,7 +99,7 @@ public class EventActivity extends AppCompatActivity {
                 event.getImage(),
                 event.getKind(),
                 event.getTime(),
-                event.getPlace(),
+                event.getPosition(),
                 event.getDate()
 
         );

@@ -6,17 +6,7 @@ import java.util.List;
 // http://en.wikipedia.org/wiki/Bitap_algorithm
 public class Bitap {
 
-    /**
-     * Return the list of indexes where the pattern was found.
-     *
-     * The indexes are not exacts because of the addition and deletion :
-     * Example : the text "aa bb cc" with the pattern "bb" and k=1 will match " b","b","bb","b ".
-     * and only the index of the first result " b" is added to the list even if "bb" have q lower error rate.
-     * @param doc
-     * @param pattern
-     * @param k
-     * @return
-     */
+
     public static List<Integer> find(String doc, String pattern, int k) {
 
         // Range of the alphabet

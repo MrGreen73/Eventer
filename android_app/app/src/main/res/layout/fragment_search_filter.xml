@@ -290,16 +290,23 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/filterBtnSearch"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:background="@drawable/back_for_btn_login"
-                android:textSize="@dimen/size_text_profile_midle"
-                android:paddingHorizontal="15dp"
-                android:paddingVertical="10dp"
-                android:text="Поиск"
-                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/filterBtnSearch"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/back_for_btn_login"
+                    android:textSize="@dimen/size_text_profile_midle"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:text="Поиск"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

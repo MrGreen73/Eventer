@@ -112,6 +112,8 @@ public class SettingsEventFragment extends Fragment implements
 
         mSaveButton.setOnClickListener(view -> {
 
+            String title = mTitle.getText().toString();
+            String describe = mDescribe.getText().toString();
 
 
         });

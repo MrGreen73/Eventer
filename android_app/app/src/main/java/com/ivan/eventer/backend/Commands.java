@@ -1,5 +1,6 @@
 package com.ivan.eventer.backend;
 
+import com.ivan.eventer.model.ArrayThings;
 import com.ivan.eventer.model.Event;
 import com.ivan.eventer.model.ListEvents;
 import com.ivan.eventer.model.MessageArray;
@@ -188,12 +189,82 @@ public class Commands {
     }
 
 
+    public static void changeThingById(String Id, Integer number) {
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/changeThingById?Id=" + Id + "&number=" + number;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.getForObject(url, Void.class);
+            }
+        };
+        thread.start();
+
+    }
+
+    public static void updateEvent(String Id, String title, String description, String place) {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/updateEvent?Id=" + Id + "&title=" + title + "&description=" + description + "&place=" + place;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.getForObject(url, Void.class);
+            }
+        };
+        thread.start();
+
+    }
+
+    public static void addThings(String Id, String name) {
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/addThings?Id=" + Id + "&name=" + name;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.getForObject(url, Void.class);
+            }
+        };
+        thread.start();
+
+    }
+
+
+    public static ArrayThings thingsOfEvent(String Id) {
+        final ArrayThings[] s = {null};
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/thingsOfEvent?Id=" + Id;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                s[0] = restTemplate.getForObject(url, ArrayThings.class);
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return s[0];
+    }
+
+
     public static String createEvent(String email, String name, String description, byte[] array, String kind, String time, String date) {
         String url = "http://" + IP + "/post";
 
         Event event = new Event(email, name, description, email);
         event.setImage(array);
-        //   event.setPlace(place);
+        //   event.setPosition(place);
         event.setTime(time);
         event.setKind(kind);
         event.setDate(date);
@@ -308,7 +379,7 @@ public class Commands {
                     while (true) {
                         line = keyboard.readLine(); // ждем пока пользователь введет что-то и нажмет кнопку Enter.
                         System.out.println("Sending this line to the server...");
-                        out.writeUTF("email" + " " + line); // отсылаем введенную строку текста серверу.
+                        out.writeUTF(line); // отсылаем введенную строку текста серверу.
                         //   out.wr
                         out.flush(); // заставляем поток закончить передачу данных.
 

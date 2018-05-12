@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <ImageView
             android:id="@+id/preview_image"
             android:layout_width="match_parent"
@@ -32,7 +31,6 @@
             android:layout_marginTop="20dp"
             android:background="@color/colorPrimary">
 
-
             <TextView
                 android:id="@+id/nameSettingsEvent"
                 android:layout_width="wrap_content"
@@ -46,19 +44,6 @@
                 android:gravity="center"/>
 
             <TextView
-                android:id="@+id/countSettingsEvent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:paddingVertical="7dp"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:text="Количество людей"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/addressSettingsEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,9 +55,6 @@
                 android:text="Адрес"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
-
-
-
 
         </LinearLayout>
 
@@ -95,8 +77,6 @@
 
 
         </LinearLayout>
-
-
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/mapPreview"
