@@ -236,6 +236,31 @@ public class Commands {
 
     }
 
+    public static void addToEvent(String email, String Id) {
+        addUserToEvent(email, Id);
+        addEventToUser(email, Id);
+    }
+
+    public static boolean checkUserInEvent(String Id, String email) {
+        final boolean[] s = {false};
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String url = "http://" + IP + "/checkUserInEvent?Id=" + Id + "&email=" + email;
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                s[0] = restTemplate.getForObject(url, boolean.class);
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return s[0];
+    }
 
     public static ArrayThings thingsOfEvent(String Id) {
         final ArrayThings[] s = {null};

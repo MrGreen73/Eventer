@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.controller.MainActivity;
 
@@ -69,26 +70,26 @@ public class FirstPreviewFragment extends Fragment implements
         mDescribe = v.findViewById(R.id.describeFirstPreviewEvent);
         mAddressView = v.findViewById(R.id.addressFirstPreviewEvent);
 
-        mTitle.setText(EventActivity.sEventPreview.getTitle());
-        mDescribe.setText(EventActivity.sEventPreview.getDescribe());
-        mAddress = EventActivity.sEventPreview.getAddress();
+        mTitle.setText(MainActivity.sFirstPreviewEvent.getTitle());
+        mDescribe.setText(MainActivity.sFirstPreviewEvent.getDescribe());
+        mAddress = MainActivity.sFirstPreviewEvent.getAddress();
         mAddressView.setText(mAddress);
 
         //Устанавливаем метку на карте
-        String[] pos = EventActivity.sEventPreview.getPosition().split(" ");
+        String[] pos = MainActivity.sFirstPreviewEvent.getPosition().split(" ");
         mPosition = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
-        mMarkerPosition.setPosition(mPosition);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
 
         SupportMapFragment mapFragment = new SupportMapFragment();
         getFragmentManager().beginTransaction()
-                .replace(R.id.mapPreview, mapFragment)
+                .replace(R.id.mapFirstPreview, mapFragment)
                 .commit();
         mapFragment.getMapAsync(this);
 
         mConnectBtn = v.findViewById(R.id.firstPreviewConnectBtn);
         mConnectBtn.setOnClickListener(view -> {
 
+            Commands.addToEvent(MainActivity.sPersonDate.getEmail(), MainActivity.sFirstPreviewEvent.getID());
             Intent eventIntent = new Intent(v.getContext(), EventActivity.class);
             eventIntent.putExtra("ID", MainActivity.sFirstPreviewEvent.getID());
 

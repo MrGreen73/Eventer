@@ -17,12 +17,14 @@ public class User {
     }
 
     public User(String name, String email, String age, String city, String password, byte[] arr) {
+
         mName = name;
         mEmail = email;
         mAge = age;
         mCity = city;
         mPassword = password;
         mImage = arr;
+
     }
 
     public void setAge(String age) {

@@ -13,8 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
+import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.model.Event;
+import com.ivan.eventer.model.EventPreview;
+import com.ivan.eventer.view.Main.FirstPreviewFragment;
 
 import java.util.List;
 
@@ -55,14 +59,46 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
             @Override
             public void onClick(View v) {
 
+
                 // Cделать задачю для загрузки ферст
 
 
-                Intent eventIntent = new Intent(v.getContext(), EventActivity.class);
-                eventIntent.putExtra("ID", id);
+                if (Commands.checkUserInEvent(id, MainActivity.sPersonDate.getEmail())){
 
-                Context context = v.getContext();
-                context.startActivity(eventIntent);
+                    Intent eventIntent = new Intent(v.getContext(), EventActivity.class);
+                    eventIntent.putExtra("ID", id);
+
+                    Context context = v.getContext();
+                    context.startActivity(eventIntent);
+
+                } else {
+
+                    Event event = Commands.findEventById(id);
+                    MainActivity.sFirstPreviewEvent= new EventPreview(
+
+                            event.getID(),
+                            event.getTitle(),
+                            event.getDescribe(),
+                            event.getAuthor(),
+                            event.getImage(),
+                            event.getKind(),
+                            event.getTime(),
+                            event.getPosition(),
+                            event.getAddress(),
+                            event.getDate()
+
+                    );
+
+                    MainActivity.changeFragment(new FirstPreviewFragment());
+
+
+                }
+
+
+/*
+
+*/
+
             }
 
         }
