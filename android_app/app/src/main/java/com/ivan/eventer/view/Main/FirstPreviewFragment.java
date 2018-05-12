@@ -38,6 +38,9 @@ public class FirstPreviewFragment extends Fragment implements
     private TextView mTitle;
     private TextView mDescribe;
 
+    private TextView mKind;
+    private TextView mTime;
+
     private TextView mAddressView;
 
     private Place mPlace;
@@ -69,11 +72,16 @@ public class FirstPreviewFragment extends Fragment implements
         mTitle = v.findViewById(R.id.nameFirstPreviewEvent);
         mDescribe = v.findViewById(R.id.describeFirstPreviewEvent);
         mAddressView = v.findViewById(R.id.addressFirstPreviewEvent);
+        mKind = v.findViewById(R.id.firstPreviewKind);
+        mTime = v.findViewById(R.id.firstPreviewTime);
 
         mTitle.setText(MainActivity.sFirstPreviewEvent.getTitle());
         mDescribe.setText(MainActivity.sFirstPreviewEvent.getDescribe());
         mAddress = MainActivity.sFirstPreviewEvent.getAddress();
         mAddressView.setText(mAddress);
+
+        mKind.setText(MainActivity.sFirstPreviewEvent.getKind());
+        mTime.setText(MainActivity.sFirstPreviewEvent.getTime());
 
         //Устанавливаем метку на карте
         String[] pos = MainActivity.sFirstPreviewEvent.getPosition().split(" ");

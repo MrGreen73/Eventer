@@ -125,4 +125,29 @@ public class PreviewFragment extends Fragment implements
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (EventActivity.mFlag){
+
+            mTitle.setText(EventActivity.sEventPreview.getTitle());
+
+            // Устанавливаем описание
+            mDescribe.setText(EventActivity.sEventPreview.getDescribe());
+
+            // Устанавливаем адресс
+            mAddress = EventActivity.sEventPreview.getAddress();
+            mAddressView.setText(mAddress);
+
+            //Устанавливаем метку на карте
+            String[] pos = EventActivity.sEventPreview.getPosition().split(" ");
+            mPosition = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
+
+            EventActivity.mFlag = false;
+
+        }
+
+    }
+
 }

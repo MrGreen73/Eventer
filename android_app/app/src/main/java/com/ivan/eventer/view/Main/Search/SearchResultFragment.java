@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.adapters.EventsListAdapter;
@@ -37,6 +37,8 @@ public class SearchResultFragment extends Fragment {
     private ProgressDialog mProgressDialog;
     private AsyncTask mMyTask;
 
+    private TextView mInfrotmation;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class SearchResultFragment extends Fragment {
 
 
         mProgressDialog = new ProgressDialog(getActivity());
+
+        mInfrotmation = view.findViewById(R.id.resultInformation);
 
         mProgressDialog.setTitle("Поиск событий");
         mProgressDialog.setMessage(getString(R.string.progressDialogWait));
@@ -59,6 +63,7 @@ public class SearchResultFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(llm);
 
+        mSearchList = new ArrayList<>();
         // Загрузка событий из базы данных
         initializeData();
 
@@ -67,8 +72,6 @@ public class SearchResultFragment extends Fragment {
     }
 
     private List<Event> makeSelectionByFilter(String filter) {
-
-        Toast.makeText(getActivity(), filter, Toast.LENGTH_LONG).show();
 
         List<Event> result = new ArrayList<>();
 
@@ -240,6 +243,18 @@ public class SearchResultFragment extends Fragment {
             // Hide the progress dialog
             mProgressDialog.dismiss();
 
+            String information;
+
+            if (mSearchList.size() > 0){
+
+                information = "Результат: " + mSearchList.size();
+
+            } else {
+
+                information = "Результат: Не найдено";
+
+            }
+            mInfrotmation.setText("Результат: " + mSearchList.size());
             mEventsListAdapter = new EventsListAdapter(mSearchList);
             mRecyclerView.setAdapter(mEventsListAdapter);
 

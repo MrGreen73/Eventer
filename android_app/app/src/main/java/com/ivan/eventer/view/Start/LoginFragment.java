@@ -55,6 +55,8 @@ public class LoginFragment extends Fragment {
     String mFolderToSave;
     String mPath;
 
+    private Boolean mFlag;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,6 +67,8 @@ public class LoginFragment extends Fragment {
         mPassword= v.findViewById(R.id.loginPassword);
         mButtonLogin = v.findViewById(R.id.logBtn);
         mProgressDialog = new ProgressDialog(getActivity());
+
+        mFlag = true;
 
         Time time = new Time();
         time.setToNow();
@@ -124,18 +128,21 @@ public class LoginFragment extends Fragment {
                         password
                 );
 
-        // В случае проблемы с авторизацией
-        // Останавливаем диалог
-        mProgressDialog.dismiss();
-        //Оповещаем пользователя о некорректности введенных данных
-        Toast.makeText(getActivity(), "Почта или пароль введены неверно", Toast.LENGTH_SHORT).show();
-        // Устанавливаем совет пользователю
-        mEmail.setError("Проверьте почту");
-        mPassword.setError("Проверьте пароль");
-        // Ставим курсор на ввод почты
-        mFocusView = mEmail;
-        mFocusView.requestFocus();
+        if (!mFlag) {
 
+            // В случае проблемы с авторизацией
+            // Останавливаем диалог
+            mProgressDialog.dismiss();
+            //Оповещаем пользователя о некорректности введенных данных
+            Toast.makeText(getActivity(), "Почта или пароль введены неверно", Toast.LENGTH_SHORT).show();
+            // Устанавливаем совет пользователю
+            mEmail.setError("Проверьте почту");
+            mPassword.setError("Проверьте пароль");
+            // Ставим курсор на ввод почты
+            mFocusView = mEmail;
+            mFocusView.requestFocus();
+
+        }
     }
 
     private class DownloadTask extends AsyncTask<String,Integer,Void> {
@@ -155,7 +162,11 @@ public class LoginFragment extends Fragment {
 
             user = Commands.loginUser(tasks[0], tasks[1]);
 
-            if (user != null) {
+            if (user == null) {
+
+                mFlag = false;
+
+            } else {
 
                 // Сохраняем данные о пользователе
                 saveDate(user.getName(), user.getEmail(), user.getAge(), user.getCity(), user.getImage());
@@ -177,15 +188,18 @@ public class LoginFragment extends Fragment {
         // When all async task done
         protected void onPostExecute(Void result){
 
-            // Hide the progress dialog
-            mProgressDialog.dismiss();
+            if (mFlag){
 
-            // Оповещаем пользователе об успешной авторизации
-            Toast.makeText(getActivity(), "Вы успешно авторизовались", Toast.LENGTH_SHORT).show();
+                // Hide the progress dialog
+                mProgressDialog.dismiss();
 
-            // Отправление на главную активность
-            sentToMain();
+                // Оповещаем пользователе об успешной авторизации
+                Toast.makeText(getActivity(), "Вы успешно авторизовались", Toast.LENGTH_SHORT).show();
 
+                // Отправление на главную активность
+                sentToMain();
+
+            }
         }
 
     }

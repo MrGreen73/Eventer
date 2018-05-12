@@ -2,13 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ivan.eventer.view.Main.Search.SearchResultFragment">
+    tools:context="com.ivan.eventer.view.Main.Search.SearchResultFragment"
+    android:layout_gravity="center_horizontal">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerResultSearch"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_margin="10dp">
 
-    </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/resultInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Результат :"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/size_text_profile_large"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerResultSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
 
 </FrameLayout>

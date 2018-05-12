@@ -125,12 +125,11 @@ public class SettingsEventFragment extends Fragment implements
             String id = EventActivity.sEventPreview.getID();
             String position = mPosition.latitude + " " + mPosition.longitude;
 
-            Toast.makeText(getActivity(), position, Toast.LENGTH_LONG).show();
-
             saveData(id, title, describe, position);
 
 
         });
+
 
 
         SupportMapFragment mapFragment = new SupportMapFragment();
@@ -150,6 +149,7 @@ public class SettingsEventFragment extends Fragment implements
         EventActivity.sEventPreview.setPosition(position);
         EventActivity.sEventPreview.setTitle(title);
         EventActivity.sEventPreview.setAddress(mAddress);
+        EventActivity.mFlag = true;
 
         Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
 

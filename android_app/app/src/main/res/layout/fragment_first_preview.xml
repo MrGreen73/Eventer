@@ -79,30 +79,6 @@
 
                     </LinearLayout>
 
-
-                    <TextView
-                        android:id="@+id/describeFirstPreviewEvent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:hint="Описание"
-                        android:textColor="@color/textBlack"
-                        android:textSize="@dimen/size_text_profile_midle"/>
-
-                    <TextView
-                        android:id="@+id/addressFirstPreviewEvent"
-                        android:layout_width="match_parent"
-                        android:gravity="end"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:paddingVertical="7dp"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:text="Адрес"
-                        android:textColor="@color/textBlack"
-                        android:textSize="16sp" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -119,6 +95,38 @@
                         android:layout_marginVertical="15dp"/>
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/addressFirstPreviewEvent"
+                    android:layout_width="match_parent"
+                    android:gravity="end"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingVertical="7dp"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    android:text="Адрес"
+                    android:textColor="@color/textBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/size_text_profile_small"
+                    android:text="Описание: "
+                    android:textColor="@color/textBlack"/>
+
+                <TextView
+                    android:id="@+id/describeFirstPreviewEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    tools:text="Описание"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/size_text_profile_midle"/>
+
+
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
