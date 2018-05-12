@@ -100,6 +100,7 @@ public class EventActivity extends AppCompatActivity {
                 event.getKind(),
                 event.getTime(),
                 event.getPosition(),
+                event.getAddress(),
                 event.getDate()
 
         );

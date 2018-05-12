@@ -9,14 +9,16 @@ public class EventPreview {
     private byte[] mImage;
     private String mKind;
     private String mTime;
-    private String mPlace;
+    private String mPosition;
+    private String mAddress;
     private String mDate;
 
     public EventPreview() {
 
     }
 
-    public EventPreview(String ID, String title, String describe, String author, byte[] image, String kind, String time, String place, String date) {
+    public EventPreview(String ID, String title, String describe, String author, byte[] image, String kind, String time, String position, String address, String date) {
+
         mID = ID;
         mTitle = title;
         mDescribe = describe;
@@ -24,8 +26,10 @@ public class EventPreview {
         mImage = image;
         mKind = kind;
         mTime = time;
-        mPlace = place;
+        mPosition = position;
+        mAddress = address;
         mDate = date;
+
     }
 
     public String getID() {
@@ -84,12 +88,20 @@ public class EventPreview {
         mTime = time;
     }
 
-    public String getPlace() {
-        return mPlace;
+    public String getPosition() {
+        return mPosition;
     }
 
-    public void setPlace(String place) {
-        mPlace = place;
+    public void setPosition(String position) {
+        mPosition = position;
+    }
+
+    public String getAddress() {
+        return mAddress;
+    }
+
+    public void setAddress(String address) {
+        mAddress = address;
     }
 
     public String getDate() {

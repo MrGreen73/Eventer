@@ -21,7 +21,7 @@
                 android:id="@+id/itemEventImage"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:src="@drawable/natural_item1"
+                android:src="@drawable/event_1"
                 android:scaleType="centerCrop"/>
 
         </LinearLayout>

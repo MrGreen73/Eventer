@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.ivan.eventer.R;
+import com.ivan.eventer.model.EventPreview;
 import com.ivan.eventer.model.PersonDate;
 import com.ivan.eventer.view.Main.CreateFragment;
 import com.ivan.eventer.view.Main.HomeFragment;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Класс для хранения настроек
     public static PersonDate sPersonDate;
+    public static EventPreview sFirstPreviewEvent;
 
     // Кнопка для перехода к настройкам
     private ImageButton mSettingsBtn;
@@ -78,12 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 changeFragment(new CreateFragment());
                 changeTitle("Создание");
                 break;
-/*
-                    case R.id.navigation_like:
-
-                        changeFragment(new LikeFragment());
-                        changeTitle("Оповещения");
-                        break;*/
 
             case R.id.navigation_profile:
 

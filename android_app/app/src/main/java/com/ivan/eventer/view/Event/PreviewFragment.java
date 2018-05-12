@@ -1,6 +1,5 @@
 package com.ivan.eventer.view.Event;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.location.places.Place;
@@ -16,10 +14,12 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.ivan.eventer.R;
+import com.ivan.eventer.controller.EventActivity;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -27,28 +27,17 @@ import static android.app.Activity.RESULT_OK;
 public class PreviewFragment extends Fragment implements
         OnMapReadyCallback {
 
-
-    public static final String EVENT_PREVIEW = "previewfragment.preview";
-    public static final String PLACE = "previewfragment.place";
-    public static final String ADDRESS = "previewfragment.address";
-
     private static final int PLACE_PICKER_REQUEST = 1;
     private static final float DEFAULT_ZOOM = 18f;
 
     //Text
-    private TextView mName;
-    private TextView mCount;
+    private TextView mTitle;
     private TextView mDescribe;
+    private TextView mKind;
+    private TextView mTime;
 
     private TextView mAddressView;
 
-    private Button mSaveButton;
-    private Button mChooseButton;
-
-    //Progress
-    private ProgressDialog mProgress;
-
-    private String mEvenId;
     private Place mPlace;
 
 //    private EventPreview mPreview;
@@ -63,10 +52,6 @@ public class PreviewFragment extends Fragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        mPreview = (EventPreview) getArguments().getSerializable(EVENT_PREVIEW);
-        // TODO передать позицию
-//        mPosition = (LatLng) getArguments().getParcelable(PLACE);
-//        mAddress = mPreview.getAddress();
 
     }
 
@@ -77,30 +62,31 @@ public class PreviewFragment extends Fragment implements
 
         View v = inflater.inflate(R.layout.fragment_preview, container, false);
 
+        mTitle = v.findViewById(R.id.namePreviewEvent);
+        mDescribe = v.findViewById(R.id.describePreviewEvent);
+        mAddressView = v.findViewById(R.id.addressPreviewEvent);
+        mKind = v.findViewById(R.id.previewKind);
+        mTime = v.findViewById(R.id.previewTime);
 
-//        mProgress = new ProgressDialog(getActivity());
+        mKind.setText(EventActivity.sEventPreview.getKind());
+        mTime.setText(EventActivity.sEventPreview.getTime());
 
-//        mEvenId = mPreview.getEventId();
-        //mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(mEvenId);
-/*
-        mSaveButton = v.findViewById(R.id.saveEventSettings);
-        mName = v.findViewById(R.id.nameSettingsEvent);
-        mCount = v.findViewById(R.id.countSettingsEvent);
-        mDescribe = v.findViewById(R.id.describeSettingsEvent);
-//        mDescribe.setText(mPreview.getDescribe());
-        mAddressView = v.findViewById(R.id.addressSettingsEvent);
+        mTitle.setText(EventActivity.sEventPreview.getTitle());
+        mDescribe.setText(EventActivity.sEventPreview.getDescribe());
+        mAddress = EventActivity.sEventPreview.getAddress();
         mAddressView.setText(mAddress);
-        mChooseButton = (Button) v.findViewById(R.id.chooseBtnSettingsEvent);
 
-//        mName.setText(mPreview.getTitle());
-//        mCount.setText(String.valueOf(mPreview.getCount()));
-        //mPlace.setText(mPreview.getPlace());
+        //Устанавливаем метку на карте
+        String[] pos = EventActivity.sEventPreview.getPosition().split(" ");
+        mPosition = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
+        mMarkerPosition.setPosition(mPosition);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
 
         SupportMapFragment mapFragment = new SupportMapFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.mapPreview, mapFragment)
                 .commit();
-        mapFragment.getMapAsync(this);*/
+        mapFragment.getMapAsync(this);
 
         return v;
 
@@ -132,8 +118,11 @@ public class PreviewFragment extends Fragment implements
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
                 mAddress = mPlace.getAddress().toString();
                 mAddressView.setText(mAddress);
+
             }
+
         }
+
     }
 
 }

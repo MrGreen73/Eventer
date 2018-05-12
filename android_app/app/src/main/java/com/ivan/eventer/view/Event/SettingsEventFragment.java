@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.ivan.eventer.R;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
 
 import static android.app.Activity.RESULT_OK;
@@ -77,16 +78,24 @@ public class SettingsEventFragment extends Fragment implements
         mSaveButton = v.findViewById(R.id.saveEventSettings);
         mChooseButton = v.findViewById(R.id.chooseBtnSettingsEvent);
 
+//        Устанавливаем название
         mTitle = v.findViewById(R.id.nameSettingsEvent);
         mTitle.setText(EventActivity.sEventPreview.getTitle());
 
+        // Устанавливаем описание
         mDescribe = v.findViewById(R.id.describeSettingsEvent);
         mDescribe.setText(EventActivity.sEventPreview.getDescribe());
 
+        // Устанавливаем адресс
+        mAddress = EventActivity.sEventPreview.getAddress();
         mAddressView = v.findViewById(R.id.seAddress);
         mAddressView.setText(mAddress);
 
-        mPosition = new LatLng(0, 0);
+        //Устанавливаем метку на карте
+        String[] pos = EventActivity.sEventPreview.getPosition().split(" ");
+        mPosition = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
+        mMarkerPosition.setPosition(mPosition);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
 
         mChooseButton.setOnClickListener(view -> {
 
@@ -114,6 +123,12 @@ public class SettingsEventFragment extends Fragment implements
 
             String title = mTitle.getText().toString();
             String describe = mDescribe.getText().toString();
+            String id = EventActivity.sEventPreview.getID();
+            String position = mPosition.toString();
+
+            Toast.makeText(getActivity(), position, Toast.LENGTH_LONG).show();
+
+            saveData(id, title, describe, position);
 
 
         });
@@ -126,6 +141,19 @@ public class SettingsEventFragment extends Fragment implements
         mapFragment.getMapAsync(this);
 
         return v;
+
+    }
+
+    private void saveData(String id, String title, String describe, String position) {
+
+        Commands.updateEvent(id, title, describe, position);
+        EventActivity.sEventPreview.setTitle(title);
+        EventActivity.sEventPreview.setDescribe(describe);
+        EventActivity.sEventPreview.setPosition(title);
+        EventActivity.sEventPreview.setTitle(title);
+        EventActivity.sEventPreview.setAddress(mAddress);
+
+        Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
 
     }
 
