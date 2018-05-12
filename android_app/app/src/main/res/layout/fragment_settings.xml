@@ -5,7 +5,6 @@
     tools:context="com.ivan.eventer.view.Main.SettingsFragment"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,21 +12,53 @@
         android:background="@drawable/fon_1"
         android:weightSum="100">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="12"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:gravity="end"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp">
+            android:layout_marginTop="15dp">
 
-            <ImageButton
-                android:id="@+id/settingsInformation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_information" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginHorizontal="10dp"
+                android:weightSum="100">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:orientation="vertical"
+                    android:gravity="start">
+
+                    <ImageButton
+                        android:id="@+id/settingsWeather"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ic_weather"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:orientation="vertical"
+                    android:gravity="end">
+
+                    <ImageButton
+                        android:id="@+id/settingsInformation"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ic_information" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -348,8 +348,8 @@ public class CreateFragment extends Fragment {
         // Do the task in background/non UI thread
         protected String doInBackground(String...tasks){
 
-                String id;
-                id = Commands.createEvent(MainActivity.sPersonDate.getEmail(), tasks[0], tasks[1], mBaos, mChoiceKind, mChoiceTime, tasks[2]);
+            String id;
+            id = Commands.createEvent(MainActivity.sPersonDate.getEmail(), tasks[0], tasks[1], mBaos, mChoiceKind, mChoiceTime, tasks[2]);
                 // If the AsyncTask cancelled
             // Return the task list for post execute
             return id;

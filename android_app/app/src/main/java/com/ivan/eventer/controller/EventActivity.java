@@ -32,8 +32,6 @@ public class EventActivity extends AppCompatActivity {
 
     public static HashMap<String, Socket> sSocketMap;
 
-    public static boolean mFlag;
-
     static {
         sThreadsTo = new ArrayList<>();
         sThreadsFrom = new ArrayList<>();
@@ -65,8 +63,6 @@ public class EventActivity extends AppCompatActivity {
 
         mEventId = getID();
         makeEvent(mEventId);
-
-        mFlag = false;
 
         mSocketId = sThreadsTo.size();
 

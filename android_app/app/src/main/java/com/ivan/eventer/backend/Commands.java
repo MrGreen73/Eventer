@@ -205,11 +205,11 @@ public class Commands {
 
     }
 
-    public static void updateEvent(String Id, String title, String description, String place) {
+    public static void updateEvent(String Id, String title, String description, String place, String address) {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                String url = "http://" + IP + "/updateEvent?Id=" + Id + "&title=" + title + "&description=" + description + "&place=" + place;
+                String url = "http://" + IP + "/updateEvent?Id=" + Id + "&title=" + title + "&description=" + description + "&place=" + place + "&address=" + address;
 
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());

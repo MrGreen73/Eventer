@@ -25,6 +25,8 @@ public class EventFragment extends Fragment {
     //
     private int mPageNumber;
 
+    EventMonitorAdapter mEventMonitorAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +47,8 @@ public class EventFragment extends Fragment {
         mViewPager = view.findViewById(R.id.viewPager);
         mTabLayout = view.findViewById(R.id.tabLayout);
 
-        mViewPager.setAdapter(new EventMonitorAdapter((EventActivity) getActivity(), getFragmentManager(),  4, isAuthor()));
+        mEventMonitorAdapter = new EventMonitorAdapter((EventActivity) getActivity(), getFragmentManager(), 4, isAuthor());
+        mViewPager.setAdapter(mEventMonitorAdapter);
 
         // Добавляем стандартного слушателя
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));

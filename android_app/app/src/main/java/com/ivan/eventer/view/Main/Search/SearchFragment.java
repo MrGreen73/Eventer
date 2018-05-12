@@ -1,7 +1,6 @@
 package com.ivan.eventer.view.Main.Search;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -51,7 +50,7 @@ public class SearchFragment extends Fragment {
 
         mSearchByAfisha.setOnClickListener(v1 -> {
 
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.afisha.ru"));
+            Intent browserIntent = new Intent(getActivity(), WebActivity.class);
             startActivity(browserIntent);
 
         });

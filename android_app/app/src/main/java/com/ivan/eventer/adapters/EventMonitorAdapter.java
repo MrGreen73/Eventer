@@ -15,7 +15,7 @@ public class EventMonitorAdapter extends FragmentPagerAdapter {
     private int mNumOfTabs;
     private boolean mIsAuthor;
 
-    private Fragment[] mFragments;
+    public Fragment[] mFragments;
 
     public EventMonitorAdapter(EventActivity sourceActivity, FragmentManager fm, int numOfTabs, boolean isAuthor) {
         super(fm);

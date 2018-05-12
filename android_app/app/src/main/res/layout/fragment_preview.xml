@@ -102,18 +102,17 @@
                 android:layout_width="match_parent"
                 android:gravity="end"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:paddingVertical="7dp"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:text="Адрес"
                 android:textColor="@color/textBlack"
-                android:textSize="16sp" />
+                android:textSize="@dimen/size_text_profile_small" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/size_text_profile_small"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/size_text_profile_midle"
                 android:text="Описание: "
                 android:textColor="@color/textBlack"/>
 
@@ -124,7 +123,7 @@
                 android:layout_marginStart="10dp"
                 tools:text="Описание"
                 android:textColor="@color/textBlack"
-                android:textSize="@dimen/size_text_profile_midle"/>
+                android:textSize="@dimen/size_text_profile_large"/>
 
         </LinearLayout>
 

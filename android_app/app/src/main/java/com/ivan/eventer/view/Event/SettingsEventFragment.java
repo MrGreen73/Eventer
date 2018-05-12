@@ -144,14 +144,19 @@ public class SettingsEventFragment extends Fragment implements
 
     private void saveData(String id, String title, String describe, String position) {
 
-        Commands.updateEvent(id, title, describe, position);
+        Commands.updateEvent(id, title, describe, position, mAddress);
         EventActivity.sEventPreview.setDescribe(describe);
         EventActivity.sEventPreview.setPosition(position);
         EventActivity.sEventPreview.setTitle(title);
         EventActivity.sEventPreview.setAddress(mAddress);
-        EventActivity.mFlag = true;
+
+        Intent refreshIntent = new Intent(getActivity(), EventActivity.class);
+        refreshIntent.putExtra("ID", id);
+        startActivity(refreshIntent);
 
         Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
+
+        getActivity().finish();
 
     }
 

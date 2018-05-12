@@ -68,7 +68,6 @@ public class LoginFragment extends Fragment {
         mButtonLogin = v.findViewById(R.id.logBtn);
         mProgressDialog = new ProgressDialog(getActivity());
 
-        mFlag = true;
 
         Time time = new Time();
         time.setToNow();
@@ -122,27 +121,15 @@ public class LoginFragment extends Fragment {
 
     private void loginUser(String email, String password) {
 
+        mFlag = true;
+
         mMyTask = new DownloadTask()
                 .execute(
                         email,
                         password
                 );
 
-        if (!mFlag) {
 
-            // В случае проблемы с авторизацией
-            // Останавливаем диалог
-            mProgressDialog.dismiss();
-            //Оповещаем пользователя о некорректности введенных данных
-            Toast.makeText(getActivity(), "Почта или пароль введены неверно", Toast.LENGTH_SHORT).show();
-            // Устанавливаем совет пользователю
-            mEmail.setError("Проверьте почту");
-            mPassword.setError("Проверьте пароль");
-            // Ставим курсор на ввод почты
-            mFocusView = mEmail;
-            mFocusView.requestFocus();
-
-        }
     }
 
     private class DownloadTask extends AsyncTask<String,Integer,Void> {
@@ -198,6 +185,20 @@ public class LoginFragment extends Fragment {
 
                 // Отправление на главную активность
                 sentToMain();
+
+            } else {
+
+                // В случае проблемы с авторизацией
+                // Останавливаем диалог
+                mProgressDialog.dismiss();
+                //Оповещаем пользователя о некорректности введенных данных
+                Toast.makeText(getActivity(), "Почта или пароль введены неверно", Toast.LENGTH_SHORT).show();
+                // Устанавливаем совет пользователю
+                mEmail.setError("Проверьте почту");
+                mPassword.setError("Проверьте пароль");
+                // Ставим курсор на ввод почты
+                mFocusView = mEmail;
+                mFocusView.requestFocus();
 
             }
         }
