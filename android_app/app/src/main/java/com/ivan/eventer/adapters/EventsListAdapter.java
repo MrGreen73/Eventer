@@ -1,5 +1,7 @@
 package com.ivan.eventer.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ivan.eventer.R;
+import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.model.Event;
 
 import java.util.List;
@@ -55,16 +58,11 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
                 // Cделать задачю для загрузки ферст
 
 
-
-
-/*
                 Intent eventIntent = new Intent(v.getContext(), EventActivity.class);
                 eventIntent.putExtra("ID", id);
 
                 Context context = v.getContext();
                 context.startActivity(eventIntent);
-*/
-
             }
 
         }

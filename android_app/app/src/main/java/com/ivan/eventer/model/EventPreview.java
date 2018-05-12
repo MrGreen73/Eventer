@@ -111,4 +111,5 @@ public class EventPreview {
     public void setDate(String date) {
         mDate = date;
     }
+
 }

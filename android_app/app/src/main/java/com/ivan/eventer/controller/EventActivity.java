@@ -20,22 +20,35 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EventActivity extends AppCompatActivity {
 
     public static EventPreview sEventPreview;
 
-    private FragmentManager mFragmentManager;
-    private Fragment mContainer;
-    private Fragment mFragment;
+    public static ArrayList<Thread> sThreadsFrom;
+
+    public static ArrayList<Thread> sThreadsTo;
+
+    public static HashMap<String, Socket> sSocketMap;
+
+    static {
+        sThreadsTo = new ArrayList<>();
+        sThreadsFrom = new ArrayList<>();
+        sSocketMap = new HashMap<>();
+    }
 
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
+
     static String address = "192.168.43.69"; // это IP-адрес компьютера, где исполняется наша серверная программа.
+    private String mEventId;
+    // ID в массиве сокетов
+    private int mSocketId;
 
-    private Thread mThreadFrom;
-    private Thread mThreadTo;
+    private FragmentManager mFragmentManager;
 
-    private static Socket mSocket;
+    private Fragment mContainer;
+    private Fragment mFragment;
 
     private DataOutputStream out;
     private DataInputStream in;
@@ -48,28 +61,29 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        makeEvent(getID());
+        mEventId = getID();
+        makeEvent(mEventId);
 
-        mThreadTo = new Thread() {
+        mSocketId = sThreadsTo.size();
 
-            @Override
-            public void run() {
-                makeConnection();
+        sThreadsTo.add(
+                new Thread() {
+                    @Override
+                    public void run() {
+                        makeConnection();
+                    }
+                }
+        );
 
-            }
 
-        };
 
-        mThreadTo.start();
+        sThreadsTo.get(mSocketId).start();
 
         try {
-
-            mThreadTo.join();
+            sThreadsTo.get(mSocketId).join();
 
         } catch (InterruptedException e) {
-
             e.printStackTrace();
-
         }
 
         FragmentManager fm = getSupportFragmentManager();
@@ -115,7 +129,6 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private String getID() {
-
         return getIntent().getStringExtra("ID");
 
     }
@@ -126,54 +139,59 @@ public class EventActivity extends AppCompatActivity {
 
             InetAddress ipAddress = InetAddress.getByName(address); // создаем объект который отображает вышеописанный IP-адрес.
             System.out.println("Any of you heard of a socket with IP address " + address + " and port " + serverPort + "?");
-            mSocket = new Socket(ipAddress, serverPort); // создаем сокет используя IP-адрес и порт сервера.
-            System.out.println("Yes! I just got hold of the program.");
 
-            // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиентом.
-            InputStream sin = mSocket.getInputStream();
-            OutputStream sout = mSocket.getOutputStream();
+            Socket socket = sSocketMap.get(mEventId);
+            if (socket == null || socket.isClosed()) {
+                System.out.println("Yes! I just got hold of the program.");
+                socket = new Socket(ipAddress, serverPort); // создаем сокет используя IP-адрес и порт сервера.
+                sSocketMap.put(mEventId, socket);
 
-            // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
-            in = new DataInputStream(sin);
-            out = new DataOutputStream(sout);
+                // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиентом.
+                InputStream sin = socket.getInputStream();
+                OutputStream sout = socket.getOutputStream();
 
-            out.writeUTF(getID());
+                // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
+                in = new DataInputStream(sin);
+                out = new DataOutputStream(sout);
 
-            System.err.println(getID());
+                out.writeUTF(getID());
 
-            out.flush();
+                System.err.println(getID());
 
-            System.out.println("Type in something and press enter. Will send it to the server and tell ya what it thinks.");
-            System.out.println();
+                out.flush();
 
-            mThreadFrom = new Thread(() -> {
+                System.out.println("Type in something and press enter. Will send it to the server and tell ya what it thinks.");
+                System.out.println();
 
-                while (true) {
+                sThreadsFrom.add(new Thread(() -> {
 
-                    String messageString = "0 "; // ждем пока сервер отошлет строку текста.
-                    try {
-                        messageString = in.readUTF();
-                    } catch (IOException e) {
-                        break;
-                    }
+                    while (true) {
 
-                    Log.d("DEBUG", messageString);
-                    char commandType = messageString.charAt(0);
+                        String messageString = "0 "; // ждем пока сервер отошлет строку текста.
+                        try {
+                            messageString = in.readUTF();
+                        } catch (IOException e) {
+                            break;
+                        }
 
-                    String data = "";
-                    if (messageString.length() >= 2){
-                        data = messageString.substring(2, messageString.length() - 1);
-                    }
+                        Log.d("DEBUG", messageString);
+                        char commandType = messageString.charAt(0);
 
-                    for (ConnectionListener listener : mConnectionListeners) {
-                        if (listener.getCommandType() == commandType) {
-                            listener.getData(data);
+                        String data = "";
+                        if (messageString.length() >= 2) {
+                            data = messageString.substring(2, messageString.length() - 1);
+                        }
+
+                        for (ConnectionListener listener : mConnectionListeners) {
+                            if (listener.getCommandType() == commandType) {
+                                listener.getData(data);
+                            }
                         }
                     }
-                }
 
-            });
-            mThreadFrom.start();
+                }));
+                sThreadsFrom.get(mSocketId).start();
+            }
         } catch (Exception x) {
 
             x.printStackTrace();
@@ -197,9 +215,9 @@ public class EventActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         try {
-            mSocket.close();
+            sSocketMap.get(mEventId).close();
             try {
-                mThreadFrom.stop();
+                sThreadsFrom.get(mSocketId).stop();
 
             } catch (Exception ex) {
 

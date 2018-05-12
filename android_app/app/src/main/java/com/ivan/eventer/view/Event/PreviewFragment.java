@@ -79,8 +79,8 @@ public class PreviewFragment extends Fragment implements
         //Устанавливаем метку на карте
         String[] pos = EventActivity.sEventPreview.getPosition().split(" ");
         mPosition = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
-        mMarkerPosition.setPosition(mPosition);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
+//        mMarkerPosition.setPosition(mPosition);
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
 
         SupportMapFragment mapFragment = new SupportMapFragment();
         getFragmentManager().beginTransaction()

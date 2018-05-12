@@ -84,7 +84,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         holder.messageDate.setText(DateFormat.format("dd-MM-yyyy (hh:mm:ss)", mMessagesList.get(position).getDate()));
         User user = Commands.userByEmail(mMessagesList.get(position).getFrom());
 
-        holder.messageImage.setImageBitmap(getBitmap(user.getImage()));
+            holder.messageImage.setImageBitmap(getBitmap(user.getImage()));
     }
 
     public class MessageViewHolder extends RecyclerView.ViewHolder {

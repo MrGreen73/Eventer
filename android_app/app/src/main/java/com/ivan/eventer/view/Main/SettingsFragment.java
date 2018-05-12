@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
+import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
 
@@ -33,6 +34,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -203,6 +205,13 @@ public class SettingsFragment extends Fragment {
     // Выход из аккаунта
     private void logOut() {
 
+        for (Socket socket : EventActivity.sSocketMap.values()){
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         MainActivity.sPersonDate.deletePerson();
         updateSharedPreferences("","","");
 

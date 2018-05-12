@@ -94,8 +94,7 @@ public class SettingsEventFragment extends Fragment implements
         //Устанавливаем метку на карте
         String[] pos = EventActivity.sEventPreview.getPosition().split(" ");
         mPosition = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
-        mMarkerPosition.setPosition(mPosition);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
 
         mChooseButton.setOnClickListener(view -> {
 
@@ -124,7 +123,7 @@ public class SettingsEventFragment extends Fragment implements
             String title = mTitle.getText().toString();
             String describe = mDescribe.getText().toString();
             String id = EventActivity.sEventPreview.getID();
-            String position = mPosition.toString();
+            String position = mPosition.latitude + " " + mPosition.longitude;
 
             Toast.makeText(getActivity(), position, Toast.LENGTH_LONG).show();
 
@@ -147,9 +146,8 @@ public class SettingsEventFragment extends Fragment implements
     private void saveData(String id, String title, String describe, String position) {
 
         Commands.updateEvent(id, title, describe, position);
-        EventActivity.sEventPreview.setTitle(title);
         EventActivity.sEventPreview.setDescribe(describe);
-        EventActivity.sEventPreview.setPosition(title);
+        EventActivity.sEventPreview.setPosition(position);
         EventActivity.sEventPreview.setTitle(title);
         EventActivity.sEventPreview.setAddress(mAddress);
 
@@ -168,7 +166,6 @@ public class SettingsEventFragment extends Fragment implements
                 .draggable(false)
                 .flat(true)
                 .title("Место встречи"));
-
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
     }
 
