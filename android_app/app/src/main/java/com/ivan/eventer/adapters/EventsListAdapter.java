@@ -59,10 +59,6 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
             @Override
             public void onClick(View v) {
 
-
-                // Cделать задачю для загрузки ферст
-
-
                 if (Commands.checkUserInEvent(id, MainActivity.sPersonDate.getEmail())){
 
                     Intent eventIntent = new Intent(v.getContext(), EventActivity.class);
@@ -91,13 +87,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
 
                     MainActivity.changeFragment(new FirstPreviewFragment());
 
-
                 }
-
-
-/*
-
-*/
 
             }
 

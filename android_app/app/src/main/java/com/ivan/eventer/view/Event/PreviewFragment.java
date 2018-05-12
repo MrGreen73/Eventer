@@ -35,6 +35,7 @@ public class PreviewFragment extends Fragment implements
     private TextView mDescribe;
     private TextView mKind;
     private TextView mTime;
+    private TextView mDate;
 
     private TextView mAddressView;
 
@@ -67,9 +68,11 @@ public class PreviewFragment extends Fragment implements
         mAddressView = v.findViewById(R.id.addressPreviewEvent);
         mKind = v.findViewById(R.id.previewKind);
         mTime = v.findViewById(R.id.previewTime);
+        mDate = v.findViewById(R.id.previewDate);
 
         mKind.setText(EventActivity.sEventPreview.getKind());
         mTime.setText(EventActivity.sEventPreview.getTime());
+        mDate.setText(EventActivity.sEventPreview.getDate());
 
         mTitle.setText(EventActivity.sEventPreview.getTitle());
         mDescribe.setText(EventActivity.sEventPreview.getDescribe());
@@ -79,8 +82,6 @@ public class PreviewFragment extends Fragment implements
         //Устанавливаем метку на карте
         String[] pos = EventActivity.sEventPreview.getPosition().split(" ");
         mPosition = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
-//        mMarkerPosition.setPosition(mPosition);
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
 
         SupportMapFragment mapFragment = new SupportMapFragment();
         getFragmentManager().beginTransaction()

@@ -163,9 +163,20 @@ public class SearchResultFragment extends Fragment {
 
             for (int k = 0; k < 4; k ++) {
 
-                List<Integer> list = Bitap.find(eventTitle, title, k);
-                if (list != null && list.size() > 0){
+                String bigTitle = title;
+
+                while (bigTitle.length() < eventTitle.length()){
+
+                    bigTitle += " ";
+
+                }
+
+                List<Integer> list = Bitap.find(eventTitle, bigTitle, k);
+
+                if (list != null && list.size() > 0 && Math.abs(eventTitle.length() - title.length()) < 3){
+
                     check = true;
+
                 }
 
             }
@@ -243,17 +254,6 @@ public class SearchResultFragment extends Fragment {
             // Hide the progress dialog
             mProgressDialog.dismiss();
 
-            String information;
-
-            if (mSearchList.size() > 0){
-
-                information = "Результат: " + mSearchList.size();
-
-            } else {
-
-                information = "Результат: Не найдено";
-
-            }
             mInfrotmation.setText("Результат: " + mSearchList.size());
             mEventsListAdapter = new EventsListAdapter(mSearchList);
             mRecyclerView.setAdapter(mEventsListAdapter);

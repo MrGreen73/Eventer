@@ -28,6 +28,7 @@ import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.controller.MainActivity;
 import com.ivan.eventer.controller.StartActivity;
+import com.ivan.eventer.view.Main.Search.WebActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -53,6 +54,7 @@ public class SettingsFragment extends Fragment {
     private Button mSaveBtn; // Для сохранения данных
     private Button mOutBtn; // Для выхода из аккаунта
     private ImageButton mInfBtn; // Для получения информации
+    private ImageButton mWetherBtn; // Для просмотра погоды
     private ImageButton mChangeImageBtn; // Для смены картинки
     private ImageButton mLoadImageBtn; // Для загрузки картинки
 
@@ -81,6 +83,7 @@ public class SettingsFragment extends Fragment {
         mSaveBtn = view.findViewById(R.id.saveBtn);
         mOutBtn = view.findViewById(R.id.outBtn);
         mInfBtn = view.findViewById(R.id.settingsInformation);
+        mWetherBtn = view.findViewById(R.id.settingsWeather);
         mLoadImageBtn = view.findViewById(R.id.settingsLoadImageBtn);
         mChangeImageBtn = view.findViewById(R.id.settingsChangeImageBtn);
         mImageUser= view.findViewById(R.id.settingsImageUser);
@@ -195,6 +198,14 @@ public class SettingsFragment extends Fragment {
         mLoadImageBtn.setOnClickListener(v1 -> {
 
             loadImage();
+
+        });
+
+        mWetherBtn.setOnClickListener(v1 -> {
+
+            Intent browserIntent = new Intent(getActivity(), WebActivity.class);
+            browserIntent.putExtra("TYPE", "W");
+            startActivity(browserIntent);
 
         });
 

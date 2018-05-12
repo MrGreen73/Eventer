@@ -51,6 +51,7 @@ public class SearchFragment extends Fragment {
         mSearchByAfisha.setOnClickListener(v1 -> {
 
             Intent browserIntent = new Intent(getActivity(), WebActivity.class);
+            browserIntent.putExtra("TYPE", "A");
             startActivity(browserIntent);
 
         });

@@ -40,6 +40,7 @@ public class FirstPreviewFragment extends Fragment implements
 
     private TextView mKind;
     private TextView mTime;
+    private TextView mDate;
 
     private TextView mAddressView;
 
@@ -74,6 +75,7 @@ public class FirstPreviewFragment extends Fragment implements
         mAddressView = v.findViewById(R.id.addressFirstPreviewEvent);
         mKind = v.findViewById(R.id.firstPreviewKind);
         mTime = v.findViewById(R.id.firstPreviewTime);
+        mDate = v.findViewById(R.id.firstPreviewDate);
 
         mTitle.setText(MainActivity.sFirstPreviewEvent.getTitle());
         mDescribe.setText(MainActivity.sFirstPreviewEvent.getDescribe());
@@ -82,11 +84,11 @@ public class FirstPreviewFragment extends Fragment implements
 
         mKind.setText(MainActivity.sFirstPreviewEvent.getKind());
         mTime.setText(MainActivity.sFirstPreviewEvent.getTime());
+        mDate.setText(MainActivity.sFirstPreviewEvent.getDate());
 
         //Устанавливаем метку на карте
         String[] pos = MainActivity.sFirstPreviewEvent.getPosition().split(" ");
         mPosition = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
 
         SupportMapFragment mapFragment = new SupportMapFragment();
         getFragmentManager().beginTransaction()
@@ -105,7 +107,6 @@ public class FirstPreviewFragment extends Fragment implements
             context.startActivity(eventIntent);
 
         });
-
 
         return v;
 

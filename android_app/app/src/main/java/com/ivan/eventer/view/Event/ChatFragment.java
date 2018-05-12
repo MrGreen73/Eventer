@@ -58,14 +58,11 @@ public class ChatFragment extends Fragment implements EventActivity.ConnectionLi
 
         });
 
-
         mRecyclerView = v.findViewById(R.id.recyclerChat);
 
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(llm);
-//        mMessageAdapter = new MessageAdapter(mMessagesList = new ArrayList<>());
-//        mRecyclerView.setAdapter(mMessageAdapter);
 
         showMessages();
 
@@ -98,20 +95,20 @@ public class ChatFragment extends Fragment implements EventActivity.ConnectionLi
             @Override
             public void run() {
 
-//                mMessagesList.clear();
-//                mMessagesList.addAll((Commands.getMessages(EventActivity.sEventPreview.getID())).getMessages());
                 mMessagesList = Commands.getMessages(EventActivity.sEventPreview.getID()).getMessages();
                 getActivity().runOnUiThread(() -> {
 
                     mMessageAdapter = new MessageAdapter(mMessagesList);
                     mRecyclerView.setAdapter(mMessageAdapter);
 
-//                    mMessageAdapter.notifyDataSetChanged();
 
                     if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
+
                         mRecyclerView.scrollToPosition(mMessagesList.size() - 1);
+
                     }
                 });
+
             }
         };
 
@@ -146,8 +143,7 @@ public class ChatFragment extends Fragment implements EventActivity.ConnectionLi
             getActivity().runOnUiThread(() -> {
 
                 mMessagesList.add(message);
-//                                mMessageAdapter = new MessageAdapter(mMessagesList);
-//                mMessageAdapter.notifyDataSetChanged();
+
                 mRecyclerView.setAdapter(mMessageAdapter);
                 mMessage.setText("");
 
