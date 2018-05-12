@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -198,8 +199,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (mContainer == null) {
 
-            mFragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).addToBackStack(null).commit();
-
+            mFragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).commit();
+            Log.d("DEBUG", "" + mFragmentManager.getBackStackEntryCount());
         }
 
     }
@@ -208,7 +209,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (mContainer == null) {
 
-            mFragmentManager.beginTransaction().add(R.id.mainContainer, fragment).addToBackStack(null).commit();
+            mFragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).addToBackStack(null).commit();
+            Log.d("DEBUG", "" + mFragmentManager.getBackStackEntryCount());
         }
 
     }
@@ -236,13 +238,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        int count = getFragmentManager().getBackStackEntryCount();
 
-        if (count == 0) {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count <= 1) {
+            getSupportFragmentManager().popBackStack();
             super.onBackPressed();
-            //additional code
+        //additional code
         } else {
-            getFragmentManager().popBackStack();
+            getSupportFragmentManager().popBackStack();
         }
+        Log.d("DEBUG", "Осталось: " + getSupportFragmentManager().getBackStackEntryCount());
     }
 }
