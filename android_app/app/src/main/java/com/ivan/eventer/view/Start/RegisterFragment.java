@@ -229,7 +229,7 @@ public class RegisterFragment extends Fragment {
             // Hide the progress dialog
             mProgressDialog.dismiss();
 
-            Toast.makeText(getActivity(), "Событие создано", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Вы успешно зарегестрировались", Toast.LENGTH_SHORT).show();
             sentToMain();
 
         }

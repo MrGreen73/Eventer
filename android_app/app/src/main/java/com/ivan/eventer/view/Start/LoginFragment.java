@@ -181,7 +181,7 @@ public class LoginFragment extends Fragment {
             mProgressDialog.dismiss();
 
             // Оповещаем пользователе об успешной авторизации
-            Toast.makeText(getActivity(), "Вы успешно авторизованы", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Вы успешно авторизовались", Toast.LENGTH_SHORT).show();
 
             // Отправление на главную активность
             sentToMain();
