@@ -40,7 +40,7 @@ public class EventActivity extends AppCompatActivity {
 
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
 
-    static String address = "192.168.43.69"; // это IP-адрес компьютера, где исполняется наша серверная программа.
+    static String address = "37.230.113.214"; // это IP-адрес компьютера, где исполняется наша серверная программа.
     private String mEventId;
     // ID в массиве сокетов
     private int mSocketId;

@@ -26,9 +26,9 @@ import java.util.ArrayList;
  */
 public class Commands {
     // Create a new RestTemplate instance
-    public static String IP = "192.168.43.69:8008";
+    public static String IP = "37.230.113.214:8008";
     static int serverPort = 6667; // здесь обязательно нужно указать порт к которому привязывается сервер.
-    static String address = "192.168.43.69"; // это IP-адрес компьютера, где исполняется наша серверная программа.
+    static String address = "37.230.113.214"; // это IP-адрес компьютера, где исполняется наша серверная программа.
 
 
     public static User loginUser(String email, String password) {
