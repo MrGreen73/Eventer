@@ -76,7 +76,14 @@ public class PreviewFragment extends Fragment implements
         mDate = v.findViewById(R.id.previewDate);
         mImage = v.findViewById(R.id.previewImage);
 
-        mKind.setText(EventActivity.sEventPreview.getKind());
+        String kind = EventActivity.sEventPreview.getKind();
+        if (kind.equals("Активный")){
+
+            kind += " отдых";
+
+        }
+
+        mKind.setText(kind);
         mTime.setText(EventActivity.sEventPreview.getTime());
         mDate.setText(EventActivity.sEventPreview.getDate());
         mImage.setImageBitmap(getBitmap(EventActivity.sEventPreview.getImage()));

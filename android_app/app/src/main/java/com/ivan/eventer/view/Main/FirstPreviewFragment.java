@@ -88,7 +88,14 @@ public class FirstPreviewFragment extends Fragment implements
         mAddress = MainActivity.sFirstPreviewEvent.getAddress();
         mAddressView.setText(mAddress);
 
-        mKind.setText(MainActivity.sFirstPreviewEvent.getKind());
+        String kind = EventActivity.sEventPreview.getKind();
+        if (kind.equals("Активный")){
+
+            kind += " отдых";
+
+        }
+
+        mKind.setText(kind);
         mTime.setText(MainActivity.sFirstPreviewEvent.getTime());
         mDate.setText(MainActivity.sFirstPreviewEvent.getDate());
         mImage.setImageBitmap(getBitmap(MainActivity.sFirstPreviewEvent.getImage()));
