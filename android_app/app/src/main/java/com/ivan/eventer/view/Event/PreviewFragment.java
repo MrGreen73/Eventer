@@ -1,12 +1,15 @@
 package com.ivan.eventer.view.Event;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.location.places.Place;
@@ -36,6 +39,8 @@ public class PreviewFragment extends Fragment implements
     private TextView mKind;
     private TextView mTime;
     private TextView mDate;
+
+    private ImageView mImage;
 
     private TextView mAddressView;
 
@@ -69,10 +74,12 @@ public class PreviewFragment extends Fragment implements
         mKind = v.findViewById(R.id.previewKind);
         mTime = v.findViewById(R.id.previewTime);
         mDate = v.findViewById(R.id.previewDate);
+        mImage = v.findViewById(R.id.previewImage);
 
         mKind.setText(EventActivity.sEventPreview.getKind());
         mTime.setText(EventActivity.sEventPreview.getTime());
         mDate.setText(EventActivity.sEventPreview.getDate());
+        mImage.setImageBitmap(getBitmap(EventActivity.sEventPreview.getImage()));
 
         mTitle.setText(EventActivity.sEventPreview.getTitle());
         mDescribe.setText(EventActivity.sEventPreview.getDescribe());
@@ -90,6 +97,13 @@ public class PreviewFragment extends Fragment implements
         mapFragment.getMapAsync(this);
 
         return v;
+
+    }
+
+
+    private Bitmap getBitmap(byte[] image) {
+
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
 
     }
 

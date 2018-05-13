@@ -28,6 +28,8 @@ import com.ivan.eventer.R;
 import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
 
+import java.io.IOException;
+
 import static android.app.Activity.RESULT_OK;
 
 
@@ -150,13 +152,7 @@ public class SettingsEventFragment extends Fragment implements
         EventActivity.sEventPreview.setTitle(title);
         EventActivity.sEventPreview.setAddress(mAddress);
 
-        Intent refreshIntent = new Intent(getActivity(), EventActivity.class);
-        refreshIntent.putExtra("ID", id);
-        startActivity(refreshIntent);
-
-        Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
-
-        getActivity().finish();
+        Toast.makeText(getActivity(), "Сохранено. Перезайдите в событие!", Toast.LENGTH_SHORT).show();
 
     }
 

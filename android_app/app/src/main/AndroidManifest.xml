@@ -22,11 +22,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <service
-            android:name=".NotificationService"
-            android:enabled="true"
-            android:exported="false"></service>
-
         <activity
             android:name=".controller.MainActivity"
             android:configChanges="orientation"

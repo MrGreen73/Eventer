@@ -93,10 +93,31 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
+    private Thread thread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        if (savedInstanceState == null){
+//            thread = new Thread(() -> {
+//                ActivityManager.MemoryInfo mf = new ActivityManager.MemoryInfo();
+//                ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+//
+//
+//                long lastTIme = System.currentTimeMillis();
+//                while (true){
+//                    if (System.currentTimeMillis() - lastTIme > 1000){
+//                        activityManager.getMemoryInfo(mf);
+//                        double available = mf.availMem / 0x100000L;
+//                        Log.d("DEBUG", String.valueOf(available));
+//                        lastTIme = System.currentTimeMillis();
+//                    }
+//                }
+//            });
+//            thread.start();
+//        }
+
 
         // Загружаем данные о пользователе
 
@@ -209,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (mContainer == null) {
 
-            mFragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).addToBackStack(null).commit();
+            mFragmentManager.beginTransaction().replace(R.id.mainContainer, fragment).addToBackStack("search").commit();
             Log.d("DEBUG", "" + mFragmentManager.getBackStackEntryCount());
         }
 
@@ -248,5 +269,11 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
         }
         Log.d("DEBUG", "Осталось: " + getSupportFragmentManager().getBackStackEntryCount());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        thread.stop();
     }
 }

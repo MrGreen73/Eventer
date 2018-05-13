@@ -3,64 +3,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorMalibu"
+    android:weightSum="100"
     android:orientation="vertical"
-    android:background="#bbbbbb"
-    android:weightSum="100">
+    tools:context="com.ivan.eventer.view.Event.ThingsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_marginTop="15dp"
-        android:layout_weight="90">
+        android:layout_weight="100">
 
-        <ListView
-            android:id="@+id/lvMain"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerThings"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbarSize="@dimen/scrollbar_size"
+            android:scrollbarThumbVertical="@color/colorPrimaryDark"
+            android:scrollbars="vertical">
 
-        </ListView>
-
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:background="@android:color/white"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="83"
-            android:hint="Добавить"
-            android:inputType="textAutoCorrect|textLongMessage"
-            android:textColor="#000000"
-            android:textColorHint="#727272" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0"
+        android:gravity="bottom">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="17"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:weightSum="100">
 
-            <ImageButton
-                android:id="@+id/buttonAdd"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/thing_edit_text"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:background="@color/colorWhite"
-                app:srcCompat="@drawable/ic_chat_sent" />
+                android:layout_weight="83"
+                android:hint="Введите сообщение..."
+                android:inputType="textAutoCorrect|textLongMessage"
+                android:textColor="#000000"
+                android:textColorHint="#727272" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="17"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/thing_send_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_chat_sent" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

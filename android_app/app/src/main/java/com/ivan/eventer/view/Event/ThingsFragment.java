@@ -3,41 +3,50 @@ package com.ivan.eventer.view.Event;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import com.ivan.eventer.R;
-import com.ivan.eventer.adapters.EventThingAdapter;
+import com.ivan.eventer.adapters.ThingAdapter;
+import com.ivan.eventer.backend.Commands;
 import com.ivan.eventer.controller.EventActivity;
 import com.ivan.eventer.model.Thing;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class ThingsFragment extends Fragment implements EventActivity.ConnectionListener {
-    public static final String EVENT_PREVIEW = "thingsfragment.event_preview";
 
     private EventActivity mEventActivity;
 
-    private ArrayList<Thing> names;
-    private ImageButton mCreateThing;
-    private EditText mTextThing;
+    //Лист
+    private List<Thing> mThingsList;
 
-//    private EventPreview mPreview;
-    private String mEvenId;
+    // Адаптер
+    private ThingAdapter mThingAdapter;
 
+    // Вещь
+    private EditText mThing;
+
+    // Кнопка для добавления
+    private ImageButton mSendBtn;
+
+    // Список
+    private RecyclerView mRecyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mEventActivity = (EventActivity) getActivity();
 
-        //        mPreview = (EventPreview) getArguments().getSerializable(EVENT_PREVIEW);
     }
 
     @Nullable
@@ -46,91 +55,79 @@ public class ThingsFragment extends Fragment implements EventActivity.Connection
         super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.fragment_things, container, false);
-        mCreateThing = v.findViewById(R.id.buttonAdd);
-        // super.onCreate(savedInstanceState);
-        //  setContentView(R.layout.main);
-//        mPreview = (EventPreview) getArguments().getSerializable(EVENT_PREVIEW);
-//        mEvenId = mPreview.getEventId();
-        mTextThing = v.findViewById(R.id.editText);
-        names = new ArrayList<Thing>();
+        mSendBtn = v.findViewById(R.id.thing_send_btn);
+        mThing = v.findViewById(R.id.thing_edit_text);
 
-        // находим список
-        ListView lvMain = (ListView) v.findViewById(R.id.lvMain);
+        mSendBtn.setOnClickListener(v1 -> {
 
-        // создаем адаптер
-        EventThingAdapter adapter = new EventThingAdapter(getActivity(),
-                names);
-
-        // присваиваем адаптер списку
-        lvMain.setAdapter(adapter);
-/*
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                adapter.clear();
-                for (DataSnapshot elem : dataSnapshot.getChildren()) {
-
-                    Thing item = new Thing(elem.child("Name").getValue().toString(),
-                            Boolean.parseBoolean(elem.child("CheckBox").getValue().toString()),
-                            elem.getKey().toString());
-                    adapter.add(item);
-                }
-                //TODO Убрать слишком частые обнволения
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-*/
-/*
+            String thing = mThing.getText().toString();
+            addThing(thing);
 
         });
-*/
-/*
-        lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView adapterView, View view, int position, long l) {
-                //Item Selected from list
-                //adapter.setCheckBox(position);
-                HashMap<String, String> userMap = new HashMap<>();
-                Thing thing = (Thing)adapter.getItem(position);
-                userMap.put("Name", thing.getName());
-                userMap.put("CheckBox", String.valueOf(!thing.isCheckbox()));
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(mEvenId).child("Things").child(thing.getId());
-                mDatabase.setValue(userMap);
 
-                //  mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(mEvenId).push();
-            }
-        });
-        mCreateThing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // создаем адаптер
-                String s = mTextThing.getText().toString();
-                //проверка на пустую строку
-                if (s.equals("")) return;
+        mRecyclerView = v.findViewById(R.id.recyclerThings);
 
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(mEvenId).child("Things").push();
-                Thing item = new Thing(s, false, mDatabase.getKey());
-                //  adapter.add(item);
-                HashMap<String, String> userMap = new HashMap<>();
-                userMap.put("Name", item.getName());
-                userMap.put("CheckBox", "false");
-                mDatabase.setValue(userMap);
-                // mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(mEvenId).push();
-                lvMain.smoothScrollToPosition(adapter.size());
+        mRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(llm);
 
-                mTextThing.setText("");
-                // присваиваем адаптер списку
-            }
-        });
-*/
+        showThings();
+
         return v;
 
     }
+
+    private void showThings() {
+
+        initializeData();
+
+    }
+
+    private void addThing(String thing) {
+
+        if (!TextUtils.isEmpty(thing)) {
+
+//            String data = EventActivity.sEventPreview.getID() + " " + thing;
+            Commands.addThings(EventActivity.sEventPreview.getID(), thing);
+            mThing.setText("");
+            //            mEventActivity.sendData(data);
+
+        }
+
+    }
+
+    private void initializeData() {
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+
+                mThingsList= Commands.thingsOfEvent(EventActivity.sEventPreview.getID()).getArr();
+
+                getActivity().runOnUiThread(() -> {
+
+                    mThingAdapter = new ThingAdapter(mThingsList);
+                    mRecyclerView.setAdapter(mThingAdapter);
+
+
+                    if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
+
+                        mRecyclerView.scrollToPosition(mThingsList.size() - 1);
+
+                    }
+                });
+
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public char getCommandType() {
@@ -140,5 +137,20 @@ public class ThingsFragment extends Fragment implements EventActivity.Connection
     @Override
     public void getData(String data) {
         Log.d("DEBUG", "things get data");
+
+        mThingsList= Commands.thingsOfEvent(EventActivity.sEventPreview.getID()).getArr();
+
+        getActivity().runOnUiThread(() -> {
+
+            mThingAdapter = new ThingAdapter(mThingsList);
+            mRecyclerView.setAdapter(mThingAdapter);
+
+            if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
+
+                mRecyclerView.scrollToPosition(mThingsList.size() - 1);
+
+            }
+        });
+
     }
 }

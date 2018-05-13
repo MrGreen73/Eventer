@@ -2,6 +2,8 @@ package com.ivan.eventer.view.Main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.location.places.Place;
@@ -54,6 +57,8 @@ public class FirstPreviewFragment extends Fragment implements
     private String mAddress;
     private GoogleMap mMap;
 
+    private ImageView mImage;
+
     private Button mConnectBtn;
 
     @Override
@@ -76,6 +81,7 @@ public class FirstPreviewFragment extends Fragment implements
         mKind = v.findViewById(R.id.firstPreviewKind);
         mTime = v.findViewById(R.id.firstPreviewTime);
         mDate = v.findViewById(R.id.firstPreviewDate);
+        mImage = v.findViewById(R.id.firstPreviewImage);
 
         mTitle.setText(MainActivity.sFirstPreviewEvent.getTitle());
         mDescribe.setText(MainActivity.sFirstPreviewEvent.getDescribe());
@@ -85,6 +91,7 @@ public class FirstPreviewFragment extends Fragment implements
         mKind.setText(MainActivity.sFirstPreviewEvent.getKind());
         mTime.setText(MainActivity.sFirstPreviewEvent.getTime());
         mDate.setText(MainActivity.sFirstPreviewEvent.getDate());
+        mImage.setImageBitmap(getBitmap(MainActivity.sFirstPreviewEvent.getImage()));
 
         //Устанавливаем метку на карте
         String[] pos = MainActivity.sFirstPreviewEvent.getPosition().split(" ");
@@ -125,6 +132,13 @@ public class FirstPreviewFragment extends Fragment implements
                 .title("Место встречи"));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mPosition, DEFAULT_ZOOM));
+    }
+
+
+    private Bitmap getBitmap(byte[] image) {
+
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+
     }
 
     // Получаем результаты выбора в position

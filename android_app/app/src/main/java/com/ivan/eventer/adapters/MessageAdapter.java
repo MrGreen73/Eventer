@@ -19,9 +19,7 @@ import com.ivan.eventer.model.User;
 
 import java.util.List;
 
-/**
- * Created by ivan on 28.04.18.
- */
+
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 

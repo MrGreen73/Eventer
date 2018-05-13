@@ -67,6 +67,8 @@ public class SearchResultFragment extends Fragment {
         // Загрузка событий из базы данных
         initializeData();
 
+//        getActivity().getSupportFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentByTag("search"));
+
         return view;
 
     }
